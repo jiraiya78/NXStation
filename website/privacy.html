@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NXStation Privacy Policy — data collection, network requests, and your rights." />
+  <meta name="theme-color" content="#0A0C14" />
+  <title>Privacy Policy · NXStation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <a class="nav__brand" href="index.html">
+        <img src="assets/icons/logo.svg" alt="" width="28" height="28" />
+        <span>NXStation</span>
+      </a>
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#download">Download</a></li>
+        <li><a class="nav__cta" href="https://github.com/sponsors/NXStation" target="_blank" rel="noopener noreferrer">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="legal-page">
+    <div class="container legal-page__inner">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="legal-page__lead">How we handle your data and privacy while using NXStation.</p>
+
+      <div class="legal-card glass">
+        <p>
+          NXStation is a locally-run homebrew frontend designed to respect your privacy.
+          By default, the core interface and RetroArch backend operate entirely offline on your Nintendo Switch.
+        </p>
+
+        <h2>1. Data Collection</h2>
+        <ul>
+          <li>We do not track your usage habits or send telemetry.</li>
+          <li>We do not collect personal identifying information.</li>
+          <li>Save files, configuration, favorites, navigation state, ROM paths, and cached media remain strictly on your local SD card.</li>
+          <li>This website does not use analytics cookies or third-party tracking pixels.</li>
+        </ul>
+
+        <h2>2. Network Requests</h2>
+        <p>While the application is primarily offline, certain optional features require network access. Requests are made <strong>directly from your device</strong> to third-party services — NXStation does not operate a proxy server that receives or stores your library data.</p>
+        <ul>
+          <li><strong>ScreenScraper:</strong> When you run the scraper, NXStation queries ScreenScraper to download box art, screenshots, video previews, and game metadata to your SD card.</li>
+          <li><strong>Updates / downloads:</strong> Release binaries and documentation are obtained from GitHub (or mirrors you choose). Visiting this site or the repository is optional.</li>
+        </ul>
+        <p class="legal-note">These external services are bound by their own privacy policies. NXStation acts only as a client fetching public metadata you explicitly request.</p>
+
+        <h2>3. Your Rights</h2>
+        <p>
+          Because NXStation does not collect, store, or transmit your private data to our servers,
+          there is no personal data to delete, export, or manage on our end.
+          You are in full control of the application data residing on your SD card —
+          delete the <code>/switch/NXStation/</code> and related cache folders at any time to remove local app data.
+        </p>
+        <p>
+          If you have questions about this policy, open an issue on
+          <a href="https://github.com/NXStation/NXStation/issues" target="_blank" rel="noopener noreferrer">GitHub</a>.
+        </p>
+
+        <p class="legal-updated">Last updated: August 2026</p>
+      </div>
+
+      <p class="legal-nav">
+        <a href="index.html">← Home</a>
+        <a href="terms.html">Terms</a>
+        <a href="license.html">License</a>
+        <a href="dmca.html">DMCA</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__bar">
+        <p>
+          <a href="privacy.html">Privacy</a> ·
+          <a href="terms.html">Terms</a> ·
+          <a href="license.html">License</a> ·
+          <a href="dmca.html">DMCA</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  </footer>
+  <script src="script.js" defer></script>
+</body>
+</html>

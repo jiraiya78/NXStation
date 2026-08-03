@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NXStation DMCA Policy — copyright infringement claims and takedown procedures." />
+  <meta name="theme-color" content="#0A0C14" />
+  <title>DMCA Policy · NXStation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <a class="nav__brand" href="index.html">
+        <img src="assets/icons/logo.svg" alt="" width="28" height="28" />
+        <span>NXStation</span>
+      </a>
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#download">Download</a></li>
+        <li><a class="nav__cta" href="https://github.com/sponsors/NXStation" target="_blank" rel="noopener noreferrer">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="legal-page">
+    <div class="container legal-page__inner">
+      <p class="eyebrow">Legal</p>
+      <h1>DMCA Policy</h1>
+      <p class="legal-page__lead">Copyright infringement claims and takedown procedures for the NXStation project.</p>
+
+      <div class="legal-card glass">
+        <h2>1. No Hosted Content Policy</h2>
+        <p>NXStation is strictly an informational website and a locally-executed frontend interface.</p>
+        <ul>
+          <li>We do not host, distribute, or link to any copyrighted video games, ROMs, ISO files, or firmware (BIOS).</li>
+          <li>Images, artwork, and technical information on this site are utilized strictly under the principles of Fair Use for educational, demonstration, and compatibility reporting purposes, or are original project assets.</li>
+          <li>When the NXStation application fetches cover art or metadata, it queries public, third-party databases (such as ScreenScraper) <strong>directly from the user’s local device</strong>.</li>
+          <li>Data from these queries does not pass through, and is not cached on, any NXStation-controlled servers.</li>
+        </ul>
+
+        <h2>2. DMCA Takedown Notice Procedure</h2>
+        <p>
+          We respect the intellectual property rights of others. In accordance with the Digital Millennium Copyright Act (DMCA),
+          if you are a copyright owner or an agent thereof and believe that any content situated on this website or our associated
+          GitHub repositories infringes upon your copyright, you may submit a notification via a
+          <a href="https://github.com/NXStation/NXStation/issues" target="_blank" rel="noopener noreferrer">GitHub issue</a>
+          titled <strong>“DMCA Takedown Notice”</strong>, including:
+        </p>
+        <ul>
+          <li>A physical or electronic signature of the copyright owner or authorized agent</li>
+          <li>Identification of the copyrighted work claimed to have been infringed</li>
+          <li>Identification of the material that is claimed to be infringing, with information reasonably sufficient to locate it (URL or file path)</li>
+          <li>Your contact information (email address and, if available, phone number / mailing address)</li>
+          <li>A statement that you have a good-faith belief that use of the material is not authorized by the copyright owner, its agent, or the law</li>
+          <li>A statement that the information in the notification is accurate, and under penalty of perjury, that you are authorized to act on behalf of the owner</li>
+        </ul>
+        <p>Upon receipt of a valid notice, we will review the claim and, where appropriate, remove or disable access to the material.</p>
+
+        <h2>3. Counter-Notice Procedure</h2>
+        <p>
+          If you believe your content or contribution was removed by mistake or misidentification
+          (for example, if a submitted code pull request or documentation edit was taken down),
+          you may file a counter-notice through the same GitHub issues channel.
+          We will review the counter-notice and, if appropriate in our legal discretion, may restore the material in question.
+        </p>
+
+        <h2>4. Repeat Infringer Policy</h2>
+        <p>
+          In accordance with the DMCA and other applicable law, NXStation has adopted a policy of terminating,
+          in appropriate circumstances and at our sole discretion, users, contributors, or community members
+          who are deemed to be repeat infringers of intellectual property rights.
+        </p>
+
+        <h2>5. Asset Attribution Requests</h2>
+        <p>
+          If your original artwork, photography, or other creative work appears on this website or in project materials
+          without proper credit, please contact us via GitHub Issues. We will gladly add proper attribution or remove the material if you require.
+        </p>
+
+        <p class="legal-updated">Last updated: August 2026</p>
+      </div>
+
+      <p class="legal-contact">
+        <a class="btn btn--secondary" href="mailto:azri.kun@gmail.com">Email me — azri.kun@gmail.com</a>
+      </p>
+
+      <p class="legal-nav">
+        <a href="index.html">← Home</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="license.html">License</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__bar">
+        <p>
+          <a href="privacy.html">Privacy</a> ·
+          <a href="terms.html">Terms</a> ·
+          <a href="license.html">License</a> ·
+          <a href="dmca.html">DMCA</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  </footer>
+  <script src="script.js" defer></script>
+</body>
+</html>

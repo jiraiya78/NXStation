@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NXStation — a fast, native, and customizable homebrew frontend for Nintendo Switch. RetroArch backend, ScreenScraper, ES-DE media compatible." />
+  <meta name="theme-color" content="#0A0C14" />
+  <title>NXStation — Your Retro Library. Elevated.</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NXStation — Your Retro Library. Elevated." />
+  <meta property="og:description" content="A fast, native, and customizable homebrew frontend built specifically for Nintendo Switch." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <!-- CRT / scanline overlay -->
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <a class="nav__brand" href="#top">
+        <img src="assets/icons/logo.svg" alt="" width="28" height="28" />
+        <span>NXStation</span>
+      </a>
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#showcase">UI Showcase</a></li>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a class="nav__cta nav__cta--donate" href="https://github.com/sponsors/NXStation" target="_blank" rel="noopener noreferrer">Donate</a></li>
+        <li><a class="nav__cta" href="#download">Download</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Hero -->
+    <section class="hero" id="download" aria-labelledby="hero-title">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">Nintendo Switch Homebrew</p>
+          <h1 id="hero-title">Your Retro Library.<br /><span class="text-gradient">Elevated.</span></h1>
+          <p class="hero__subtitle">
+            A fast, native, and customizable homebrew frontend built specifically for Nintendo Switch.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary glow-pulse" href="https://github.com/NXStation/NXStation/releases/latest" target="_blank" rel="noopener noreferrer">
+              Download .NRO (v1.0)
+            </a>
+            <a class="btn btn--secondary" href="https://github.com/NXStation/NXStation" target="_blank" rel="noopener noreferrer">
+              GitHub Repository
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal reveal--delay">
+          <div class="hero-pinup glass glow-border">
+            <img
+              class="hero-pinup__img"
+              src="assets/hero-mockup.png"
+              alt="NXStation UI preview on Nintendo Switch"
+              width="640"
+              height="400"
+            />
+            <div class="hero-pinup__badge">
+              <span class="dot"></span> Native · Borealis UI
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Objective / Philosophy -->
+    <section class="section" id="philosophy" aria-labelledby="philosophy-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Objective</p>
+          <h2 id="philosophy-title">Built on six pillars</h2>
+          <p class="section__lead">
+            A Switch-native frontend that respects your collection, scrapes what you need, and gets out of the way when you play.
+          </p>
+        </header>
+
+        <div class="pillars">
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">🎨</div>
+            <h3>Media Collection Compatibility</h3>
+            <p>Fully compatible with ES-DE Arts Media. Drop your collection’s media and <code>gamelist.xml</code> into the roms folder and it works immediately.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">⚡</div>
+            <h3>Batch Scraping</h3>
+            <p>Batch online scraper ready for ScreenScraper — pull box art, screenshots, and metadata in one pass.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">🎮</div>
+            <h3>RetroArch as Backend</h3>
+            <p>Launch from NXStation opens the ROM in RetroArch. Closing a game returns you to your last browse position seamlessly.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">🎨</div>
+            <h3>Deeply Themeable</h3>
+            <p>Ready with many color themes for personalization, plus support for customized themes.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">⚡</div>
+            <h3>Blazing Fast</h3>
+            <p>C++ / native speed — zero bloated webview lag. Built for handheld responsiveness.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">🎮</div>
+            <h3>Handheld Native</h3>
+            <p>Perfect controller mapping with touchscreen support, tuned for Switch hardware.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Key Features -->
+    <section class="section section--alt" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Capabilities</p>
+          <h2 id="features-title">Key Features</h2>
+          <p class="section__lead">Everything you need to browse, scrape, theme, and launch — without leaving the Switch.</p>
+        </header>
+
+        <div class="features-grid">
+          <article class="feature glass reveal">
+            <img src="assets/icons/scraper.svg" alt="" width="40" height="40" />
+            <h3>Dynamic Media Scraper</h3>
+            <p>Batch or individual box art, screenshots, and game metadata using ScreenScraper.</p>
+          </article>
+          <article class="feature glass reveal">
+            <img src="assets/icons/folder.svg" alt="" width="40" height="40" />
+            <h3>Smart Rom Directory</h3>
+            <p>Auto-scans SD card structures, nested subfolders, and custom playlists. Fully follows the ES-DE roms structure format.</p>
+          </article>
+          <article class="feature glass reveal">
+            <img src="assets/icons/palette.svg" alt="" width="40" height="40" />
+            <h3>Themeable</h3>
+            <p>Many color themes for personalization and customized theme support. Future theme downloader planned.</p>
+          </article>
+          <article class="feature glass reveal">
+            <img src="assets/icons/cache.svg" alt="" width="40" height="40" />
+            <h3>Offline Caching</h3>
+            <p>Keep your art and metadata synced on the go without active Wi-Fi.</p>
+          </article>
+          <article class="feature glass reveal">
+            <img src="assets/icons/retroarch.svg" alt="" width="40" height="40" />
+            <h3>RetroArch Integration</h3>
+            <p>Native launching support for popular Switch emulation cores.</p>
+          </article>
+          <article class="feature glass reveal">
+            <img src="assets/icons/music.svg" alt="" width="40" height="40" />
+            <h3>Custom Soundtracks</h3>
+            <p>Background music and retro sound-effects toggle <span class="tag">future</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. UI Showcase Carousel -->
+    <section class="section" id="showcase" aria-labelledby="showcase-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Interface</p>
+          <h2 id="showcase-title">UI System &amp; Theme Showcase</h2>
+          <p class="section__lead">Scroll or use the controls to preview core views and theme modes.</p>
+        </header>
+
+        <div class="carousel reveal" data-carousel>
+          <div class="carousel__track" tabindex="0" role="region" aria-label="UI screenshots" aria-roledescription="carousel">
+            <figure class="carousel__slide glass is-active" data-slide>
+              <img src="assets/UI-carousel/list-view.svg" alt="List View — vertical game list with box art" width="800" height="450" />
+              <figcaption>List View</figcaption>
+            </figure>
+            <figure class="carousel__slide glass" data-slide>
+              <img src="assets/UI-carousel/carousel-view.svg" alt="Carousel View — system carousel with featured art" width="800" height="450" />
+              <figcaption>Carousel View</figcaption>
+            </figure>
+            <figure class="carousel__slide glass" data-slide>
+              <img src="assets/UI-carousel/scraper.svg" alt="Scraper — ScreenScraper progress and media preview" width="800" height="450" />
+              <figcaption>Scrapper</figcaption>
+            </figure>
+            <figure class="carousel__slide glass" data-slide>
+              <img src="assets/UI-carousel/themes.svg" alt="Dark and Light theme variants side by side" width="800" height="450" />
+              <figcaption>Dark / Light Themes</figcaption>
+            </figure>
+          </div>
+          <div class="carousel__controls">
+            <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous slide">‹</button>
+            <div class="carousel__dots" data-carousel-dots role="tablist" aria-label="Slide indicators"></div>
+            <button type="button" class="carousel__btn" data-carousel-next aria-label="Next slide">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Setup -->
+    <section class="section section--alt" id="setup" aria-labelledby="setup-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Get started</p>
+          <h2 id="setup-title">Quick Setup Guide</h2>
+          <p class="section__lead">Three steps from download to your library on Switch.</p>
+        </header>
+
+        <ol class="setup-timeline">
+          <li class="setup-step glass reveal">
+            <span class="setup-step__num" aria-hidden="true">01</span>
+            <div>
+              <h3>Download the latest <code>.nro</code></h3>
+              <p>Grab the release from GitHub and verify the version matches your Atmosphere build.</p>
+            </div>
+          </li>
+          <li class="setup-step glass reveal">
+            <span class="setup-step__num" aria-hidden="true">02</span>
+            <div>
+              <h3>Place it on your SD card</h3>
+              <p>Copy to <code>/switch/NXStation/</code> on your SD card (alongside config as needed).</p>
+            </div>
+          </li>
+          <li class="setup-step glass reveal">
+            <span class="setup-step__num" aria-hidden="true">03</span>
+            <div>
+              <h3>Boot via Atmosphere</h3>
+              <p>Launch from the Homebrew Menu. <strong>Title Override mode required</strong> for full memory access.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Support</p>
+          <h2 id="faq-title">Frequently Asked Questions</h2>
+          <p class="section__lead">Quick answers about NXStation, setup, scraping, and how you can help.</p>
+        </header>
+
+        <div class="faq-list reveal" data-faq>
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>Is NXStation free to use?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>Yes, NXStation is completely free. You can download it and use it.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>What are planned features?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>Planned features include search, jump-to navigation, a screen saver, and background music.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>Would you implement RetroAchievements?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>I am not sure at the moment.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>Can I help?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>
+                Yes — help with background images and placeholders would be especially useful.
+                If you have experience managing a wiki, please get in touch.
+                Beyond that, bug testing is hugely appreciated. If you have any dime to spare,
+                consider <a href="https://github.com/sponsors/NXStation" target="_blank" rel="noopener noreferrer">donating via GitHub Sponsors</a>.
+                Engagement and small incentives keep development going longer.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>Which platforms are supported?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>For now: <code>nes</code>, <code>snes</code>, <code>gb</code>, <code>gbc</code>, <code>gba</code>, <code>nds</code>, <code>n64</code>, <code>megadrive</code>, <code>psx</code>, <code>psp</code>, <code>pce</code>.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>How do I add my games?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <ol class="faq-steps">
+                <li>On your SD card, place ROMs under <code>sdmc:/roms/{systemId}/</code> (ES-DE-style folders, e.g. <code>snes</code>, <code>nes</code>).</li>
+                <li>Optional: drop ES-DE media and <code>gamelist.xml</code> alongside your collection — NXStation picks them up.</li>
+                <li>Copy <code>roms_config.json</code> next to the <code>.nro</code> if you need custom systems or cores.</li>
+                <li>Launch NXStation (Title Override). It scans the SD structure and lists your games per system.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>How do I use the scraper?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <ol class="faq-steps">
+                <li>Connect the Switch to Wi-Fi and open a system’s game list in NXStation.</li>
+                <li>Press <strong>Y</strong> to open the scrape menu. Choose box art, thumbnail, video, and options.</li>
+                <li>Add your ScreenScraper website login in Settings (or <code>user_screenscraper.json</code>) if required.</li>
+                <li>Run a single-game or batch scrape. Media and metadata are cached locally on the SD card for offline use.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="section section--alt" id="disclaimer" aria-labelledby="disclaimer-title">
+      <div class="container">
+        <aside class="disclaimer glass reveal" role="note" aria-labelledby="disclaimer-title">
+          <h2 id="disclaimer-title" class="disclaimer__label">Disclaimer</h2>
+          <blockquote>
+            This project is an open-source frontend management tool. It does not contain game ROMs, copyrighted BIOS files, or proprietary Nintendo code. The developers are not affiliated with or endorsed by Nintendo Co., Ltd.
+          </blockquote>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Credits & Footer -->
+  <footer class="site-footer" id="credits">
+    <div class="container">
+      <div class="footer__credits reveal">
+        <h2 class="footer__heading">Credits</h2>
+        <ul class="credit-links">
+          <li><a href="https://github.com/switchbrew/libnx" target="_blank" rel="noopener noreferrer">Libnx</a></li>
+          <li><a href="https://switchbrew.org/" target="_blank" rel="noopener noreferrer">Switch Homebrew Community</a></li>
+          <li><a href="https://www.screenscraper.fr/" target="_blank" rel="noopener noreferrer">ScreenScraper API</a></li>
+          <li><a href="https://github.com/natinusala/borealis" target="_blank" rel="noopener noreferrer">Borealis</a></li>
+          <li><a href="https://github.com/xfangfang/borealis" target="_blank" rel="noopener noreferrer">Xfangfang fork</a></li>
+        </ul>
+
+        <h3 class="footer__subheading">Images &amp; media</h3>
+        <ul class="credit-links credit-links--stack">
+          <li>Hero mockup (<code>hero-mockup.png</code>) — AI-generated marketing visual created for this site</li>
+          <li>UI carousel panels — original SVG mockups illustrating List, Carousel, Scraper, and Theme views</li>
+          <li>Icons — original SVG assets for this landing page</li>
+        </ul>
+        <p class="footer__notice">
+          If your works are used here, please
+          <a href="https://github.com/NXStation/NXStation/issues" target="_blank" rel="noopener noreferrer">contact me</a>
+          so I can properly credit them — or remove them if you require.
+        </p>
+
+        <p class="footer__donate-wrap">
+          <a class="btn btn--donate btn--donate-sm" href="https://github.com/sponsors/NXStation" target="_blank" rel="noopener noreferrer">
+            Donate via GitHub Sponsors
+          </a>
+        </p>
+      </div>
+
+      <div class="footer__bar">
+        <p>
+          <a href="https://github.com/NXStation/NXStation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          ·
+          <a href="privacy.html">Privacy</a>
+          ·
+          <a href="terms.html">Terms</a>
+          ·
+          <a href="license.html">License</a>
+          ·
+          <a href="dmca.html">DMCA</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>
+      ↑
+    </button>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
