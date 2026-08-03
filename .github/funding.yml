@@ -1,0 +1,41 @@
+# .github/FUNDING.yml
+
+# GitHub Sponsors username
+github: jiraiya78
+
+# Patreon username
+patreon: your-patreon-username
+
+# Open Collective username
+open_collective: your-project-name
+
+# Ko-fi username
+ko_fi: your-kofi-username
+
+# Tidelift package coordinates
+tidelift: npm/your-package-name
+
+# Community Bridge project (Linux Foundation)
+community_bridge: your-project-name
+
+# Liberapay username
+liberapay: your-username
+
+# IssueHunt username
+issuehunt: your-username
+
+# Polar username
+polar: your-username
+
+# Buy Me a Coffee username
+buy_me_a_coffee: your-username
+
+# Thanks.dev username
+thanks_dev: gh/your-username
+
+# Custom URLs (up to 4)
+custom: [
+  "https://donatr.ee/your-username",
+  "https://your-site.com/donate",
+  "https://paypal.me/your-username"
+]
