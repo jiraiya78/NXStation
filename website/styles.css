@@ -1009,6 +1009,69 @@ h3 {
   font-size: 0.88rem;
 }
 
+/* ----- Cookie consent ----- */
+.cookie-consent {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(640px, calc(100% - 2.5rem));
+  z-index: 10001;
+  padding: 1.15rem 1.35rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.cookie-consent[hidden] {
+  display: none !important;
+}
+
+.cookie-consent__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cookie-consent__text {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.cookie-consent__text a {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.cookie-consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.cookie-consent__btn {
+  min-width: 7rem;
+}
+
+body.cookie-banner-visible .back-to-top {
+  bottom: 6.5rem;
+}
+
+@media (min-width: 720px) {
+  .cookie-consent__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  body.cookie-banner-visible .back-to-top {
+    bottom: 1.25rem;
+  }
+}
+
 /* ----- FAQ accordion ----- */
 .faq-list {
   display: grid;
