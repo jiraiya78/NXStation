@@ -75,11 +75,32 @@ Mapped for Joy-Con and Pro Controller, with touchscreen support where it matters
 
 ## Supported systems
 
-NXStation currently supports libraries organized under these system IDs:
+NXStation’s default configuration includes **20 systems**. Organize ROMs under `sdmc:/roms/` using the folder ID below (ES-DE-style layout).
 
-`nes` · `snes` · `gb` · `gbc` · `gba` · `nds` · `n64` · `megadrive` · `psx` · `psp` · `pce`
+| Folder ID | System |
+|-----------|--------|
+| `nes` | Nintendo Entertainment System |
+| `snes` | Super Nintendo |
+| `n64` | Nintendo 64 |
+| `gb` | Game Boy |
+| `gbc` | Game Boy Color |
+| `gba` | Game Boy Advance |
+| `nds` | Nintendo DS |
+| `3ds` | Nintendo 3DS |
+| `megadrive` | Sega Mega Drive / Genesis |
+| `mastersystem` | Sega Master System |
+| `gamegear` | Sega Game Gear |
+| `dreamcast` | Sega Dreamcast |
+| `psx` | PlayStation |
+| `ps2` | PlayStation 2 |
+| `psp` | PlayStation Portable |
+| `pce` | PC Engine / TurboGrafx-16 |
+| `atari2600` | Atari 2600 |
+| `cps1` | Capcom Play System I |
+| `cps2` | Capcom Play System II |
+| `neogeo` | Neo Geo |
 
-More platforms may be added over time through configuration and core support.
+Additional platforms can be added by editing `roms_config.json` when a compatible RetroArch core is installed on your SD card.
 
 ---
 
