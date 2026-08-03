@@ -149,7 +149,9 @@ Bug reports and testing are always welcome. Contributions of background art and 
 
 NXStation is free and open source. If you enjoy it, consider supporting development:
 
-[![Buy Me a Coffee at ko-fi.com](https://storage.ko-fi.com/cdn/kofi6.png?v=6)](https://ko-fi.com/V7C024E7UO)
+<a href="https://ko-fi.com/V7C024E7UO" target="_blank" rel="noopener noreferrer">
+  <img src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" height="28" alt="Buy Me a Coffee at ko-fi.com" />
+</a>
 
 - **Ko-fi:** [ko-fi.com/V7C024E7UO](https://ko-fi.com/V7C024E7UO)
 - **GitHub Sponsors:** [github.com/sponsors/jiraiya78](https://github.com/sponsors/jiraiya78)
