@@ -21,6 +21,9 @@
   <meta property="og:title" content="NXStation — Your Retro Library. Elevated." />
   <meta property="og:description" content="A fast, native, and customizable homebrew frontend built specifically for Nintendo Switch." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/hero-mockup.png" />
+  <meta property="og:image:width" content="640" />
+  <meta property="og:image:height" content="400" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,7 +48,7 @@
         <li><a href="#showcase">UI Showcase</a></li>
         <li><a href="#setup">Setup</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a class="nav__cta nav__cta--donate" href="https://github.com/sponsors/jiraiya78" target="_blank" rel="noopener noreferrer">Donate</a></li>
+        <li><a class="nav__cta nav__cta--donate" href="#support">Support</a></li>
         <li><a class="nav__cta" href="#download">Download</a></li>
       </ul>
       <div class="nav__actions">
@@ -199,33 +202,65 @@
         <header class="section__header reveal">
           <p class="eyebrow">Interface</p>
           <h2 id="showcase-title">UI System &amp; Theme Showcase</h2>
-          <p class="section__lead">Scroll or use the controls to preview core views and theme modes.</p>
+          <p class="section__lead">Scroll or use the controls to preview core views — static shots, GIF loops, and short video clips.</p>
         </header>
 
-        <div class="carousel reveal" data-carousel>
-          <div class="carousel__track" tabindex="0" role="region" aria-label="UI screenshots" aria-roledescription="carousel">
+          <div class="carousel reveal" data-carousel>
+          <div class="carousel__track" tabindex="0" role="region" aria-label="UI showcase" aria-roledescription="carousel">
             <figure class="carousel__slide glass is-active" data-slide>
-              <img src="assets/UI-carousel/carousell.jpg" alt="Main menu with carousel slider" width="800" height="450" />
-              <figcaption>Main menu with Carousel Slider</figcaption>
+              <div class="carousel__media">
+                <video class="carousel__video" muted loop playsinline preload="metadata" poster="assets/UI-carousel/carousel-view.svg" aria-label="Main menu with carousel slider">
+                  <source src="assets/UI-carousel/carousel.mp4" type="video/mp4" />
+                  <source src="assets/UI-carousel/carousel.webm" type="video/webm" />
+                </video>
+                <img class="carousel__fallback" src="assets/UI-carousel/carousel.gif" alt="" width="800" height="450" hidden />
+              </div>
+              <figcaption>Main menu with carousel slider</figcaption>
             </figure>
             <figure class="carousel__slide glass" data-slide>
-              <img src="assets/UI-carousel/scrapper.jpg" alt="ScreenScraper support with batch scraping" width="800" height="450" />
+              <div class="carousel__media">
+                <img src="assets/UI-carousel/scraper.gif" alt="ScreenScraper batch scraping in progress" width="800" height="450" loading="lazy" />
+              </div>
               <figcaption>ScreenScraper support with batch scraping</figcaption>
             </figure>
             <figure class="carousel__slide glass" data-slide>
-              <img src="assets/UI-carousel/game-list.jpg" alt="Game list with box art and video preview" width="800" height="450" />
+              <div class="carousel__media">
+                <video class="carousel__video" muted loop playsinline preload="metadata" poster="assets/UI-carousel/list-view.svg" aria-label="Game list with box art and video preview">
+                  <source src="assets/UI-carousel/game-list.mp4" type="video/mp4" />
+                  <source src="assets/UI-carousel/game-list.webm" type="video/webm" />
+                </video>
+                <img class="carousel__fallback" src="assets/UI-carousel/game-list.gif" alt="" width="800" height="450" hidden />
+              </div>
               <figcaption>Game list with box art and video preview</figcaption>
             </figure>
             <figure class="carousel__slide glass" data-slide>
-              <img src="assets/UI-carousel/themes.jpg" alt="Wide selection of basic themes — Base Theme plus 8 Dark and 8 Light themes" width="800" height="450" />
+              <div class="carousel__media">
+                <img src="assets/UI-carousel/themes.gif" alt="Theme selection and color modes" width="800" height="450" loading="lazy" />
+              </div>
               <figcaption>Wide selection of basic themes (Base + 8 Dark + 8 Light)</figcaption>
             </figure>
             <figure class="carousel__slide glass" data-slide>
-              <img src="assets/UI-carousel/easy-migrate.jpg" alt="Easy collection migration from ES-DE style ROMs folder" width="800" height="450" />
+              <div class="carousel__media">
+                <img src="assets/UI-carousel/easy-migrate.jpg" alt="Easy collection migration from ES-DE style ROMs folder" width="800" height="450" loading="lazy" />
+              </div>
               <figcaption>Easy collection migration from ES-DE style ROMs folder</figcaption>
             </figure>
             <figure class="carousel__slide glass" data-slide>
-              <img src="assets/UI-carousel/setting.jpg" alt="Settings page to control many functions" width="800" height="450" />
+              <div class="carousel__media">
+                <video class="carousel__video" muted loop playsinline preload="metadata" poster="assets/UI-carousel/settings.jpg" aria-label="Settings page">
+                  <source src="assets/UI-carousel/settings.mp4" type="video/mp4" />
+                  <source src="assets/UI-carousel/settings.webm" type="video/webm" />
+                </video>
+                <img
+                  class="carousel__fallback"
+                  src="assets/UI-carousel/settings.gif"
+                  alt="Settings page"
+                  width="800"
+                  height="450"
+                  hidden
+                  data-fallbacks="assets/UI-carousel/settings.jpg,assets/UI-carousel/setting.jpg"
+                />
+              </div>
               <figcaption>Settings page to control many functions</figcaption>
             </figure>
           </div>
@@ -314,7 +349,11 @@
               <span class="faq-item__icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-item__panel" hidden>
-              <p>Planned features include search, jump-to navigation, a screen saver, and background music.</p>
+              <p>
+                Core browsing features are in place: search, jump-to letter navigation, screensaver,
+                favorites, last played, and optional Home Menu forwarder install. Still planned:
+                background music and expanded UI sound options.
+              </p>
             </div>
           </div>
 
@@ -337,8 +376,9 @@
               <p>
                 Yes — help with background images and placeholders would be especially useful.
                 If you have experience managing a wiki, please get in touch.
-                Beyond that, bug testing is hugely appreciated. If you have any dime to spare,
-                consider <a href="https://github.com/sponsors/jiraiya78" target="_blank" rel="noopener noreferrer">donating via GitHub Sponsors</a>.
+                Beyond that, bug testing is hugely appreciated. If you can spare support,
+                <a href="https://ko-fi.com/V7C024E7UO" target="_blank" rel="noopener noreferrer">buy me a coffee on Ko-fi</a>
+                or <a href="https://github.com/sponsors/jiraiya78" target="_blank" rel="noopener noreferrer">donate via GitHub Sponsors</a>.
                 Engagement and small incentives keep development going longer.
               </p>
             </div>
@@ -360,7 +400,33 @@
               <span class="faq-item__icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-item__panel" hidden>
-              <p>For now: <code>nes</code>, <code>snes</code>, <code>gb</code>, <code>gbc</code>, <code>gba</code>, <code>nds</code>, <code>n64</code>, <code>megadrive</code>, <code>psx</code>, <code>psp</code>, <code>pce</code>.</p>
+              <p>
+                NXStation ships with <strong>20 systems</strong> in the default configuration.
+                Place ROMs in matching folders under <code>sdmc:/roms/</code>:
+              </p>
+              <ul class="faq-steps">
+                <li><code>nes</code> — Nintendo Entertainment System</li>
+                <li><code>snes</code> — Super Nintendo</li>
+                <li><code>n64</code> — Nintendo 64</li>
+                <li><code>gb</code> — Game Boy</li>
+                <li><code>gbc</code> — Game Boy Color</li>
+                <li><code>gba</code> — Game Boy Advance</li>
+                <li><code>nds</code> — Nintendo DS</li>
+                <li><code>3ds</code> — Nintendo 3DS</li>
+                <li><code>megadrive</code> — Sega Mega Drive / Genesis</li>
+                <li><code>mastersystem</code> — Sega Master System</li>
+                <li><code>gamegear</code> — Sega Game Gear</li>
+                <li><code>dreamcast</code> — Sega Dreamcast</li>
+                <li><code>psx</code> — PlayStation</li>
+                <li><code>ps2</code> — PlayStation 2</li>
+                <li><code>psp</code> — PlayStation Portable</li>
+                <li><code>pce</code> — PC Engine / TurboGrafx-16</li>
+                <li><code>atari2600</code> — Atari 2600</li>
+                <li><code>cps1</code> — Capcom Play System I</li>
+                <li><code>cps2</code> — Capcom Play System II</li>
+                <li><code>neogeo</code> — Neo Geo</li>
+              </ul>
+              <p>Additional systems can be added by editing <code>roms_config.json</code> when a matching RetroArch core is available.</p>
             </div>
           </div>
 
@@ -444,9 +510,36 @@
           so I can properly credit them — or remove them if you require.
         </p>
 
-        <p class="footer__donate-wrap">
-           
-        </p>
+        <div class="footer__donate-wrap" id="support">
+          <h3 class="footer__subheading">Support the project</h3>
+          <p class="footer__donate-lead">
+            NXStation is free and open source. Ko-fi and GitHub Sponsors help cover time, testing hardware, and hosting.
+          </p>
+          <div class="footer__donate-actions">
+            <a
+              class="kofi-btn"
+              href="https://ko-fi.com/V7C024E7UO"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Buy Me a Coffee on Ko-fi"
+            >
+              <img
+                src="https://storage.ko-fi.com/cdn/kofi6.png?v=6"
+                height="36"
+                alt="Buy Me a Coffee at ko-fi.com"
+              />
+            </a>
+            <a
+              class="btn btn--donate btn--donate-sm"
+              href="https://github.com/sponsors/jiraiya78"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub Sponsors
+            </a>
+          </div>
+          
+        </div>
       </div>
 
       <div class="footer__bar">
@@ -460,6 +553,8 @@
           <a href="license.html">License</a>
           ·
           <a href="dmca.html">DMCA</a>
+          ·
+          <a href="https://ko-fi.com/V7C024E7UO" target="_blank" rel="noopener noreferrer">Ko-fi</a>
         </p>
         <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
       </div>
