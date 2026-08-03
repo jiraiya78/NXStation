@@ -6,6 +6,44 @@
 (() => {
   "use strict";
 
+  const THEME_KEY = "nx-theme";
+  const THEME_COLORS = { dark: "#0C0612", light: "#FAF5FF" };
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) metaTheme.setAttribute("content", THEME_COLORS[theme]);
+    const themeToggle = document.getElementById("theme-toggle");
+    if (themeToggle) {
+      const label = theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+      themeToggle.setAttribute("aria-label", label);
+      themeToggle.setAttribute("title", theme === "dark" ? "Light mode" : "Dark mode");
+    }
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (_) {
+      /* storage unavailable */
+    }
+  }
+
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+    applyTheme(document.documentElement.getAttribute("data-theme") || "dark");
+  }
+
+  // ---- Brand / home link — scroll to true page top ----
+  document.querySelectorAll('a[href="#top"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      history.replaceState(null, "", "#top");
+    });
+  });
+
   // ---- Year in footer ----
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -101,7 +139,7 @@
 
   // ---- UI carousel (scroll-snap + controls) ----
   const carouselRoot = document.querySelector("[data-carousel]");
-  if (!carouselRoot) return;
+  if (carouselRoot) {
 
   const track = carouselRoot.querySelector(".carousel__track");
   const slides = [...carouselRoot.querySelectorAll("[data-slide]")];
@@ -109,7 +147,9 @@
   const nextBtn = carouselRoot.querySelector("[data-carousel-next]");
   const dotsWrap = carouselRoot.querySelector("[data-carousel-dots]");
 
-  if (!track || slides.length === 0) return;
+  if (!track || slides.length === 0) {
+    /* no carousel slides */
+  } else {
 
   let index = 0;
   let autoTimer = null;
@@ -212,4 +252,6 @@
 
   updateActive(0);
   restartAuto();
+  }
+  }
 })();
