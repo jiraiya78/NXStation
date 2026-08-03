@@ -141,7 +141,18 @@ Not for normal use. Applet Mode is blocked with an explanation dialog because th
 Uncertain at this time — no commitment either way yet.
 
 **Can I help?**  
-Bug reports and testing are always welcome. Contributions of background art and placeholders are especially useful. If you can spare support, [GitHub Sponsors](https://github.com/sponsors/jiraiya78) helps keep development going.
+Bug reports and testing are always welcome. Contributions of background art and placeholders are especially useful. If you can spare support, [buy me a coffee on Ko-fi](https://ko-fi.com/V7C024E7UO) or [donate via GitHub Sponsors](https://github.com/sponsors/jiraiya78) helps keep development going.
+
+---
+
+## Support the project
+
+NXStation is free and open source. If you enjoy it, consider supporting development:
+
+[![Buy Me a Coffee at ko-fi.com](https://storage.ko-fi.com/cdn/kofi6.png?v=6)](https://ko-fi.com/V7C024E7UO)
+
+- **Ko-fi:** [ko-fi.com/V7C024E7UO](https://ko-fi.com/V7C024E7UO)
+- **GitHub Sponsors:** [github.com/sponsors/jiraiya78](https://github.com/sponsors/jiraiya78)
 
 ---
 
@@ -155,7 +166,7 @@ NXStation is an open-source frontend management tool. It does not contain game R
 
 - **Download:** [github.com/jiraiya78/NXStation/releases](https://github.com/jiraiya78/NXStation/releases/latest)
 - **Source & issues:** [github.com/jiraiya78/NXStation](https://github.com/jiraiya78/NXStation)
-- **Support the project:** [GitHub Sponsors](https://github.com/sponsors/jiraiya78)
+- **Support:** [Ko-fi](https://ko-fi.com/V7C024E7UO) · [GitHub Sponsors](https://github.com/sponsors/jiraiya78)
 
 ---
 
