@@ -1,8 +1,16 @@
-# NXStation
+<p align="center">
+  <a href="https://nxstation.com">
+    <img src="website/assets/hero-mockup.png" alt="NXStation UI on Nintendo Switch" width="640" />
+  </a>
+</p>
 
-**Your Retro Library. Elevated.**
+<h1 align="center"><a href="https://nxstation.com">NXStation</a></h1>
+
+<p align="center"><strong>Your Retro Library. Elevated.</strong></p>
 
 A fast, native, and customizable homebrew frontend built specifically for Nintendo Switch — browse your collection with real box art, scrape metadata on-device, launch through RetroArch, and pick up exactly where you left off when you return.
+
+**Website:** [nxstation.com](https://nxstation.com)
 
 ---
 
