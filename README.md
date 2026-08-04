@@ -100,7 +100,6 @@ NXStation’s default configuration includes **20 systems**. Organize ROMs under
 | `gamegear` | Sega Game Gear |
 | `dreamcast` | Sega Dreamcast |
 | `psx` | PlayStation |
-| `ps2` | PlayStation 2 |
 | `psp` | PlayStation Portable |
 | `pce` | PC Engine / TurboGrafx-16 |
 | `atari2600` | Atari 2600 |
