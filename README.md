@@ -14,6 +14,7 @@ A fast, native, and customizable homebrew frontend built specifically for Ninten
 
 **Current release:** [v0.2.1](https://github.com/jiraiya78/NXStation/releases/latest)
 
+
 ---
 
 ## What is NXStation?
@@ -21,6 +22,12 @@ A fast, native, and customizable homebrew frontend built specifically for Ninten
 NXStation is a Switch-native launcher for retro game libraries. It is not a web wrapper or a PC port squeezed onto handheld hardware. It is written in C++ for the Switch, tuned for controller and touchscreen, and designed to feel as responsive as the games you launch from it.
 
 Whether you are curating a modest SD card collection or a multi-system archive, NXStation helps you **see** your library — box art, thumbnails, descriptions, video previews, and game manuals — without leaving the console.
+
+<img src="website/assets/UI-carousel/carousel.gif" alt="Carousel" width="640" />
+<img src="website/assets/UI-carousel/game-list.gif" alt="Game list" width="640" />
+<img src="website/assets/UI-carousel/scraper.gif" alt="Scraper" width="640" />
+<img src="website/assets/UI-carousel/themes.gif" alt="Themes" width="640" />
+<img src="website/assets/UI-carousel/settings.jpg" alt="Settings" width="640" />
 
 ---
 
