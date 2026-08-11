@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nx-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#FAF5FF" : "#0C0612");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Update v0.2.0 is the recommended build if you are on v0.1.8 or earlier. It adds PDF game manuals, RetroArch playtime analytics, more default systems, carousel/launch transitions, standalone Tico core…" />
+  <meta name="theme-color" content="#0C0612" />
+  <title>NXStation v0.2.0 — PDF manuals, playtime analytics, expanded systems · NXStation Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <a class="nav__brand" href="../index.html">
+        <img src="../assets/icons/logo.svg" alt="" width="28" height="28" />
+        <span>NXStation</span>
+      </a>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../index.html#setup">Setup</a></li>
+        <li><a href="../index.html#faq">FAQ</a></li>
+        <li><a href="../wiki.html">Wiki</a></li>
+        <li><a href="../blog.html" aria-current="page" class="nav__link--active">Blog</a></li>
+        <li><a class="nav__cta" href="../index.html#download">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Light mode">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-page">
+    <article class="container blog-page__inner blog-post">
+      <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+        <a href="../blog.html">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>v0.2.0</span>
+      </nav>
+      <header class="blog-post__header">
+        <p class="eyebrow">Release notes</p>
+        <h1>NXStation v0.2.0 — PDF manuals, playtime analytics, expanded systems</h1>
+        <p class="blog-post__meta">
+          <time datetime="2026-08-11T12:00:00Z">August 11, 2026</time>
+          ·
+          <span class="blog-post__tag">v0.2.0</span>
+          <span class="blog-card__badge">Latest draft</span>
+        </p>
+        
+          <div class="blog-post__actions">
+            <a class="btn btn--ghost" href="https://github.com/jiraiya78/NXStation/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a>
+          </div>
+          <p class="blog-post__draft-note">Documented here ahead of the GitHub release — check GitHub Releases for the downloadable NRO when it ships.</p>
+      </header>
+      <div class="blog-prose glass">
+        <p>Update <strong>v0.2.0</strong> is the recommended build if you are on <strong>v0.1.8</strong> or earlier. It adds PDF game manuals, RetroArch playtime analytics, more default systems, carousel/launch transitions, standalone Tico core support, and a new website wiki + blog.</p>
+            <p><strong>Website:</strong> https://nxstation.com <strong>Wiki:</strong> https://nxstation.com/wiki.html <strong>Blog:</strong> https://nxstation.com/blog.html <strong>Downloads:</strong> https://github.com/jiraiya78/NXStation/releases <strong>Discussion:</strong> GBATemp / GitHub Issues</p>
+            <hr />
+            <h3>Highlights</h3>
+            <ul>
+            <li><strong>PDF game manuals</strong> — scrape <strong>Manual</strong> from ScreenScraper (off by default); read in-app with cover+spread layout, zoom, and pan (<strong>Y → Menu → Show Metadata → Manual</strong>)</li>
+            <li><strong>Playtime Analytics</strong> and <strong>Personality Metrics</strong> (main carousel <strong>Y</strong> menu) from RetroArch runtime logs</li>
+            <li><strong>More systems</strong> in the bundled config: Atari 5200/7800/Lynx/Jaguar/ST, GameCube, Wii, Saturn, Arcade, and 3DS</li>
+            <li><strong>Standalone Tico cores</strong> for gc/wii/3ds — download <code>tico-dolphin.nro</code> / <code>tico-azahar.nro</code> to <code>sdmc:/switch/NXStation/cores/</code> and set <strong>Settings → Core Paths</strong> (experimental)</li>
+            <li>System carousel <strong>fade</strong>; game launch <strong>zoom + fade</strong> (~1s) before RetroArch</li>
+            <li>Edit <code>settings/roms_config.json</code> → <strong>Scan Games / Rescan</strong> reloads config (no full restart)</li>
+            <li><strong>Hide Empty Systems</strong> defaults to <strong>On</strong></li>
+            <li>Website <strong>Wiki</strong> and <strong>Blog</strong> with full user guides and mirrored release notes</li>
+            </ul>
+            <hr />
+            <h3>Added</h3>
+            <ul>
+            <li>PDF manual viewer (<code>ManualViewerView</code>, MuPDF build) — PDFs saved to <code>roms/{systemId}/manuals/{stem}-manual.pdf</code></li>
+            <li>Scrape menu <strong>Manual</strong> toggle (off by default)</li>
+            <li>Y menu → <strong>Personality Metrics</strong> (gamer tags, nostalgia breakdown, time-warp stats)</li>
+            <li>Y menu → <strong>Playtime Analytics</strong> (session style, time-of-day heatmap, backlog-dust score)</li>
+            <li>Default systems: <code>atari5200</code>, <code>atari7800</code>, <code>atarilynx</code>, <code>atarijaguar</code>, <code>atarist</code>, <code>gc</code>, <code>wii</code>, <code>saturn</code>, <code>arcade</code>, <code>3ds</code> (28 systems total)</li>
+            <li>Carousel left/right fade dissolve; launch zoom-in + fade-out transition (~1 second)</li>
+            <li>Settings → <strong>Core Paths</strong> supports standalone <code>.nro</code> cores under <code>sdmc:/switch/NXStation/cores/</code></li>
+            <li>Website wiki (<code>wiki.html</code>) and blog (<code>blog.html</code>)</li>
+            </ul>
+            <hr />
+            <h3>Changed</h3>
+            <ul>
+            <li><code>Config::reload()</code> runs at the start of library scan so user-edited systems appear</li>
+            <li>Bundled systems missing from the SD <code>roms_config.json</code> are merged in on upgrade (user entries preserved)</li>
+            <li><strong>Hide Empty Systems</strong> default is On (saved settings unchanged)</li>
+            <li><code>3ds</code> is no longer auto-pruned; <code>ps2</code> remains retired</li>
+            <li>Playtime analytics only count RetroArch runtime logs — standalone Tico cores are excluded</li>
+            </ul>
+            <hr />
+            <h3>Notes after upgrading</h3>
+            <ul>
+            <li>Enable RetroArch <strong>Settings → Saving → Save runtime log</strong> before expecting analytics data</li>
+            <li>For GameCube / Wii / 3DS, install Tico cores manually — see the <a href="https://nxstation.com/wiki.html#wiki-cores" target="_blank" rel="noopener noreferrer">wiki</a></li>
+            <li>Place ROMs under <code>sdmc:/roms/{id}/</code>, then <strong>Scan Games</strong></li>
+            <li>With Hide Empty Systems On, empty systems stay hidden until they have at least one ROM</li>
+            <li>Optional carousel wallpapers at <code>data/backgrounds/{id}.jpg</code></li>
+            </ul>
+            <hr />
+            <h3>Requirements</h3>
+            <ul>
+            <li>Modded Switch (e.g. Atmosphere) with homebrew enabled</li>
+            <li><strong>Title Override is required</strong> — hold <strong>R</strong> while launching any game, open the Homebrew Menu, then start NXStation</li>
+            <li><a href="https://buildbot.libretro.com/stable/1.20.0/nintendo/switch/libnx/RetroArch.7z" target="_blank" rel="noopener noreferrer">RetroArch for Switch</a> at <code>sdmc:/switch/retroarch_switch.nro</code></li>
+            <li>RetroArch cores under <code>sdmc:/retroarch/cores/</code> (or standalone cores in <code>NXStation/cores/</code>)</li>
+            <li>ROMs under <code>sdmc:/roms/</code> (or your custom ROMs path in Settings)</li>
+            </ul>
+            <hr />
+            <h3>Installation</h3>
+            <ol>
+            <li>Download <strong><code>NXStation.nro</code></strong> from this release (or Settings → <strong>Check for Updates</strong> from v0.1.8+).</li>
+            <li>Copy to <code>sdmc:/switch/NXStation/NXStation.nro</code></li>
+            <li>Launch via <strong>Title Override</strong> (hold R → Homebrew Menu → NXStation).</li>
+            </ol>
+            <p>Upgrading keeps your existing <code>settings/</code> and <code>data/</code> on SD. New bundled systems are merged into <code>roms_config.json</code> automatically.</p>
+            <hr />
+            <p>Thank you to everyone who tests, reports issues, and keeps the homebrew scene going.</p>
+            <hr />
+      </div>
+      <p class="blog-post__back"><a href="../blog.html">← All posts</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__bar">
+        <p>
+          <a href="https://github.com/jiraiya78/NXStation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          ·
+          <a href="../privacy.html">Privacy</a>
+          ·
+          <a href="../wiki.html">Wiki</a>
+          ·
+          <a href="../blog.html">Blog</a>
+          ·
+          <a href="../terms.html">Terms</a>
+          ·
+          <a href="../license.html">License</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  </footer>
+
+  <script src="../cookies.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

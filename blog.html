@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nx-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#FAF5FF" : "#0C0612");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NXStation release notes and development updates for the Nintendo Switch homebrew frontend." />
+  <meta name="theme-color" content="#0C0612" />
+  <title>Blog · NXStation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <a class="nav__brand" href="index.html">
+        <img src="assets/icons/logo.svg" alt="" width="28" height="28" />
+        <span>NXStation</span>
+      </a>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#setup">Setup</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="wiki.html">Wiki</a></li>
+        <li><a href="blog.html" aria-current="page" class="nav__link--active">Blog</a></li>
+        <li><a class="nav__cta" href="index.html#download">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Light mode">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-page">
+    <div class="container blog-page__inner">
+      <p class="eyebrow">Updates</p>
+      <h1>Blog</h1>
+      <p class="blog-page__lead">
+        Release notes mirrored from
+        <a href="https://github.com/jiraiya78/NXStation/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a>,
+        plus development updates for the NXStation Switch homebrew frontend.
+      </p>
+      <div class="blog-list">
+        
+        <article class="blog-card glass">
+          <div class="blog-card__meta">
+            <time datetime="2026-08-11T09:50:16Z">August 11, 2026</time>
+            <span class="blog-card__tag">v0.2.1</span>
+            
+          </div>
+          <h2 class="blog-card__title"><a href="blog/0.2.1.html">Hotfix #1 v0.2.1 - Built-in Updater Fix</a></h2>
+          <p class="blog-card__excerpt">- In-app updater: release romfs before replacing the running NRO ; overwrite via native FS then envSetNextLoad the installed path; download progress %; restart confirmation dialog; staged NXStation_u…</p>
+          <div class="blog-card__links">
+            <a href="blog/0.2.1.html">Read post</a>
+            <a href="https://github.com/jiraiya78/NXStation/releases/tag/v0.2.1" target="_blank" rel="noopener noreferrer">GitHub release</a>
+          </div>
+        </article>
+        <article class="blog-card glass">
+          <div class="blog-card__meta">
+            <time datetime="2026-08-11T12:00:00Z">August 11, 2026</time>
+            <span class="blog-card__tag">v0.2.0</span>
+            <span class="blog-card__badge">Latest draft</span>
+          </div>
+          <h2 class="blog-card__title"><a href="blog/0.2.0.html">NXStation v0.2.0 — PDF manuals, playtime analytics, expanded systems</a></h2>
+          <p class="blog-card__excerpt">Update v0.2.0 is the recommended build if you are on v0.1.8 or earlier. It adds PDF game manuals, RetroArch playtime analytics, more default systems, carousel/launch transitions, standalone Tico core…</p>
+          <div class="blog-card__links">
+            <a href="blog/0.2.0.html">Read post</a>
+            <a href="https://github.com/jiraiya78/NXStation/releases" target="_blank" rel="noopener noreferrer">GitHub release</a>
+          </div>
+        </article>
+        <article class="blog-card glass">
+          <div class="blog-card__meta">
+            <time datetime="2026-08-06T22:55:12Z">August 06, 2026</time>
+            <span class="blog-card__tag">v0.1.8</span>
+            
+          </div>
+          <h2 class="blog-card__title"><a href="blog/0.1.8.html">NXStation v0.1.8 — In-app updates, Last Played times, RetroArch launch fix</a></h2>
+          <p class="blog-card__excerpt">Update v0.1.8 adds in-app updates from GitHub, proper Last Played date/time stamps, RetroArch boot-banner / core-path sync, and a quieter log file. Recommended if you are on v0.1.7 or earlier.</p>
+          <div class="blog-card__links">
+            <a href="blog/0.1.8.html">Read post</a>
+            <a href="https://github.com/jiraiya78/NXStation/releases/tag/v0.1.8" target="_blank" rel="noopener noreferrer">GitHub release</a>
+          </div>
+        </article>
+        <article class="blog-card glass">
+          <div class="blog-card__meta">
+            <time datetime="2026-08-05T09:52:19Z">August 05, 2026</time>
+            <span class="blog-card__tag">v0.1.7</span>
+            
+          </div>
+          <h2 class="blog-card__title"><a href="blog/0.1.7.html">v0.1.7 — Scan &amp; scrape tools, large-library performance, modal UI fixes</a></h2>
+          <p class="blog-card__excerpt">Update v0.1.7 bundles all improvements since v0.1.1 — library scanning, scraping, large-library performance, Y-menu tools, and modal UI fixes. If you are on v0.1.0 or earlier, this is the recommended…</p>
+          <div class="blog-card__links">
+            <a href="blog/0.1.7.html">Read post</a>
+            <a href="https://github.com/jiraiya78/NXStation/releases/tag/v0.1.7" target="_blank" rel="noopener noreferrer">GitHub release</a>
+          </div>
+        </article>
+        <article class="blog-card glass">
+          <div class="blog-card__meta">
+            <time datetime="2026-08-04T02:26:34Z">August 04, 2026</time>
+            <span class="blog-card__tag">v0.1.0</span>
+            
+          </div>
+          <h2 class="blog-card__title"><a href="blog/0.1.0.html">NXStation v0.1.0 — First public release</a></h2>
+          <p class="blog-card__excerpt">This is an early release. It works well enough for daily use on my own Switch, but expect rough edges, missing polish, and the occasional bug. Feedback and issue reports are welcome.</p>
+          <div class="blog-card__links">
+            <a href="blog/0.1.0.html">Read post</a>
+            <a href="https://github.com/jiraiya78/NXStation/releases/tag/v0.1.0" target="_blank" rel="noopener noreferrer">GitHub release</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__bar">
+        <p>
+          <a href="https://github.com/jiraiya78/NXStation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          ·
+          <a href="privacy.html">Privacy</a>
+          ·
+          <a href="wiki.html">Wiki</a>
+          ·
+          <a href="blog.html">Blog</a>
+          ·
+          <a href="terms.html">Terms</a>
+          ·
+          <a href="license.html">License</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  </footer>
+
+  <script src="cookies.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
