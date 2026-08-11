@@ -272,26 +272,26 @@ def build_post(release: dict) -> None:
     gh_url = release.get("html_url", f"https://github.com/{REPO}/releases/tag/{tag}")
     nro_url = nro_download_url(release)
     is_draft = release.get("draft_local") and not release.get("published_at")
-    draft_badge = '<span class="blog-card__badge">Latest draft</span>' if is_draft else ""
+    draft_badge = ""
+    if is_draft and release.get("_latest_draft"):
+        draft_badge = '<span class="blog-card__badge">Latest draft</span>'
 
-    download_block = ""
-    if nro_url or not is_draft:
-        buttons = []
-        if nro_url:
-            buttons.append(
-                f'<a class="btn btn--primary" href="{html.escape(nro_url)}" target="_blank" rel="noopener noreferrer">Download NXStation.nro</a>'
-            )
-        gh_label = "GitHub Releases" if is_draft else "View on GitHub"
-        gh_href = f"https://github.com/{REPO}/releases" if is_draft else gh_url
+    buttons = []
+    if nro_url:
         buttons.append(
-            f'<a class="btn btn--ghost" href="{html.escape(gh_href)}" target="_blank" rel="noopener noreferrer">{gh_label}</a>'
+            f'<a class="btn btn--primary" href="{html.escape(nro_url)}" target="_blank" rel="noopener noreferrer">Download NXStation.nro</a>'
         )
-        draft_note = (
-            '<p class="blog-post__draft-note">Documented here ahead of the GitHub release — check GitHub Releases for the downloadable NRO when it ships.</p>'
-            if is_draft
-            else ""
-        )
-        download_block = f"""
+    gh_label = "GitHub Releases" if is_draft else "View on GitHub"
+    gh_href = f"https://github.com/{REPO}/releases" if is_draft else gh_url
+    buttons.append(
+        f'<a class="btn btn--ghost" href="{html.escape(gh_href)}" target="_blank" rel="noopener noreferrer">{gh_label}</a>'
+    )
+    draft_note = (
+        '<p class="blog-post__draft-note">Documented here ahead of the GitHub release — check GitHub Releases for the downloadable NRO when it ships.</p>'
+        if is_draft
+        else ""
+    )
+    download_block = f"""
           <div class="blog-post__actions">
             {"".join(buttons)}
           </div>
@@ -335,6 +335,10 @@ def build_post(release: dict) -> None:
 
 def build_index(releases: list[dict]) -> None:
     cards = []
+    latest_draft_tag = next(
+        (r["tag_name"] for r in releases if r.get("draft_local") and not r.get("published_at")),
+        None,
+    )
     for release in releases:
         tag = release["tag_name"]
         slug = tag.lstrip("v")
@@ -343,7 +347,7 @@ def build_index(releases: list[dict]) -> None:
         date_label = format_date(date_iso)
         excerpt = excerpt_from_body(release.get("body", ""))
         badge = ""
-        if release.get("draft_local") and not release.get("published_at"):
+        if tag == latest_draft_tag:
             badge = '<span class="blog-card__badge">Latest draft</span>'
         gh_link = release.get("html_url", "")
         if release.get("draft_local") and not release.get("published_at"):
@@ -390,7 +394,7 @@ def build_index(releases: list[dict]) -> None:
 
 def merge_releases(remote: list[dict]) -> list[dict]:
     by_tag = {r["tag_name"]: r for r in remote}
-    for tag in ("v0.2.0",):
+    for tag in ("v0.2.1", "v0.2.0"):
         local = extract_local_release(tag)
         if local and tag not in by_tag:
             by_tag[tag] = local
@@ -413,7 +417,12 @@ def merge_releases(remote: list[dict]) -> list[dict]:
 def main() -> None:
     remote = fetch_releases()
     releases = merge_releases(remote)
+    latest_draft_tag = next(
+        (r["tag_name"] for r in releases if r.get("draft_local") and not r.get("published_at")),
+        None,
+    )
     for release in releases:
+        release["_latest_draft"] = release["tag_name"] == latest_draft_tag
         build_post(release)
     build_index(releases)
     print(f"Generated blog.html and {len(releases)} posts in {BLOG_DIR}")
