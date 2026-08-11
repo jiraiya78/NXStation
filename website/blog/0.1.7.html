@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nx-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#FAF5FF" : "#0C0612");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Update v0.1.7 bundles all improvements since v0.1.1 — library scanning, scraping, large-library performance, Y-menu tools, and modal UI fixes. If you are on v0.1.0 or earlier, this is the recommended…" />
+  <meta name="theme-color" content="#0C0612" />
+  <title>v0.1.7 — Scan &amp; scrape tools, large-library performance, modal UI fixes · NXStation Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <a class="nav__brand" href="../index.html">
+        <img src="../assets/icons/logo.svg" alt="" width="28" height="28" />
+        <span>NXStation</span>
+      </a>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../index.html#setup">Setup</a></li>
+        <li><a href="../index.html#faq">FAQ</a></li>
+        <li><a href="../wiki.html">Wiki</a></li>
+        <li><a href="../blog.html" aria-current="page" class="nav__link--active">Blog</a></li>
+        <li><a class="nav__cta" href="../index.html#download">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Light mode">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-page">
+    <article class="container blog-page__inner blog-post">
+      <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+        <a href="../blog.html">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>v0.1.7</span>
+      </nav>
+      <header class="blog-post__header">
+        <p class="eyebrow">Release notes</p>
+        <h1>v0.1.7 — Scan &amp; scrape tools, large-library performance, modal UI fixes</h1>
+        <p class="blog-post__meta">
+          <time datetime="2026-08-05T09:52:19Z">August 05, 2026</time>
+          ·
+          <span class="blog-post__tag">v0.1.7</span>
+          
+        </p>
+        
+          <div class="blog-post__actions">
+            <a class="btn btn--primary" href="https://github.com/jiraiya78/NXStation/releases/download/v0.1.7/NXStation.nro" target="_blank" rel="noopener noreferrer">Download NXStation.nro</a><a class="btn btn--ghost" href="https://github.com/jiraiya78/NXStation/releases/tag/v0.1.7" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          </div>
+          
+      </header>
+      <div class="blog-prose glass">
+        <p>Update <strong>v0.1.7</strong> bundles all improvements since <strong>v0.1.1</strong> — library scanning, scraping, large-library performance, Y-menu tools, and modal UI fixes. If you are on <strong>v0.1.0</strong> or earlier, this is the recommended build.</p>
+            <p><strong>Website:</strong> https://nxstation.com <strong>Discussion:</strong> GBATemp / GitHub Issues</p>
+            <hr />
+            <h3>Highlights</h3>
+            <ul>
+            <li><strong>Library index cache</strong> on SD — ROM lists survive returning from RetroArch without a full rescan</li>
+            <li><strong>Virtualized game list</strong> — large libraries (600–900+ games) open and respond like small ones</li>
+            <li><strong>Manual &amp; first-launch scanning</strong> with smooth progress UI</li>
+            <li><strong>Y-menu tools</strong> — Search, Jump to Letter, Jump to System, metadata popup, Rename/Delete ROM, per-system scan</li>
+            <li><strong>Custom ROMs path</strong> — point NXStation at a shared ROM root (e.g. <code>sdmc/tico/roms</code>) instead of <code>sdmc:/roms</code></li>
+            <li><strong>Scrape reliability</strong> — skip titles that already have art, persist metadata per game, clearer errors</li>
+            <li><strong>Modal UI fixes</strong> — overlay no longer blocks A / X / Y / L / R after Jump to Letter; metadata dialog centered with proper focus</li>
+            </ul>
+            <hr />
+            <h3>New since v0.1.1</h3>
+            <ul>
+            <li>Completion sound when a scrape batch finishes (NES-style placeholder)</li>
+            <li><strong>Scan Games</strong> in the Y menu on the main carousel (full library) and in the game list (current system only)</li>
+            <li>First-launch library scan with a centered progress screen (system name + <code>Processing X/Y games</code>)</li>
+            <li>Library index cache on SD (<code>data/cache/library_index.json</code>) so the ROM list survives NRO handoff relaunches (e.g. returning from RetroArch)</li>
+            <li><strong>Custom ROMs Path</strong> in Settings — browse for a different ROM root; triggers an automatic rescan</li>
+            <li><strong>Folders &amp; Logs</strong> screen in Settings — all data/settings/log paths in one scrollable view</li>
+            <li>Left analog stick browses the system carousel (hold to auto-repeat), in addition to D-pad and L/R</li>
+            <li><strong>Jump to System</strong> in the main Y menu</li>
+            <li>Favorites / Last Played rows show a short system acronym (SNES, MEGADRIVE, PSX, …)</li>
+            <li><strong>Rename ROM</strong> and <strong>Delete ROM</strong> in the game list Y menu and on the metadata popup</li>
+            <li>Metadata popup shows the ROM filename to tell similar/duplicate files apart</li>
+            <li><code>changelog.md</code> for release notes (in repo)</li>
+            </ul>
+            <hr />
+            <h3>Changed since v0.1.1</h3>
+            <ul>
+            <li>Library scan runs once on first start; further updates are manual via <strong>Scan Games</strong> or Settings → Rescan Libraries</li>
+            <li>Scraper log no longer auto-scrolls after a batch finishes so you can review entries before pressing B</li>
+            <li>Screensaver video has top padding so previews are not flush with the screen edge</li>
+            <li>Switch stays awake during scraping (screen may dim; auto-sleep disabled until scrape ends)</li>
+            <li>Game list loads a system on demand if the in-memory index is missing but the library was previously scanned</li>
+            <li>Startup reloads the library from cache when available; falls back to a one-time rescan only if the cache is missing</li>
+            <li>Library scan progress (<code>Processing X/Y games</code>) updates smoothly at display refresh rate instead of jumping to the final count</li>
+            <li>Game list is a virtualized/recycled list — only visible rows are built, fixing severe input lag on large libraries</li>
+            <li>Settings <strong>About</strong> version reflects the actual build version instead of a hardcoded string</li>
+            <li>Metadata opens as a centered popup dialog instead of a full screen</li>
+            <li>Scraper status lines no longer repeat the title after <code>OK</code></li>
+            <li>Scraper errors use clearer wording (e.g. <code>No match (HTTP 404)</code>, <code>Server rejected (HTTP 403)</code>)</li>
+            </ul>
+            <hr />
+            <h3>Fixed since v0.1.1</h3>
+            <ul>
+            <li>Game list appearing empty after returning from RetroArch until browsing away and back</li>
+            <li>Game list focus highlight showing behind the Y menu on large libraries</li>
+            <li>Large lists (600+ games) stutter while building; Y menu blocked until the list finished building</li>
+            <li><strong>Scrape Missing Art</strong> skipping games that already have art on SD (checks ES-DE image folders, not only the <code>scraped</code> flag)</li>
+            <li>Scrape metadata and library cache persisting after each successful game so aborted batches do not cause re-scrapes</li>
+            <li>Game list refreshing from AppState after scrape so the next batch uses up-to-date metadata</li>
+            <li><strong>Jump to letter</strong> skipping starred games pinned at the top, landing in the alphabetical list</li>
+            <li>Blank gap under the system name in the game list (empty recycler section header measured as a full row)</li>
+            <li>Fast L/R page scrolling desyncing selection highlight from art/preview; A now launches the previewed game consistently</li>
+            <li>Selection rectangle briefly flashing behind the system title when holding R during page scroll</li>
+            <li>After Jump to Letter / Search / metadata / scan modals, A / X / Y / L / R stopped working (stuck overlay block)</li>
+            <li>Selection highlight no longer floats over metadata popup or system scan screen; video preview stops while those are open</li>
+            <li>Game list behind the metadata popup can no longer be navigated</li>
+            <li>Metadata popup middle-centered again (content no longer wider than the dialog frame)</li>
+            <li>Metadata popup focus limited to <strong>Rename</strong> / <strong>Delete</strong>; B closes; D-pad no longer selects the whole panel</li>
+            </ul>
+            <hr />
+            <h3>Removed since v0.1.1</h3>
+            <ul>
+            <li>PlayStation 2 (<code>ps2</code>) from the default <code>roms_config.json</code> (no practical PS2 core on Switch)</li>
+            </ul>
+            <hr />
+            <h3>Requirements</h3>
+            <ul>
+            <li>Modded Switch (e.g. Atmosphere) with homebrew enabled</li>
+            <li><strong>Title Override is required</strong> — hold <strong>R</strong> while launching any game, open the Homebrew Menu, then start NXStation</li>
+            <li><a href="https://buildbot.libretro.com/stable/1.20.0/nintendo/switch/libnx/RetroArch.7z" target="_blank" rel="noopener noreferrer">RetroArch for Switch</a> at <code>sdmc:/switch/retroarch_switch.nro</code></li>
+            <li>RetroArch cores under <code>sdmc:/retroarch/cores/</code></li>
+            <li>ROMs under <code>sdmc:/roms/</code> (or your custom ROMs path in Settings)</li>
+            </ul>
+            <hr />
+            <h3>Installation</h3>
+            <ol>
+            <li>Download <strong><code>NXStation.nro</code></strong> from this release.</li>
+            <li>Copy to <code>sdmc:/switch/NXStation/NXStation.nro</code></li>
+            <li>Launch via <strong>Title Override</strong> (hold R → Homebrew Menu → NXStation).</li>
+            </ol>
+            <p>Upgrading from an older build keeps your existing <code>settings/</code> and <code>data/</code> on SD.</p>
+            <hr />
+            <p>Thank you to everyone who tests, reports issues, and keeps the homebrew scene going.</p>
+            <hr />
+      </div>
+      <p class="blog-post__back"><a href="../blog.html">← All posts</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__bar">
+        <p>
+          <a href="https://github.com/jiraiya78/NXStation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          ·
+          <a href="../privacy.html">Privacy</a>
+          ·
+          <a href="../wiki.html">Wiki</a>
+          ·
+          <a href="../blog.html">Blog</a>
+          ·
+          <a href="../terms.html">Terms</a>
+          ·
+          <a href="../license.html">License</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  </footer>
+
+  <script src="../cookies.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

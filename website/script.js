@@ -111,9 +111,10 @@
     });
   }
 
-  // ---- FAQ accordion ----
-  const faqRoot = document.querySelector("[data-faq]");
-  if (faqRoot) {
+  // ---- FAQ / Wiki accordion ----
+  document.querySelectorAll("[data-faq], [data-wiki-accordion]").forEach((faqRoot) => {
+    const allowMultiple = faqRoot.hasAttribute("data-allow-multiple");
+
     faqRoot.querySelectorAll(".faq-item").forEach((item) => {
       const btn = item.querySelector(".faq-item__btn");
       const panel = item.querySelector(".faq-item__panel");
@@ -122,19 +123,34 @@
       btn.addEventListener("click", () => {
         const open = btn.getAttribute("aria-expanded") === "true";
 
-        // Close other items (single-open accordion)
-        faqRoot.querySelectorAll(".faq-item").forEach((other) => {
-          const oBtn = other.querySelector(".faq-item__btn");
-          const oPanel = other.querySelector(".faq-item__panel");
-          if (!oBtn || !oPanel || other === item) return;
-          oBtn.setAttribute("aria-expanded", "false");
-          oPanel.hidden = true;
-        });
+        if (!allowMultiple) {
+          faqRoot.querySelectorAll(".faq-item").forEach((other) => {
+            const oBtn = other.querySelector(".faq-item__btn");
+            const oPanel = other.querySelector(".faq-item__panel");
+            if (!oBtn || !oPanel || other === item) return;
+            oBtn.setAttribute("aria-expanded", "false");
+            oPanel.hidden = true;
+          });
+        }
 
         btn.setAttribute("aria-expanded", String(!open));
         panel.hidden = open;
       });
     });
+  });
+
+  // Wiki: expand section linked from table of contents hash
+  if (location.hash) {
+    const section = document.querySelector(location.hash);
+    if (section?.classList.contains("faq-item")) {
+      const btn = section.querySelector(".faq-item__btn");
+      const panel = section.querySelector(".faq-item__panel");
+      if (btn && panel) {
+        btn.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   }
 
   // ---- UI carousel (scroll-snap + controls) ----
