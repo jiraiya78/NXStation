@@ -12,7 +12,7 @@ A fast, native, and customizable homebrew frontend built specifically for Ninten
 
 **Website:** [nxstation.com](https://nxstation.com) · **Wiki:** [nxstation.com/wiki.html](https://nxstation.com/wiki.html) · **Blog:** [nxstation.com/blog.html](https://nxstation.com/blog.html)
 
-**Current release:** [v0.2.1](https://github.com/jiraiya78/NXStation/releases/latest)
+**Current release:** [v0.2.3](https://github.com/jiraiya78/NXStation/releases/latest)
 
 
 ---
