@@ -8,12 +8,11 @@
 
 <p align="center"><strong>Your Retro Library. Elevated.</strong></p>
 
-A fast, native, and customizable homebrew frontend built specifically for Nintendo Switch — browse your collection with real box art, scrape metadata and PDF manuals on-device, launch through RetroArch (or standalone cores), check for updates in Settings, and pick up exactly where you left off when you return.
+A fast, native, and customizable homebrew frontend built specifically for Nintendo Switch — browse your collection with real box art, scrape metadata and PDF manuals on-device, back up RetroArch saves to Google Drive, launch through RetroArch (or standalone cores), check for updates in Settings, and pick up exactly where you left off when you return.
 
 **Website:** [nxstation.com](https://nxstation.com) · **Wiki:** [nxstation.com/wiki.html](https://nxstation.com/wiki.html) · **Blog:** [nxstation.com/blog.html](https://nxstation.com/blog.html)
 
-**Current release:** [v0.2.3](https://github.com/jiraiya78/NXStation/releases/latest)
-
+**Current release:** [v0.3.0](https://github.com/jiraiya78/NXStation/releases/tag/v0.3.0) · [Release notes](https://nxstation.com/blog/0.3.0.html)
 
 ---
 
@@ -28,6 +27,7 @@ Whether you are curating a modest SD card collection or a multi-system archive, 
 <img src="website/assets/UI-carousel/scraper.gif" alt="Scraper" width="640" />
 <img src="website/assets/UI-carousel/themes.gif" alt="Themes" width="640" />
 <img src="website/assets/UI-carousel/settings.jpg" alt="Settings" width="640" />
+
 
 ---
 
@@ -44,6 +44,10 @@ Online scraper integration with [ScreenScraper.fr](https://www.screenscraper.fr/
 ### RetroArch as backend
 
 Launch a game from NXStation and RetroArch opens with the right core and ROM. Selected systems can also use standalone cores (for example Tico Dolphin / Azahar). When you close the game, NXStation restores your last browse position so you stay in the flow of picking what to play next.
+
+### Cloud save for RetroArch
+
+Optional **Google Drive** backup and restore for RetroArch save files and save states — manual backup from Settings, optional auto-backup when you return from a game, and merge-restore from earlier Drive archives with a local pre-restore safety ZIP on SD.
 
 ### Deeply themeable
 
@@ -66,7 +70,8 @@ Mapped for Joy-Con and Pro Controller, with touchscreen support where it matters
 | **Dynamic media scraper** | Batch or per-title box art, thumbnails, descriptions, videos, and optional PDF manuals via ScreenScraper. |
 | **In-app PDF manuals** | Read scraped manuals on Switch with cover/spread layout, zoom, and pan. |
 | **Smart ROM library** | Scans ES-DE-style folder layouts, nested paths, favorites, and last-played lists. |
-| **Playtime analytics** | Personality metrics and playtime insights from RetroArch runtime logs (Y menu). |
+| **Cloud Save** | Link Google Drive, backup RetroArch saves/states, restore from Drive, optional auto-backup after play. |
+| **Playtime analytics** | Personality metrics, session habits, and top games/systems by playtime and launch count (Y menu). |
 | **Video previews** | Hover-driven gameplay clips in the game list when running in full-memory mode. |
 | **Search & navigation** | Find games quickly, jump by letter, random pick, and fast paging through large libraries. |
 | **In-app updates** | Settings → **Check for Updates** downloads the latest `NXStation.nro` from GitHub Releases. |
@@ -74,22 +79,23 @@ Mapped for Joy-Con and Pro Controller, with touchscreen support where it matters
 | **Offline caching** | Scraped art, metadata, and manuals live on your SD card for browsing without Wi-Fi. |
 | **Home Menu forwarder** | Optional install adds an NXStation icon on the Switch Home Menu and smooth return after play. |
 | **Themeable interface** | Built-in theme set plus room for custom styling. |
+| **Organized Settings** | Hub with section screens — App, Emulator, Appearance, Cloud Save, Scraper, Help. |
 
-*Custom background music and expanded soundtrack controls are planned for a future release.*
+*Grid view, in-app RetroArch auto save/resume, and custom background music are planned for future releases.*
 
 ---
 
 ## The experience
 
-**Browse** — System carousel with fade transitions, or list views per system. Favorites and last-played sections keep your regular picks close. Empty systems stay hidden by default until you add ROMs.
+**Browse** — System carousel with fade or slide transitions, or list views per system. Favorites and last-played sections keep your regular picks close. Empty systems stay hidden by default until you add ROMs.
 
 **Discover** — Rich metadata panels with box art, descriptions, optional video previews, and PDF manuals that bring each title to life before you launch.
 
 **Launch** — One press opens RetroArch (or a standalone core) with the configured path. A short zoom/fade handoff frees memory for emulation.
 
-**Return** — Close the game and land back in NXStation at the same system and scroll position — especially seamless when launched from the Home Menu forwarder.
+**Return** — Close the game and land back in NXStation at the same system and scroll position — especially seamless when launched from the Home Menu forwarder. With **Auto Cloud Save** enabled, RetroArch saves can upload to Google Drive on return when saves exist and you are online.
 
-**Personalize** — Swap themes, tune video and audio behavior, configure scraper options, set core paths, and adjust screensaver timing from Settings. Check playtime analytics from the main carousel **Y** menu.
+**Personalize** — Settings opens as a compact hub: App & Launcher, Emulator and Systems, Appearance and Control, Cloud Save, Scraper, and Help and About. Swap themes, tune video and audio, configure scraper login, set core paths, link Google Drive, and adjust screensaver timing. Check **Personality Metrics** and **Playtime Analytics** (including play rankings) from the main carousel **Y** menu.
 
 ---
 
@@ -159,7 +165,13 @@ Yes. Download and use it at no cost.
 Yes. The same roms folder structure, media folders, and `gamelist.xml` files work with NXStation. Copy your collection layout and art — no separate export step.
 
 **How do I scrape my library?**  
-Connect to Wi-Fi, add your ScreenScraper.fr username and password in Settings, open a game list, and run a single-game or batch scrape from the scrape menu. Media is cached locally for offline browsing. PDF manuals are optional (off by default in the scrape menu).
+Connect to Wi-Fi, add your ScreenScraper.fr username and password in Settings → **Scraper**, open a game list, and run a single-game or batch scrape from the scrape menu. Media is cached locally for offline browsing. PDF manuals are optional (off by default in the scrape menu).
+
+**How does Cloud Save work?**  
+Settings → **Cloud Save**: link your Google account, run **Backup Saves to Cloud** manually, or turn on **Auto Cloud Save** to upload after you return from a game (when saves exist and you are online). **Cloud Restore** downloads a Drive backup and merges it into your current RetroArch save folders; a local pre-restore ZIP is kept on SD. NXStation cloud backups are separate from RetroArch’s own cloud format. Details: [wiki](https://nxstation.com/wiki.html) and `log/cloud.log` on SD.
+
+**How do playtime analytics work?**  
+Open the main carousel **Y** menu → **Personality Metrics** or **Playtime Analytics**. Data comes from RetroArch runtime logs when enabled, plus NXStation session tracking for games launched from the library (playtime and launch counts). Enable **Save runtime log** in RetroArch for the richest history.
 
 **How do I update?**  
 Settings → **Check for Updates** downloads the latest release over your installed NRO (internet required), or copy a new `NXStation.nro` manually to the same path. Settings and data on the SD card are kept.
@@ -213,6 +225,8 @@ NXStation is an open-source frontend management tool. It does not contain game R
 NXStation draws inspiration from the ES-DE frontend philosophy and the broader retro library community.
 
 Built with gratitude for **RetroArch**, **libnx**, the **Switch homebrew community**, **ScreenScraper**, **Borealis** (and the xfangfang fork), and everyone who tests, contributes, and keeps the homebrew scene alive.
+
+Third-party attributions: [`credits.md`](credits.md) in this repository.
 
 If your work appears in or around this project and you would like attribution adjusted, please open an issue on GitHub.
 
