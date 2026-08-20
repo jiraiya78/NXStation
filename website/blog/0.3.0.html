@@ -13,9 +13,9 @@
     })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Update v0.2.3 is the recommended build if you are on v0.2.2 or earlier. It adds carousel &amp; preview transitions, smoother list browsing, right-stick description scrolling, and fixes video preview cras…" />
+  <meta name="description" content="Update v0.3.0 is the recommended build if you are on v0.2.3 or earlier. It adds Google Drive cloud backup &amp; restore, a reorganized Settings hub, playtime launch rankings, and fixes settings navigatio…" />
   <meta name="theme-color" content="#0C0612" />
-  <title>NXStation v0.2.3 — UI polish, smoother browsing, video preview fix · NXStation Blog</title>
+  <title>NXStation v0.3.0 — Cloud backup &amp; restore, settings overhaul, play rankings · NXStation Blog</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -61,16 +61,16 @@
       <nav class="blog-breadcrumb" aria-label="Breadcrumb">
         <a href="../blog.html">Blog</a>
         <span aria-hidden="true">/</span>
-        <span>v0.2.3</span>
+        <span>v0.3.0</span>
       </nav>
       <header class="blog-post__header">
         <p class="eyebrow">Release notes</p>
-        <h1>NXStation v0.2.3 — UI polish, smoother browsing, video preview fix</h1>
+        <h1>NXStation v0.3.0 — Cloud backup &amp; restore, settings overhaul, play rankings</h1>
         <p class="blog-post__meta">
-          <time datetime="2026-08-14T12:00:00Z">August 14, 2026</time>
+          <time datetime="2026-08-21T12:00:00Z">August 21, 2026</time>
           ·
-          <span class="blog-post__tag">v0.2.3</span>
-          
+          <span class="blog-post__tag">v0.3.0</span>
+          <span class="blog-card__badge">Latest draft</span>
         </p>
         
           <div class="blog-post__actions">
@@ -79,49 +79,54 @@
           <p class="blog-post__draft-note">Documented here ahead of the GitHub release — check GitHub Releases for the downloadable NRO when it ships.</p>
       </header>
       <div class="blog-prose glass">
-        <p>Update <strong>v0.2.3</strong> is the recommended build if you are on <strong>v0.2.2</strong> or earlier. It adds <strong>carousel &amp; preview transitions</strong>, <strong>smoother list browsing</strong>, <strong>right-stick description scrolling</strong>, and fixes <strong>video preview crashes</strong> after long sessions.</p>
+        <p>Update <strong>v0.3.0</strong> is the recommended build if you are on <strong>v0.2.3</strong> or earlier. It adds <strong>Google Drive cloud backup &amp; restore</strong>, a <strong>reorganized Settings hub</strong>, <strong>playtime launch rankings</strong>, and fixes <strong>settings navigation</strong> and <strong>auto-backup edge cases</strong>.</p>
             <p><strong>Website:</strong> https://nxstation.com <strong>Wiki:</strong> https://nxstation.com/wiki.html <strong>Blog:</strong> https://nxstation.com/blog.html <strong>Downloads:</strong> https://github.com/jiraiya78/NXStation/releases <strong>Discussion:</strong> GBATemp / GitHub Issues</p>
             <hr />
             <h3>Highlights</h3>
             <ul>
-            <li><strong>Carousel Transition</strong> setting — Fade, Slide, or None (system carousel + game preview panel)</li>
-            <li><strong>Softer dialogs</strong> — scale + fade open/close; no close flicker on Y menu and popups</li>
-            <li><strong>Accelerated scrolling</strong> — hold Up/Down or L/R in the game list; speed ramps while held</li>
-            <li><strong>Right stick scroll</strong> — optional setting to scroll game descriptions (list + metadata); stick no longer moves list focus</li>
-            <li><strong>Manual viewer</strong> — horizontal slide between spreads; <strong>Cover + Spread / Single Page</strong> choice is remembered</li>
-            <li><strong>Video preview stability</strong> — fixes crash when browsing many games with MP4 previews (FFmpeg pixel-format handling)</li>
-            <li><strong>Launch zoom</strong> — box art keeps correct aspect ratio during the handoff animation</li>
+            <li><strong>Cloud Save</strong> — link Google account, manual <strong>Backup Saves to Cloud</strong>, optional <strong>Auto Cloud Save</strong> when you return from a game</li>
+            <li><strong>Cloud Restore</strong> — download a Drive backup and merge into current RetroArch save/state folders (pre-restore ZIP on SD; hold <strong>B 3 s</strong> to abort)</li>
+            <li><strong>Settings hub</strong> — App &amp; Launcher, Emulator and Systems, Appearance and Control, Cloud Save, Scraper, Help and About</li>
+            <li><strong>Playtime Analytics</strong> — top games and systems by <strong>playtime</strong> and by <strong>launch count</strong></li>
+            <li><strong>NXStation session tracking</strong> — playtime and launch counts for core-direct launches (merged with RetroArch logs when available)</li>
+            <li><strong>Settings focus fix</strong> — D-pad works immediately when opening Settings</li>
             </ul>
             <hr />
             <h3>Added</h3>
             <ul>
-            <li>Settings → <strong>Carousel Transition</strong> (Fade / Slide / None)</li>
-            <li>Settings → <strong>Right Stick Scroll</strong> (On / Off) for description text</li>
-            <li>Hold <strong>D-pad Up/Down</strong> or <strong>L/R</strong> for accelerated list / page scrolling</li>
-            <li><strong>L/R paging</strong> in Y menu, scrape menu, and Jump to System</li>
-            <li>Manual viewer layout persisted as <code>manual_layout_mode</code> in <code>user_settings.json</code></li>
-            <li>Manual spread <strong>slide</strong> transition; dialog <strong>open/close</strong> animation polish</li>
+            <li>Google Drive OAuth + upload of timestamped <code>retroarch-saves-*.zip</code> backups</li>
+            <li>Settings → <strong>Cloud Restore</strong> with backup picker and scrape-style progress log</li>
+            <li><code>log/cloud.log</code> for cloud backup/restore diagnostics</li>
+            <li>Settings reorganized into section sub-screens (less scrolling clutter)</li>
+            <li>Play rankings in <strong>Y → Playtime Analytics</strong> (top 15 games/systems)</li>
+            <li><code>launchCount</code> per title in <code>data/playtime_nxstation.json</code></li>
             </ul>
             <h3>Changed</h3>
             <ul>
-            <li>System carousel and Settings <strong>core list order</strong> updated (Arcade → … → PC Engine)</li>
-            <li>Right stick reserved for description scroll + manual zoom (not UI navigation)</li>
-            <li>Launch transition uses aspect-fit artwork (no stretch)</li>
-            <li>Skipped <strong>Manual</strong> scrape log lines shown in gray (not red)</li>
+            <li><strong>Backup Saves to Cloud</strong> / <strong>Last Backup</strong> naming (was Sync Now / Last Sync)</li>
+            <li>Auto cloud backup: skip if offline, no saves, or backup already in progress</li>
+            <li>Settings deferred build on first open (faster push from carousel)</li>
             </ul>
             <h3>Fixed</h3>
             <ul>
-            <li>Video preview <strong>crash</strong> after extended browsing (<code>swscale</code> assertion on some H.264 MP4s)</li>
-            <li><strong>Individual scrape</strong> selecting wrong game when list order differed from display (e.g. PC Engine)</li>
-            <li>Preview panel <strong>stuck on first game</strong> after navigation changes</li>
-            <li>Dialog <strong>close flicker</strong> on modals</li>
-            <li>Build no longer overwrites a custom <code>scrape_complete.wav</code> in <code>resources/audio/</code></li>
+            <li>Settings list not navigable until Y menu opened once</li>
+            <li>Cloud restore list focus and post-restore log scrolling</li>
+            <li>Playtime not recorded for some NXStation launches; quick game-switch session loss</li>
+            <li>Auto cloud save notification noise when offline or empty</li>
+            </ul>
+            <hr />
+            <h3>Cloud Save notes</h3>
+            <ul>
+            <li>Backs up RetroArch <strong>save files and save states</strong> (plus ROM sidecar saves when present). Each backup is a <strong>new full ZIP upload</strong>, not an in-place patch.</li>
+            <li><strong>Auto Cloud Save</strong> runs once when you return to NXStation after playing (if enabled, linked, online, and saves exist).</li>
+            <li>NXStation cloud backups are <strong>not</strong> interchangeable with RetroArch’s own cloud backup format.</li>
+            <li>OAuth client config is bundled for official builds; link account under Settings → Cloud Save.</li>
             </ul>
             <hr />
             <h3>Notes after upgrading</h3>
             <ul>
-            <li>New settings land in <code>sdmc:/switch/NXStation/settings/user_settings.json</code> (<code>carousel_transition</code>, <code>right_stick_description_scroll</code>, <code>manual_layout_mode</code>)</li>
-            <li><strong>Rescan Libraries</strong> or reopen a system list after upgrading if carousel order looks stale until next scan</li>
+            <li>New files: <code>settings/user_cloud.json</code>, <code>data/cloud/</code>, <code>data/playtime_nxstation.json</code> (if not already present)</li>
+            <li>Enable RetroArch <strong>Save runtime log</strong> for richest analytics; NXStation still tracks launches/playtime for library launches without <code>.lrtl</code></li>
             <li>Settings → <strong>Check for Updates</strong> works from <strong>v0.1.8+</strong></li>
             </ul>
             <hr />
@@ -132,6 +137,7 @@
             <li><a href="https://buildbot.libretro.com/stable/1.20.0/nintendo/switch/libnx/RetroArch.7z" target="_blank" rel="noopener noreferrer">RetroArch for Switch</a> at <code>sdmc:/switch/retroarch_switch.nro</code></li>
             <li>RetroArch cores under <code>sdmc:/retroarch/cores/</code> (or standalone cores in <code>NXStation/cores/</code>)</li>
             <li>ROMs under <code>sdmc:/roms/</code> (or your custom ROMs path in Settings)</li>
+            <li>Cloud backup/restore requires internet and a linked Google account</li>
             </ul>
             <hr />
             <h3>Installation</h3>

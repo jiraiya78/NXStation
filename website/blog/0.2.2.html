@@ -13,7 +13,7 @@
     })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NXStation v0.2.2 — Y menu Game Manual shortcut, manual viewer zoom/pan controls, first-page render fix, and fullscreen overlay fixes." />
+  <meta name="description" content="Update v0.2.2 is the recommended build if you are on v0.2.1 or earlier. It polishes the in-app PDF manual viewer and adds a Game Manual entry to the game-list Y menu when a manual exists." />
   <meta name="theme-color" content="#0C0612" />
   <title>NXStation v0.2.2 — Manual viewer polish, Y-menu Game Manual · NXStation Blog</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -70,64 +70,67 @@
           <time datetime="2026-08-12T12:00:00Z">August 12, 2026</time>
           ·
           <span class="blog-post__tag">v0.2.2</span>
+          
         </p>
-        <div class="blog-post__actions">
-          <a class="btn btn--primary" href="https://github.com/jiraiya78/NXStation/releases/download/v0.2.2/NXStation.nro" target="_blank" rel="noopener noreferrer">Download NXStation.nro</a>
-          <a class="btn btn--ghost" href="https://github.com/jiraiya78/NXStation/releases/tag/v0.2.2" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-        </div>
+        
+          <div class="blog-post__actions">
+            <a class="btn btn--ghost" href="https://github.com/jiraiya78/NXStation/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a>
+          </div>
+          <p class="blog-post__draft-note">Documented here ahead of the GitHub release — check GitHub Releases for the downloadable NRO when it ships.</p>
       </header>
       <div class="blog-prose glass">
         <p>Update <strong>v0.2.2</strong> is the recommended build if you are on <strong>v0.2.1</strong> or earlier. It polishes the in-app <strong>PDF manual viewer</strong> and adds a <strong>Game Manual</strong> entry to the game-list <strong>Y</strong> menu when a manual exists.</p>
-        <p><strong>Website:</strong> https://nxstation.com · <strong>Wiki:</strong> https://nxstation.com/wiki.html · <strong>Downloads:</strong> https://github.com/jiraiya78/NXStation/releases</p>
-        <hr />
-        <h3>Highlights</h3>
-        <ul>
-          <li><strong>Y menu → ◆ Game Manual</strong> — top entry when metadata or <code>manuals/{stem}-manual.pdf</code> exists; opens the viewer directly (toast if the file is missing)</li>
-          <li><strong>Manual viewer controls</strong> — D-pad / <strong>L·R</strong> pages; <strong>right stick</strong> up/down zoom (docked-friendly); <strong>left stick</strong> pan when zoomed</li>
-          <li><strong>First page fix</strong> — cover no longer shows as a blank square until you change pages</li>
-          <li><strong>Fullscreen overlay fix</strong> — game list is not navigable or highlighted under the manual viewer; smoother return when closing</li>
-        </ul>
-        <hr />
-        <h3>Added</h3>
-        <ul>
-          <li>Y menu → <strong>Game Manual</strong> when a manual is recorded for the focused game</li>
-        </ul>
-        <hr />
-        <h3>Changed</h3>
-        <ul>
-          <li>Manual viewer page navigation: D-pad left/right and L/R only (analog stick nav no longer flips pages)</li>
-          <li>Manual viewer zoom/pan: right stick zoom, left stick pan</li>
-        </ul>
-        <hr />
-        <h3>Fixed</h3>
-        <ul>
-          <li>Manual viewer first-page render (texture upload deferred until layout size is valid)</li>
-          <li>Manual viewer blocks game-list focus/selection underneath; deferred highlight restore on close</li>
-        </ul>
-        <hr />
-        <h3>Notes after upgrading</h3>
-        <ul>
-          <li>Manuals still open from <strong>Y → Menu → Show Metadata → Manual</strong> as before</li>
-          <li>Scrape <strong>Manual</strong> in the scrape menu (off by default) to download PDFs to <code>roms/{systemId}/manuals/</code></li>
-          <li>Settings → <strong>Check for Updates</strong> works from <strong>v0.1.8+</strong></li>
-        </ul>
-        <hr />
-        <h3>Requirements</h3>
-        <ul>
-          <li>Modded Switch (e.g. Atmosphere) with homebrew enabled</li>
-          <li><strong>Title Override is required</strong> — hold <strong>R</strong> while launching any game, open the Homebrew Menu, then start NXStation</li>
-          <li><a href="https://buildbot.libretro.com/stable/1.20.0/nintendo/switch/libnx/RetroArch.7z" target="_blank" rel="noopener noreferrer">RetroArch for Switch</a> at <code>sdmc:/switch/retroarch_switch.nro</code></li>
-          <li>RetroArch cores under <code>sdmc:/retroarch/cores/</code> (or standalone cores in <code>NXStation/cores/</code>)</li>
-          <li>ROMs under <code>sdmc:/roms/</code> (or your custom ROMs path in Settings)</li>
-        </ul>
-        <hr />
-        <h3>Installation</h3>
-        <ol>
-          <li>Download <strong><code>NXStation.nro</code></strong> from this release (or Settings → <strong>Check for Updates</strong> from v0.1.8+).</li>
-          <li>Copy to <code>sdmc:/switch/NXStation/NXStation.nro</code></li>
-          <li>Launch via <strong>Title Override</strong> (hold R → Homebrew Menu → NXStation).</li>
-        </ol>
-        <p>Upgrading keeps your existing <code>settings/</code> and <code>data/</code> on SD.</p>
+            <p><strong>Website:</strong> https://nxstation.com <strong>Wiki:</strong> https://nxstation.com/wiki.html <strong>Blog:</strong> https://nxstation.com/blog.html <strong>Downloads:</strong> https://github.com/jiraiya78/NXStation/releases <strong>Discussion:</strong> GBATemp / GitHub Issues</p>
+            <hr />
+            <h3>Highlights</h3>
+            <ul>
+            <li><strong>Y menu → ◆ Game Manual</strong> — top entry when metadata or <code>manuals/{stem}-manual.pdf</code> exists; opens the viewer directly (toast if the file is missing)</li>
+            <li><strong>Manual viewer controls</strong> — D-pad / <strong>L·R</strong> pages; <strong>right stick</strong> up/down zoom (docked-friendly); <strong>left stick</strong> pan when zoomed</li>
+            <li><strong>First page fix</strong> — cover no longer shows as a blank square until you change pages</li>
+            <li><strong>Fullscreen overlay fix</strong> — game list is not navigable or highlighted under the manual viewer; smoother return when closing</li>
+            </ul>
+            <hr />
+            <h3>Added</h3>
+            <ul>
+            <li>Y menu → <strong>Game Manual</strong> when a manual is recorded for the focused game</li>
+            </ul>
+            <h3>Changed</h3>
+            <ul>
+            <li>Manual viewer page navigation: D-pad left/right and L/R only (analog stick nav no longer flips pages)</li>
+            <li>Manual viewer zoom/pan: right stick zoom, left stick pan</li>
+            </ul>
+            <h3>Fixed</h3>
+            <ul>
+            <li>Manual viewer first-page render (texture upload deferred until layout size is valid)</li>
+            <li>Manual viewer blocks game-list focus/selection underneath; deferred highlight restore on close</li>
+            </ul>
+            <hr />
+            <h3>Notes after upgrading</h3>
+            <ul>
+            <li>Manuals still open from <strong>Y → Menu → Show Metadata → Manual</strong> as before</li>
+            <li>Scrape <strong>Manual</strong> in the scrape menu (off by default) to download PDFs to <code>roms/{systemId}/manuals/</code></li>
+            <li>Settings → <strong>Check for Updates</strong> works from <strong>v0.1.8+</strong> if you already have a build with the updater</li>
+            </ul>
+            <hr />
+            <h3>Requirements</h3>
+            <ul>
+            <li>Modded Switch (e.g. Atmosphere) with homebrew enabled</li>
+            <li><strong>Title Override is required</strong> — hold <strong>R</strong> while launching any game, open the Homebrew Menu, then start NXStation</li>
+            <li><a href="https://buildbot.libretro.com/stable/1.20.0/nintendo/switch/libnx/RetroArch.7z" target="_blank" rel="noopener noreferrer">RetroArch for Switch</a> at <code>sdmc:/switch/retroarch_switch.nro</code></li>
+            <li>RetroArch cores under <code>sdmc:/retroarch/cores/</code> (or standalone cores in <code>NXStation/cores/</code>)</li>
+            <li>ROMs under <code>sdmc:/roms/</code> (or your custom ROMs path in Settings)</li>
+            </ul>
+            <hr />
+            <h3>Installation</h3>
+            <ol>
+            <li>Download <strong><code>NXStation.nro</code></strong> from this release (or Settings → <strong>Check for Updates</strong> from v0.1.8+).</li>
+            <li>Copy to <code>sdmc:/switch/NXStation/NXStation.nro</code></li>
+            <li>Launch via <strong>Title Override</strong> (hold R → Homebrew Menu → NXStation).</li>
+            </ol>
+            <p>Upgrading keeps your existing <code>settings/</code> and <code>data/</code> on SD.</p>
+            <hr />
+            <p>Thank you to everyone who tests, reports issues, and keeps the homebrew scene going.</p>
+            <hr />
       </div>
       <p class="blog-post__back"><a href="../blog.html">← All posts</a></p>
     </article>
