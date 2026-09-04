@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme name="Meadow" variant="light">
+  <colors>
+    <color key="brls/clear" value="#F5FCF7"/>
+    <color key="brls/background" value="#EEFAF2"/>
+    <color key="brls/backdrop" value="#0A281840"/>
+    <color key="brls/text" value="#0A2818"/>
+    <color key="brls/text_disabled" value="#689878"/>
+    <color key="brls/accent" value="#16A34A"/>
+    <color key="brls/highlight/background" value="#D0F0D8"/>
+    <color key="brls/highlight/color2" value="#22C55E"/>
+    <color key="brls/sidebar/background" value="#E0F5E8"/>
+    <color key="brls/sidebar/separator" value="#A8D8B8"/>
+    <color key="brls/header/subtitle" value="#3A6848"/>
+    <color key="brls/list/listItem_value_color" value="#3A6848"/>
+    <color key="brls/button/primary_enabled_background" value="#16A34A"/>
+    <color key="brls/button/primary_disabled_background" value="#B8E0C8"/>
+    <color key="brls/button/default_enabled_background" value="#C8ECD0"/>
+    <color key="brls/highlight/color1" value="#16A34A"/>
+    <color key="brls/sidebar/active_item" value="#16A34A"/>
+    <color key="brls/header/border" value="#A8D8B8"/>
+    <color key="brls/header/rectangle" value="#22C55E"/>
+    <color key="brls/button/primary_enabled_text" value="#0A2818"/>
+    <color key="brls/button/primary_disabled_text" value="#689878"/>
+    <color key="brls/button/default_enabled_text" value="#0A2818"/>
+    <color key="nxstation/card_bg" value="#FFFFFF"/>
+    <color key="nxstation/card_border" value="#A8D8B8"/>
+    <color key="nxstation/dialog_bg" value="#FFFFFF"/>
+    <color key="nxstation/dialog_border" value="#16A34AC0"/>
+    <color key="nxstation/dialog_row" value="#E0F5E8"/>
+    <color key="nxstation/dialog_backdrop" value="#0A281860"/>
+    <color key="nxstation/title_text" value="#081E10"/>
+    <color key="nxstation/detail_text" value="#2A5840"/>
+    <color key="nxstation/muted_text" value="#508060"/>
+    <color key="nxstation/body_text" value="#406850"/>
+    <color key="nxstation/preview_text" value="#205030"/>
+    <color key="nxstation/hint_text" value="#509860"/>
+    <color key="nxstation/count_text" value="#48A868"/>
+    <color key="nxstation/log_success" value="#16A34A"/>
+    <color key="nxstation/log_failure" value="#DC2626"/>
+    <color key="nxstation/log_progress" value="#22C55E"/>
+    <color key="nxstation/log_neutral" value="#6B7280"/>
+    <color key="nxstation/overlay_bg" value="#EEFAF2"/>
+    <color key="nxstation/favorite_text" value="#0A2818"/>
+  </colors>
+</theme>

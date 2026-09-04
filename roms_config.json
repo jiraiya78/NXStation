@@ -1,0 +1,382 @@
+{
+  "systems": [
+    {
+      "id": "arcade",
+      "name": "Arcade MAME / FBNeo",
+      "path": "sdmc:/roms/arcade",
+      "core": "sdmc:/retroarch/cores/fbneo_libretro_libnx.nro",
+      "extensions": [
+        ".zip",
+        ".7z",
+        ".fbn"
+      ],
+      "ssSystemId": 75
+    },
+    {
+      "id": "cps1",
+      "name": "Capcom Play System I",
+      "path": "sdmc:/roms/cps1",
+      "core": "sdmc:/retroarch/cores/fbneo_libretro_libnx.nro",
+      "extensions": [
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 248
+    },
+    {
+      "id": "cps2",
+      "name": "Capcom Play System II",
+      "path": "sdmc:/roms/cps2",
+      "core": "sdmc:/retroarch/cores/fbneo_libretro_libnx.nro",
+      "extensions": [
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 249
+    },
+    {
+      "id": "neogeo",
+      "name": "Neo Geo",
+      "path": "sdmc:/roms/neogeo",
+      "core": "sdmc:/retroarch/cores/fbneo_libretro_libnx.nro",
+      "extensions": [
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 142
+    },
+    {
+      "id": "atari2600",
+      "name": "Atari 2600",
+      "path": "sdmc:/roms/atari2600",
+      "core": "sdmc:/retroarch/cores/stella_libretro_libnx.nro",
+      "extensions": [
+        ".a26",
+        ".bin",
+        ".rom",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 26
+    },
+    {
+      "id": "atari5200",
+      "name": "Atari 5200",
+      "path": "sdmc:/roms/atari5200",
+      "core": "sdmc:/retroarch/cores/atari800_libretro_libnx.nro",
+      "extensions": [
+        ".a52",
+        ".bin",
+        ".rom",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 40
+    },
+    {
+      "id": "atari7800",
+      "name": "Atari 7800",
+      "path": "sdmc:/roms/atari7800",
+      "core": "sdmc:/retroarch/cores/prosystem_libretro_libnx.nro",
+      "extensions": [
+        ".a78",
+        ".bin",
+        ".rom",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 41
+    },
+    {
+      "id": "atarilynx",
+      "name": "Atari Lynx",
+      "path": "sdmc:/roms/atarilynx",
+      "core": "sdmc:/retroarch/cores/handy_libretro_libnx.nro",
+      "extensions": [
+        ".lnx",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 28
+    },
+    {
+      "id": "atarijaguar",
+      "name": "Atari Jaguar",
+      "path": "sdmc:/roms/atarijaguar",
+      "core": "sdmc:/retroarch/cores/virtualjaguar_libretro_libnx.nro",
+      "extensions": [
+        ".j64",
+        ".jag",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 27
+    },
+    {
+      "id": "atarist",
+      "name": "Atari ST",
+      "path": "sdmc:/roms/atarist",
+      "core": "sdmc:/retroarch/cores/hatari_libretro_libnx.nro",
+      "extensions": [
+        ".st",
+        ".stx",
+        ".msa",
+        ".ipf",
+        ".zip"
+      ],
+      "ssSystemId": 42
+    },
+    {
+      "id": "nes",
+      "name": "Nintendo Entertainment System",
+      "path": "sdmc:/roms/nes",
+      "core": "sdmc:/retroarch/cores/fceumm_libretro_libnx.nro",
+      "extensions": [
+        ".nes",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 3
+    },
+    {
+      "id": "snes",
+      "name": "Super Nintendo",
+      "path": "sdmc:/roms/snes",
+      "core": "sdmc:/retroarch/cores/snes9x_libretro_libnx.nro",
+      "extensions": [
+        ".sfc",
+        ".smc",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 4
+    },
+    {
+      "id": "n64",
+      "name": "Nintendo 64",
+      "path": "sdmc:/roms/n64",
+      "core": "sdmc:/retroarch/cores/mupen64plus_next_libretro_libnx.nro",
+      "extensions": [
+        ".n64",
+        ".z64",
+        ".v64",
+        ".zip"
+      ],
+      "ssSystemId": 14
+    },
+    {
+      "id": "gb",
+      "name": "Game Boy",
+      "path": "sdmc:/roms/gb",
+      "core": "sdmc:/retroarch/cores/gambatte_libretro_libnx.nro",
+      "extensions": [
+        ".gb",
+        ".zip"
+      ],
+      "ssSystemId": 9
+    },
+    {
+      "id": "gbc",
+      "name": "Game Boy Color",
+      "path": "sdmc:/roms/gbc",
+      "core": "sdmc:/retroarch/cores/gambatte_libretro_libnx.nro",
+      "extensions": [
+        ".gbc",
+        ".zip"
+      ],
+      "ssSystemId": 10
+    },
+    {
+      "id": "gba",
+      "name": "Game Boy Advance",
+      "path": "sdmc:/roms/gba",
+      "core": "sdmc:/retroarch/cores/mgba_libretro_libnx.nro",
+      "extensions": [
+        ".gba",
+        ".zip"
+      ],
+      "ssSystemId": 12
+    },
+    {
+      "id": "nds",
+      "name": "Nintendo DS",
+      "path": "sdmc:/roms/nds",
+      "core": "sdmc:/retroarch/cores/melonds_libretro_libnx.nro",
+      "extensions": [
+        ".nds",
+        ".zip"
+      ],
+      "ssSystemId": 15
+    },
+    {
+      "id": "3ds",
+      "name": "Nintendo 3DS",
+      "path": "sdmc:/roms/3ds",
+      "core": "sdmc:/retroarch/cores/tico-azahar.nro",
+      "extensions": [
+        ".cia",
+        ".3ds",
+        ".3dsx",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 17
+    },
+    {
+      "id": "gc",
+      "name": "GameCube",
+      "path": "sdmc:/roms/gc",
+      "core": "sdmc:/retroarch/cores/dolphin_libretro_switch.nro",
+      "extensions": [
+        ".rvz",
+        ".7z"
+      ],
+      "ssSystemId": 13
+    },
+    {
+      "id": "wii",
+      "name": "Nintendo Wii",
+      "path": "sdmc:/roms/wii",
+      "core": "sdmc:/retroarch/cores/dolphin_wii_libretro.nro",
+      "extensions": [
+        ".iso",
+        ".wbfs",
+        ".rvz",
+        ".gcz"
+      ],
+      "ssSystemId": 16
+    },
+    {
+      "id": "mastersystem",
+      "name": "Sega Master System",
+      "path": "sdmc:/roms/mastersystem",
+      "core": "sdmc:/retroarch/cores/genesis_plus_gx_libretro_libnx.nro",
+      "extensions": [
+        ".sms",
+        ".zip"
+      ],
+      "ssSystemId": 2
+    },
+    {
+      "id": "gamegear",
+      "name": "Sega Game Gear",
+      "path": "sdmc:/roms/gamegear",
+      "core": "sdmc:/retroarch/cores/genesis_plus_gx_libretro_libnx.nro",
+      "extensions": [
+        ".gg",
+        ".zip"
+      ],
+      "ssSystemId": 21
+    },
+    {
+      "id": "megadrive",
+      "name": "Sega Mega Drive",
+      "path": "sdmc:/roms/megadrive",
+      "core": "sdmc:/retroarch/cores/genesis_plus_gx_libretro_libnx.nro",
+      "extensions": [
+        ".md",
+        ".gen",
+        ".bin",
+        ".zip"
+      ],
+      "ssSystemId": 1
+    },
+    {
+      "id": "saturn",
+      "name": "Sega Saturn",
+      "path": "sdmc:/roms/saturn",
+      "core": "sdmc:/retroarch/cores/yabause_libretro_libnx.nro",
+      "extensions": [
+        ".cue",
+        ".bin",
+        ".iso",
+        ".chd",
+        ".mds"
+      ],
+      "ssSystemId": 22
+    },
+    {
+      "id": "dreamcast",
+      "name": "Sega Dreamcast",
+      "path": "sdmc:/roms/dreamcast",
+      "core": "sdmc:/retroarch/cores/flycast_libretro_libnx.nro",
+      "extensions": [
+        ".cdi",
+        ".gdi",
+        ".chd",
+        ".cue",
+        ".zip"
+      ],
+      "ssSystemId": 23
+    },
+    {
+      "id": "psx",
+      "name": "PlayStation",
+      "path": "sdmc:/roms/psx",
+      "core": "sdmc:/retroarch/cores/pcsx_rearmed_libretro_libnx.nro",
+      "extensions": [
+        ".cue",
+        ".chd",
+        ".pbp",
+        ".iso"
+      ],
+      "ssSystemId": 57
+    },
+    {
+      "id": "psp",
+      "name": "PlayStation Portable",
+      "path": "sdmc:/roms/psp",
+      "core": "sdmc:/retroarch/cores/ppsspp_libretro_libnx.nro",
+      "extensions": [
+        ".iso",
+        ".cso",
+        ".pbp"
+      ],
+      "ssSystemId": 61
+    },
+    {
+      "id": "pce",
+      "name": "PC Engine",
+      "path": "sdmc:/roms/pce",
+      "core": "sdmc:/retroarch/cores/mednafen_pce_fast_libretro_libnx.nro",
+      "extensions": [
+        ".pce",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 31
+    },
+    {
+      "id": "zxspectrum",
+      "name": "ZX Spectrum",
+      "path": "sdmc:/roms/zxspectrum",
+      "core": "sdmc:/retroarch/cores/fuse_libretro_libnx.nro",
+      "extensions": [
+        ".tzx",
+        ".tap",
+        ".z80",
+        ".rzx",
+        ".scl",
+        ".trd",
+        ".dsk",
+        ".sna",
+        ".szx",
+        ".zip",
+        ".7z"
+      ],
+      "ssSystemId": 76
+    }
+  ],
+  "screenscraper": {
+    "ssSystemId_reference": "https://www.screenscraper.fr/index.php?action=systemesListe"
+  },
+  "retroarch": {
+    "path": "sdmc:/switch/retroarch_switch.nro"
+  },
+  "settings": {
+    "video_enabled": true,
+    "hover_delay_seconds": 2.0,
+    "texture_cache_limit": 48,
+    "request_delay_ms": 350
+  }
+}

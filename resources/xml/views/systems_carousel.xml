@@ -1,0 +1,97 @@
+<brls:Box
+    id="carousel/root"
+    width="auto"
+    height="auto"
+    grow="1.0"
+    clipsToBounds="true"
+    hideHighlight="true">
+
+    <brls:Box
+        id="carousel/art_clip"
+        positionType="absolute"
+        positionTop="0"
+        positionLeft="0"
+        width="100%"
+        height="100%"
+        clipsToBounds="true"
+        hideHighlight="true">
+
+        <brls:ZoomImage
+            id="carousel/bg"
+            positionType="absolute"
+            positionTop="0"
+            positionLeft="0"
+            width="100%"
+            height="100%"
+            scalingType="fill"/>
+
+        <brls:ZoomImage
+            id="carousel/bg_next"
+            positionType="absolute"
+            positionTop="0"
+            positionLeft="0"
+            width="100%"
+            height="100%"
+            scalingType="fill"
+            visibility="gone"/>
+
+        </brls:Box>
+
+    <brls:OverlayGradient
+        id="carousel/text_shade"
+        positionType="absolute"
+        positionTop="52%"
+        positionLeft="0"
+        width="100%"
+        height="48%"
+        hideHighlight="true"/>
+
+    <brls:Box
+        positionType="absolute"
+        positionTop="0"
+        positionLeft="0"
+        width="100%"
+        height="100%"
+        axis="column"
+        justifyContent="flexEnd"
+        hideHighlight="true"
+        paddingBottom="48"
+        paddingLeft="36"
+        paddingRight="36">
+
+        <brls:HaloLabel
+            id="carousel/title"
+            width="auto"
+            height="auto"
+            fontSize="44"
+            textColor="@theme/brls/text"
+            marginBottom="6"/>
+
+        <brls:HaloLabel
+            id="carousel/count"
+            width="auto"
+            height="auto"
+            fontSize="22"
+            textColor="@theme/nxstation/count_text"
+            marginBottom="18"/>
+
+        <brls:HaloLabel
+            id="carousel/hints"
+            width="auto"
+            height="auto"
+            fontSize="16"
+            textColor="@theme/nxstation/hint_text"/>
+
+    </brls:Box>
+
+    <brls:Rectangle
+        id="carousel/shade"
+        positionType="absolute"
+        positionTop="0"
+        positionLeft="0"
+        width="100%"
+        height="100%"
+        color="#000000"
+        alpha="0.0"/>
+
+</brls:Box>

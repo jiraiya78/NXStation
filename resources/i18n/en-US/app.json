@@ -1,0 +1,14 @@
+{
+  "brls": {
+    "hints": {
+      "ok": "Confirm",
+      "back": "Back",
+      "exit": "Exit"
+    }
+  },
+  "main": {
+    "title": "NXStation",
+    "systems": "Systems",
+    "settings": "Settings"
+  }
+}

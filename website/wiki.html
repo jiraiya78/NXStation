@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nx-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#FAF5FF" : "#0C0612");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NXStation Wiki — setup, controls, scraping, manuals, Tico cores, analytics, themes, and FAQs for Nintendo Switch homebrew users." />
+  <meta name="theme-color" content="#0C0612" />
+  <title>Wiki · NXStation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <div class="nav__products">
+        <a class="nav__brand is-active" href="index.html">
+          <img src="assets/icons/logo.svg" alt="" width="28" height="28" />
+          <span>NXStation</span>
+        </a>
+        <a class="nav__brand nav__brand--b" href="nxstationb/index.html">NXstationB</a>
+      </div>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#setup">Setup</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="wiki.html" aria-current="page" class="nav__link--active">Wiki</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#download" class="nav__cta">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Light mode">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wiki-page">
+    <div class="container wiki-page__inner">
+      <p class="eyebrow">User guide</p>
+      <h1>NXStation Wiki</h1>
+      <p class="wiki-page__lead">
+        Everything you need to install, navigate, scrape media, read game manuals, use Tico cores, view analytics, and customize themes on your Switch.
+        Expand a section below to read the full guide.
+      </p>
+
+      <nav class="wiki-toc glass" aria-label="Wiki sections">
+        <p class="wiki-toc__title">Jump to section</p>
+        <ol class="wiki-toc__list">
+          <li><a href="#wiki-setup">1. Getting Started &amp; Setup</a></li>
+          <li><a href="#wiki-controls">2. Controls &amp; Navigation</a></li>
+          <li><a href="#wiki-scraping">3. Scraping, Artwork &amp; Video</a></li>
+          <li><a href="#wiki-analytics">4. Playtime Analytics &amp; Personality Metrics</a></li>
+          <li><a href="#wiki-tips">5. Tips &amp; FAQ</a></li>
+          <li><a href="#wiki-cores">6. Custom Standalone Cores (Tico)</a></li>
+          <li><a href="#wiki-themes">7. Making Your Own Theme</a></li>
+        </ol>
+      </nav>
+
+      <div class="wiki-accordion faq-list" data-wiki-accordion data-allow-multiple>
+
+        <!-- Section 1 -->
+        <div class="faq-item glass" id="wiki-setup">
+          <button type="button" class="faq-item__btn" aria-expanded="false">
+            <span>1. Getting Started &amp; Setup</span>
+            <span class="faq-item__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-item__panel" hidden>
+            <h3>Title Override vs. Applet Mode</h3>
+            <p>
+              <strong>Always launch NXStation via Title Override</strong> — hold <strong>R</strong> while opening any retail Switch game, then pick NXStation from the menu.
+              This gives the app full RAM access for smooth video previews, PDF manuals, and media loading.
+            </p>
+            <p>
+              <strong>Do not</strong> launch from the Gallery / Album applet (Applet Mode). Applet Mode limits available memory and can cause previews to lag, fail to load, or crash.
+            </p>
+
+            <h3>Installation &amp; Updating</h3>
+            <p><strong>In-app updates</strong></p>
+            <ol class="faq-steps">
+              <li>Open NXStation (Title Override).</li>
+              <li>Press <strong>+</strong> to open <strong>Settings</strong>.</li>
+              <li>Choose <strong>Check for Updates</strong>.</li>
+              <li>Follow the prompts to download and install the latest release automatically.</li>
+            </ol>
+            <p><strong>Manual installation</strong></p>
+            <ol class="faq-steps">
+              <li>Download <code>NXStation.nro</code> from <a href="https://github.com/jiraiya78/NXStation/releases/latest" target="_blank" rel="noopener noreferrer">GitHub Releases</a>.</li>
+              <li>Copy it to <code>sdmc:/switch/NXStation/NXStation.nro</code> on your SD card.</li>
+              <li>Keep or update <code>settings/roms_config.json</code> in the same folder if you customize systems.</li>
+            </ol>
+
+            <h3>SD Card File Structure</h3>
+            <p>Recommended layout on your SD card:</p>
+            <pre class="wiki-tree"><code>sdmc:/
+├── switch/
+│   ├── NXStation/
+│   │   ├── NXStation.nro
+│   │   ├── cores/
+│   │   │   ├── tico-azahar.nro
+│   │   │   └── tico-dolphin.nro
+│   │   ├── settings/
+│   │   │   ├── roms_config.json
+│   │   │   ├── user_cores.json
+│   │   │   ├── user_screenscraper.json
+│   │   │   ├── user_favorites.json
+│   │   │   └── user_settings.json
+│   │   ├── data/
+│   │   │   ├── theme/{ThemeName}/theme.xml
+│   │   │   ├── backgrounds/{systemId}.jpg
+│   │   │   └── resources/placeholder images
+│   │   └── log/
+│   ├── retroarch_switch.nro
+│   └── (other homebrew)
+├── retroarch/
+│   └── cores/*_libretro_libnx.nro
+└── roms/
+    └── {systemId}/
+        ├── gamelist.xml
+        ├── images/
+        ├── videos/
+        ├── manuals/
+        └── your-game-files...</code></pre>
+
+            <h3>Supported Systems</h3>
+            <p>
+              NXStation ships with <strong>29 systems</strong> in the default <code>roms_config.json</code>, covering Atari, Nintendo, Sega, arcade, Sony, Sinclair, and PC Engine platforms:
+            </p>
+            <ul class="wiki-systems">
+              <li><code>arcade</code>, <code>cps1</code>, <code>cps2</code>, <code>neogeo</code></li>
+              <li><code>atari2600</code>, <code>atari5200</code>, <code>atari7800</code>, <code>atarilynx</code>, <code>atarijaguar</code>, <code>atarist</code></li>
+              <li><code>nes</code>, <code>snes</code>, <code>n64</code>, <code>gb</code>, <code>gbc</code>, <code>gba</code>, <code>nds</code>, <code>3ds</code>, <code>gc</code>, <code>wii</code></li>
+              <li><code>mastersystem</code>, <code>gamegear</code>, <code>megadrive</code>, <code>saturn</code>, <code>dreamcast</code></li>
+              <li><code>psx</code>, <code>psp</code>, <code>pce</code>, <code>zxspectrum</code></li>
+            </ul>
+            <p>You can add more systems by editing <code>roms_config.json</code> when a matching RetroArch core exists.</p>
+            <aside class="wiki-callout wiki-callout--warn" role="note">
+              <strong>PlayStation 2 is not supported.</strong> PS2 emulation is not practical on Nintendo Switch hardware with current libretro cores. Do not expect a PS2 folder in the default config — focus on PS1 (<code>psx</code>) and PSP (<code>psp</code>) instead.
+            </aside>
+            <aside class="wiki-callout" role="note">
+              <strong>GameCube, Wii, and 3DS are experimental.</strong> These systems are listed in the default config because standalone <strong>Tico</strong> cores can produce playable results, but they are <em>not</em> bundled with NXStation. You must download the core <code>.nro</code> files yourself, place them in <code>sdmc:/switch/NXStation/cores/</code>, then point each system to the correct core in <strong>Settings → Core Paths</strong>. See <a href="#wiki-cores">Custom Standalone Cores</a> for download links and setup steps.
+            </aside>
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="faq-item glass" id="wiki-controls">
+          <button type="button" class="faq-item__btn" aria-expanded="false">
+            <span>2. Controls &amp; Navigation</span>
+            <span class="faq-item__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-item__panel" hidden>
+            <h3>Main System Carousel</h3>
+            <div class="wiki-table-wrap">
+              <table class="wiki-table">
+                <thead>
+                  <tr><th scope="col">Button</th><th scope="col">Action</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><kbd>L</kbd> / <kbd>R</kbd> or <kbd>←</kbd> <kbd>→</kbd></td><td>Previous / next system</td></tr>
+                  <tr><td><kbd>A</kbd></td><td>Open selected system’s game list</td></tr>
+                  <tr><td><kbd>+</kbd></td><td>Open Settings</td></tr>
+                  <tr><td><kbd>Y</kbd></td><td>Main menu (search, jump to system, analytics)</td></tr>
+                  <tr><td><kbd>B</kbd></td><td>Back / close popup</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Game List View</h3>
+            <div class="wiki-table-wrap">
+              <table class="wiki-table">
+                <thead>
+                  <tr><th scope="col">Button</th><th scope="col">Action</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><kbd>A</kbd></td><td>Launch game (opens RetroArch core)</td></tr>
+                  <tr><td><kbd>X</kbd></td><td>Toggle favorite (starred games sort to top)</td></tr>
+                  <tr><td><kbd>Y</kbd></td><td>Game options / scrape menu</td></tr>
+                  <tr><td><kbd>L</kbd> / <kbd>R</kbd></td><td>Page up / page down in long lists</td></tr>
+                  <tr><td><kbd>R₃</kbd> (right stick press)</td><td>Random game</td></tr>
+                  <tr><td><kbd>B</kbd></td><td>Return to system carousel</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Dialogs, Scraper &amp; Manual Viewer</h3>
+            <div class="wiki-table-wrap">
+              <table class="wiki-table">
+                <thead>
+                  <tr><th scope="col">Button</th><th scope="col">Action</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><kbd>A</kbd></td><td>Confirm / select row</td></tr>
+                  <tr><td><kbd>B</kbd></td><td>Cancel / close dialog</td></tr>
+                  <tr><td><kbd>Y</kbd></td><td>Toggle scrape options (box art, thumbnail, video, manual, …)</td></tr>
+                  <tr><td><kbd>L</kbd> / <kbd>R</kbd></td><td>Scroll long scrape logs or help text</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>Manual viewer</strong> (when reading a scraped PDF manual):</p>
+            <div class="wiki-table-wrap">
+              <table class="wiki-table wiki-table--compact">
+                <thead>
+                  <tr><th scope="col">Button</th><th scope="col">Action</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><kbd>L</kbd> / <kbd>R</kbd> or swipe</td><td>Previous / next page or spread</td></tr>
+                  <tr><td><kbd>Y</kbd></td><td>Layout menu (Cover + Spread vs single page)</td></tr>
+                  <tr><td><kbd>LT</kbd> / <kbd>RT</kbd> or pinch</td><td>Zoom out / in</td></tr>
+                  <tr><td>Right stick (when zoomed)</td><td>Pan around the page</td></tr>
+                  <tr><td><kbd>B</kbd></td><td>Close manual viewer</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <aside class="wiki-callout" role="note">
+              <strong>Exiting the app:</strong> The <kbd>−</kbd> (Minus) button does <em>not</em> quit NXStation. Press the Switch <strong>Home</strong> button to leave the app. Your library position is saved and restored when you return.
+            </aside>
+          </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="faq-item glass" id="wiki-scraping">
+          <button type="button" class="faq-item__btn" aria-expanded="false">
+            <span>3. Scraping, Artwork &amp; Video Previews</span>
+            <span class="faq-item__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-item__panel" hidden>
+            <h3>ScreenScraper Setup</h3>
+            <ol class="faq-steps">
+              <li>Create a free account at <a href="https://www.screenscraper.fr" target="_blank" rel="noopener noreferrer">screenscraper.fr</a>.</li>
+              <li>In NXStation: <strong>Settings</strong> → enter your website <strong>username</strong> and <strong>password</strong>.</li>
+              <li>Or edit <code>sdmc:/switch/NXStation/settings/user_screenscraper.json</code> directly:
+                <pre class="wiki-tree"><code>{
+  "ssid": "your_username",
+  "sspassword": "your_password"
+}</code></pre>
+              </li>
+              <li>Open a game list, press <strong>Y</strong>, choose scrape options, and run a single-game or batch scrape.</li>
+            </ol>
+            <p>Developer API keys are built into the app — you only need your personal ScreenScraper login.</p>
+
+            <h3>Adding Your Own Box Art &amp; Videos</h3>
+            <p>
+              Files are matched by the <strong>ROM filename stem</strong> (name without extension).
+              Example ROM: <code>Chrono Trigger.sfc</code> → stem <code>Chrono Trigger</code>.
+            </p>
+            <p><strong>ES-DE folder layout (recommended — auto-discovered):</strong></p>
+            <ul class="faq-steps">
+              <li>Box art: <code>sdmc:/roms/{systemId}/images/{stem}-image.jpg</code></li>
+              <li>Thumbnail: <code>sdmc:/roms/{systemId}/images/{stem}-thumb.jpg</code></li>
+              <li>Video: <code>sdmc:/roms/{systemId}/videos/{stem}-video.mp4</code></li>
+            </ul>
+            <p>Supported image extensions: <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>, <code>.webp</code></p>
+            <p>Supported video extensions: <code>.mp4</code>, <code>.webm</code>, <code>.mkv</code></p>
+
+            <p><strong>Using <code>gamelist.xml</code> for custom paths or names:</strong></p>
+            <p>If your files use different names or folders, add entries to <code>sdmc:/roms/{systemId}/gamelist.xml</code>:</p>
+            <pre class="wiki-tree"><code>&lt;game&gt;
+  &lt;path&gt;./Chrono Trigger.sfc&lt;/path&gt;
+  &lt;name&gt;Chrono Trigger&lt;/name&gt;
+  &lt;image&gt;./images/my-custom-box.jpg&lt;/image&gt;
+  &lt;thumbnail&gt;./images/my-custom-thumb.jpg&lt;/thumbnail&gt;
+  &lt;video&gt;./videos/my-preview.mp4&lt;/video&gt;
+&lt;/game&gt;</code></pre>
+            <p>After adding files, run <strong>Rescan Libraries</strong> in Settings or restart NXStation.</p>
+
+            <h3>Video Preview Recommendations</h3>
+            <ul class="faq-steps">
+              <li>Use <strong>H.264</strong> in an <strong>.mp4</strong> container for best compatibility.</li>
+              <li>Scale videos to <strong>max 480×320</strong> before copying to the SD card — NXStation decodes at this size to avoid memory issues.</li>
+              <li>Shorter clips (10–30 seconds) load faster in the game list preview pane.</li>
+            </ul>
+
+            <h3>Game Manuals (ScreenScraper PDF)</h3>
+            <p>
+              Manual scraping is <strong>off by default</strong>. When enabled, NXStation downloads the ScreenScraper manual as a PDF and saves it to
+              <code>sdmc:/roms/{systemId}/manuals/{stem}-manual.pdf</code>.
+            </p>
+            <ol class="faq-steps">
+              <li>Highlight a game and press <strong>Y</strong> → <strong>Menu</strong> → <strong>Scrape</strong>.</li>
+              <li>Turn <strong>Manual</strong> <strong>On</strong> in the scrape toggles (along with box art, thumbnail, video if desired).</li>
+              <li>Run the scrape. On success, the PDF is stored next to your ROM collection.</li>
+              <li>To read it: press <strong>Y</strong> → <strong>Menu</strong> → <strong>Show Metadata</strong> → tap <strong>Manual</strong> (shown only when a PDF is present).</li>
+            </ol>
+            <p>
+              You can also copy a PDF manually to <code>manuals/{stem}-manual.pdf</code> or reference it in <code>gamelist.xml</code> with a <code>&lt;manual&gt;</code> tag, then rescan libraries.
+            </p>
+            <p>
+              The manual viewer renders the PDF directly (no low-quality JPEG conversion). Use <strong>Cover + Spread</strong> mode for a book-like layout: page 1 alone, then two-page spreads. See the controls table in <a href="#wiki-controls">Section 2</a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="faq-item glass" id="wiki-analytics">
+          <button type="button" class="faq-item__btn" aria-expanded="false">
+            <span>4. Game Playtime Analytics &amp; Personality Metrics</span>
+            <span class="faq-item__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-item__panel" hidden>
+            <h3>Enabling RetroArch Logging</h3>
+            <p>NXStation reads RetroArch runtime logs to calculate playtime stats. Enable logging once in RetroArch:</p>
+            <ol class="faq-steps">
+              <li>Open RetroArch (from NXStation Settings or your forwarder).</li>
+              <li>Go to <strong>Settings → Saving</strong>.</li>
+              <li>Turn on <strong>Save runtime log</strong> (and keep logs enabled).</li>
+              <li>Play games through NXStation so sessions are recorded under <code>sdmc:/retroarch/playlists/logs/</code>.</li>
+            </ol>
+
+            <h3>Opening Analytics in NXStation</h3>
+            <p>From the main system carousel, press <strong>Y</strong> → choose:</p>
+            <ul class="faq-steps">
+              <li><strong>Playtime Analytics</strong> — session style, time-of-day heatmaps, backlog “dust” scores, and play habits.</li>
+              <li><strong>Personality Metrics</strong> — gamer tags, nostalgia breakdown, and time-warp stats derived from your RetroArch history.</li>
+            </ul>
+            <p>Press <strong>B</strong> to close the analytics dialog. Data stays on your SD card; nothing is sent to a server.</p>
+
+            <aside class="wiki-callout wiki-callout--warn" role="note">
+              <strong>RetroArch logging only.</strong> Playtime Analytics and Personality Metrics read RetroArch runtime logs (<code>playlists/logs/*.lrtl</code>). Standalone cores such as <strong>tico-dolphin</strong> and <strong>tico-azahar</strong> do <em>not</em> write these logs — sessions launched through those cores will not appear in analytics until you use a RetroArch libretro core that supports runtime logging.
+            </aside>
+          </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="faq-item glass" id="wiki-tips">
+          <button type="button" class="faq-item__btn" aria-expanded="false">
+            <span>5. Tips &amp; Frequently Asked Questions</span>
+            <span class="faq-item__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-item__panel" hidden>
+            <h3>Per-system core overrides</h3>
+            <p>
+              Settings → <strong>Core Paths</strong> lets you pick a different RetroArch or standalone <code>.nro</code> core per system.
+              Overrides are saved to <code>settings/user_cores.json</code>. The master system list still lives in <code>roms_config.json</code>.
+            </p>
+
+            <h3>Empty game list?</h3>
+            <ul class="faq-steps">
+              <li>Confirm ROMs are in <code>sdmc:/roms/{systemId}/</code> with a matching folder name from <code>roms_config.json</code>.</li>
+              <li>Run <strong>Rescan Libraries</strong> in Settings.</li>
+              <li>If <strong>Hide Empty Systems</strong> is on, systems with zero ROMs won’t appear until you add at least one game.</li>
+            </ul>
+
+            <h3>Favorites &amp; Last Played</h3>
+            <ul class="faq-steps">
+              <li>Press <strong>X</strong> on a game to favorite it. Favorites sort to the top of each system list.</li>
+              <li>The <strong>Last Played</strong> virtual system shows your most recently launched games across all systems.</li>
+              <li>Favorites are stored in <code>settings/user_favorites.json</code>; last played in <code>settings/user_last_played.json</code>.</li>
+            </ul>
+
+            <h3>More help</h3>
+            <p>See also the <a href="index.html#faq">homepage FAQ</a> or open <strong>Settings → Help — Data Folders</strong> inside the app for path reference.</p>
+          </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="faq-item glass" id="wiki-cores">
+          <button type="button" class="faq-item__btn" aria-expanded="false">
+            <span>6. Custom Standalone Cores (Tico)</span>
+            <span class="faq-item__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-item__panel" hidden>
+            <p>
+              NXStation ships with RetroArch libretro cores for most systems. GameCube, Wii, and 3DS are different: the best results today come from standalone <strong>Tico</strong> cores maintained by the community. These are separate <code>.nro</code> homebrew apps — you download them yourself and point NXStation at the file.
+            </p>
+
+            <aside class="wiki-callout wiki-callout--warn" role="note">
+              <strong>Experimental — for tinkerers.</strong> Custom standalone core support is experimental. NXStation only launches the core and passes your ROM; everything after that — stability, controls, how exit works — depends on the core maintainer, not NXStation. You may hit crashes, freezes, or end up back on the Switch home menu instead of NXStation. This path is for play testers and tinkerers who are willing to go the extra mile to download cores, tune settings, and work through rough edges.
+            </aside>
+
+            <h3>Recommended cores</h3>
+            <div class="wiki-table-wrap">
+              <table class="wiki-table">
+                <thead>
+                  <tr><th scope="col">Core</th><th scope="col">Systems</th><th scope="col">Download</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>tico-dolphin</strong></td>
+                    <td><code>gc</code>, <code>wii</code></td>
+                    <td><a href="https://github.com/ticohq/tico-dolphin" rel="noopener noreferrer" target="_blank">github.com/ticohq/tico-dolphin</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>tico-azahar</strong></td>
+                    <td><code>3ds</code></td>
+                    <td><a href="https://github.com/ticohq/tico-azahar" rel="noopener noreferrer" target="_blank">github.com/ticohq/tico-azahar</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Grab the latest release <code>.nro</code> from each repo’s Releases page. Performance, compatibility, and how cleanly you return to NXStation all vary by title and by core version — expect a bumpy ride.</p>
+
+            <h3>Install on SD card</h3>
+            <ol class="faq-steps">
+              <li>Create <code>sdmc:/switch/NXStation/cores/</code> if it does not exist.</li>
+              <li>Copy the downloaded files, for example:
+                <ul>
+                  <li><code>tico-dolphin.nro</code></li>
+                  <li><code>tico-azahar.nro</code></li>
+                </ul>
+              </li>
+              <li>Keep filenames simple — you will browse to the exact path in Settings.</li>
+            </ol>
+            <pre class="wiki-tree"><code>sdmc:/switch/NXStation/cores/
+├── tico-dolphin.nro
+└── tico-azahar.nro</code></pre>
+
+            <h3>Set core path in NXStation</h3>
+            <ol class="faq-steps">
+              <li>Open <strong>Settings</strong> (press <strong>+</strong> on the main carousel).</li>
+              <li>Go to <strong>Core Paths</strong>.</li>
+              <li>Select the system (<code>gc</code>, <code>wii</code>, or <code>3ds</code>).</li>
+              <li>Browse to <code>sdmc:/switch/NXStation/cores/</code> and pick the matching <code>.nro</code>.</li>
+              <li>Launch a game from that system’s list — NXStation forwards the ROM to the standalone core.</li>
+            </ol>
+            <p>Overrides are saved in <code>sdmc:/switch/NXStation/settings/user_cores.json</code>. The default <code>roms_config.json</code> may still list RetroArch paths until you override them per system.</p>
+
+            <aside class="wiki-callout" role="note">
+              <strong>Analytics:</strong> Tico standalone cores do not write RetroArch runtime logs. Play sessions through them are not counted in Playtime Analytics — see <a href="#wiki-analytics">Section 4</a>.
+            </aside>
+          </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="faq-item glass" id="wiki-themes">
+          <button type="button" class="faq-item__btn" aria-expanded="false">
+            <span>7. Making Your Own Theme</span>
+            <span class="faq-item__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-item__panel" hidden>
+            <h3>Theme structure</h3>
+            <p>Each theme is a folder with a <code>theme.xml</code> file:</p>
+            <pre class="wiki-tree"><code>sdmc:/switch/NXStation/data/theme/MyTheme/
+├── theme.xml          (required — color definitions)
+├── placeholder.jpg    (optional — system carousel fallback)
+├── placeholder_box.png (optional — missing box art)
+└── backgrounds/
+    └── snes.jpg       (optional — per-system wallpaper)</code></pre>
+
+            <h3>Supported color keys</h3>
+            <p>Colors use <code>#RRGGBB</code> or <code>#RRGGBBAA</code> hex values. Example entries:</p>
+            <div class="wiki-table-wrap">
+              <table class="wiki-table wiki-table--compact">
+                <thead>
+                  <tr><th scope="col">Key</th><th scope="col">Used for</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>brls/background</code></td><td>Main app background</td></tr>
+                  <tr><td><code>brls/accent</code></td><td>Highlights, focus accents</td></tr>
+                  <tr><td><code>brls/text</code></td><td>Primary text</td></tr>
+                  <tr><td><code>nxstation/card_bg</code></td><td>Game list cards</td></tr>
+                  <tr><td><code>nxstation/card_border</code></td><td>Card outlines</td></tr>
+                  <tr><td><code>nxstation/dialog_bg</code></td><td>Popup dialogs</td></tr>
+                  <tr><td><code>nxstation/dialog_row</code></td><td>Menu rows inside dialogs</td></tr>
+                  <tr><td><code>nxstation/title_text</code></td><td>Headings</td></tr>
+                  <tr><td><code>nxstation/detail_text</code></td><td>Subtitles, hints</td></tr>
+                  <tr><td><code>nxstation/log_success</code></td><td>Scrape log — OK lines</td></tr>
+                  <tr><td><code>nxstation/log_failure</code></td><td>Scrape log — errors</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>See the bundled Vampire theme for a complete reference with every key defined.</p>
+
+            <h3>Install a custom theme</h3>
+            <ol class="faq-steps">
+              <li>Copy your theme folder to <code>sdmc:/switch/NXStation/data/theme/YourThemeName/</code>.</li>
+              <li>Ensure <code>theme.xml</code> is inside that folder.</li>
+              <li>In NXStation: <strong>Settings → Theme</strong> → select your theme.</li>
+            </ol>
+
+            <h3>Blank theme template</h3>
+            <p>Download the starter template and rename the folder to your theme name:</p>
+            <p>
+              <a class="btn btn--secondary btn--sm" href="assets/themes/Blank-theme/theme.xml" download="theme.xml">
+                Download blank theme.xml
+              </a>
+            </p>
+            <p class="wiki-note">Place the file in <code>data/theme/YourThemeName/theme.xml</code> on your SD card, then edit the hex colors to taste.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="legal-nav">
+        <a href="index.html">← Back to home</a>
+        <a href="index.html#download">Download</a>
+        <a href="index.html#faq">FAQ</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__bar">
+        <p>
+          <a href="https://github.com/jiraiya78/NXStation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          ·
+          <a href="wiki.html">Wiki</a>
+          ·
+          <a href="blog.html">Blog</a>
+          ·
+          <a href="privacy.html">Privacy</a>
+          ·
+          <a href="terms.html">Terms</a>
+          ·
+          <a href="license.html">License</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  </footer>
+
+  <script src="cookies.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

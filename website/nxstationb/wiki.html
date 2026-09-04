@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nxb-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#F1FAEE" : "#081C15");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#081C15" />
+  <title>Wiki · NXstationB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="theme-green.css" />
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <div class="nav__products">
+        <a class="nav__brand" href="../index.html">
+          <img src="../assets/icons/logo.svg" alt="" width="28" height="28" />
+          <span>NXStation</span>
+        </a>
+        <a class="nav__brand nav__brand--b is-active" href="index.html">NXstationB</a>
+      </div>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#setup">Setup</a></li>
+        <li><a href="wiki.html" aria-current="page" class="nav__link--active">Wiki</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="https://github.com/jiraiya78/NXStationB/releases/latest" class="nav__cta" target="_blank" rel="noopener noreferrer">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Light mode">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4" /></svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+        </button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+  <main class="section">
+    <div class="container">
+      <header class="section__header reveal">
+        <p class="eyebrow">Wiki</p>
+        <h1>NXstationB handbook</h1>
+        <p class="section__lead">Paths, launch, scraper, cores, and how this sits next to NXStation.</p>
+      </header>
+      <article class="glass reveal" style="padding:1.5rem;margin-bottom:1rem">
+        <h2>Install paths</h2>
+        <p><code>sdmc:/switch/nxstationb/NXStationB.nro</code> is the app binary.</p>
+        <p><code>sdmc:/switch/nxstationb/</code> holds <code>es_systems.cfg</code>, themes, logs, <code>user_cores.json</code>, and <code>navigation_state.txt</code>.</p>
+        <p><code>sdmc:/roms/{system}/</code> for ROMs (shared with NXStation).</p>
+        <p><code>sdmc:/retroarch/cores/*.nro</code> for libretro and standalone cores.</p>
+        <p>Download: <a href="https://github.com/jiraiya78/NXStationB/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a></p>
+      </article>
+      <article class="glass reveal" style="padding:1.5rem;margin-bottom:1rem">
+        <h2>Title Override</h2>
+        <p>Hold <strong>R</strong> on any installed title, open hbmenu, launch NXstationB. Album / applet mode will fail or crash on heavier cores.</p>
+      </article>
+      <article class="glass reveal" style="padding:1.5rem;margin-bottom:1rem">
+        <h2>Scraper</h2>
+        <p>Scrape from = ScreenScraper only. Set website username/password under Scraper → accounts.</p>
+      </article>
+      <article class="glass reveal" style="padding:1.5rem;margin-bottom:1rem">
+        <h2>Cores</h2>
+        <p>Main menu → <strong>Emulator and Cores</strong> → system → pick any <code>.nro</code>. RESET restores the <code>es_systems.cfg</code> default. Overrides save to <code>user_cores.json</code> and, if NXStation is installed, also to NXStation’s <code>settings/user_cores.json</code>.</p>
+      </article>
+      <article class="glass reveal" style="padding:1.5rem;margin-bottom:1rem">
+        <h2>Rax cores (firmware 22.5+)</h2>
+        <p>
+          Rax cores are recompiled RetroArch libretro cores that fix crash-on-exit behavior on Nintendo Switch
+          firmware <strong>22.5</strong> and newer. Stock cores may still play games, but closing a title often
+          returns you to the Home Menu instead of NXstationB.
+        </p>
+        <p>Rax builds are optional and will be published separately when ready. Until then, reopen NXstationB with Title Override to resume your last game.</p>
+      </article>
+      <article class="glass reveal" style="padding:1.5rem;margin-bottom:1rem">
+        <h2>Playtime</h2>
+        <p>If <code>sdmc:/switch/NXStation</code> exists, play sessions are appended to <code>data/playtime_nxstation.json</code>. Open NXStation later to see analytics.</p>
+      </article>
+      <article class="glass reveal" style="padding:1.5rem;margin-bottom:1rem">
+        <h2>Return from a game</h2>
+        <p>Stock cores usually exit to Home. Re-open NXstationB (Title Override). The last system and game are restored from <code>navigation_state.txt</code> with a fast boot (no extra ROM scan).</p>
+      </article>
+      <article class="glass reveal" style="padding:1.5rem">
+        <h2>Credits</h2>
+        <p>Batocera.linux (EmulationStation fork), Aloshi / Alec Lofquist (original ES), RetroArch / libretro, libnx, ScreenScraper.</p>
+        <p>Bundled themes: <strong>Simple_Life</strong> / No Flash by Mr. Overlay; <strong>es-theme-minimal</strong> by Lilbud (CC-BY-NC-SA); <strong>es-theme-simple</strong> by Nils Bonenberger (CC-BY-NC-SA).</p>
+        <p>Switch port sources will be released in due time. Batocera ES itself is already GPL.</p>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer__bar">
+      <p><a href="index.html">NXstationB</a> · <a href="../index.html">NXStation</a></p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+# --- Build outputs ---
+build/
+build_switch/
+build_desktop/
+cmake-build-*/
+.tools/
+
+*.elf
+*.nro
+*.nacp
+*.nso
+*.npdm
+*.a
+*.o
+*.d
+*.lst
+*.map
+
+# CMake / Ninja
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+Makefile.bak
+
+# Generated headers (CMake configure_file)
+**/generated/
+
+# MuPDF Switch build tree (built by scripts/build_mupdf_switch.sh)
+third_party/mupdf/build/
+
+# --- Dependencies (fetch locally; see README) ---
+third_party/nlohmann/json.hpp
+third_party/stb_image.h
+third_party/_borealis_ref/
+
+# Borealis is a git submodule (library/borealis) — do NOT ignore that path.
+
+# --- Secrets & local credentials (never commit) ---
+include/app/*.local.hpp
+include/app/ScreenScraperCredentials.local.hpp
+resources/settings/google_oauth.json
+
+# SD-card layout mirrors, logs, crash dumps
+sdmc/
+log/
+*.log
+crash.log
+
+# --- IDE & OS ---
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.sln.docstates
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# --- Scratch / reference trees (not part of NXStation) ---
+.tmp/
+
+# Internal docs, release drafts, forum posts (keep README.md, changelog.md, context.md)
+/context_for_nxstation.md
+/future_theme.md
+/launch.md
+/nxstation.md
+/PROJECT_SPEC.md
+/credits.md
+/RELEASE.md
+/release_v*.md
+/gbatemp*.md
+/GBATEMP.MD
+
+# Bundled sample assets (copied to SD on install; not shipped in source repo)
+/sample/
+
+# Website raw captures (processed assets live alongside)
+website/nxstationb/assets/.ignore/
+
+# --- Cursor / agent (local only) ---
+.cursor/
+agent-transcripts/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+.venv/
+venv/
+
+# --- Optional local overrides ---
+.env
+.env.*
+*.local.json

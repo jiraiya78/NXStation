@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nxb-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#F1FAEE" : "#081C15");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NXstationB v1.0: first public release of Batocera EmulationStation on Nintendo Switch." />
+  <meta name="theme-color" content="#081C15" />
+  <title>NXstationB v1.0: first public release · Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../theme-green.css" />
+  <link rel="icon" href="../../assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <div class="nav__products">
+        <a class="nav__brand" href="../../index.html">
+          <img src="../../assets/icons/logo.svg" alt="" width="28" height="28" />
+          <span>NXStation</span>
+        </a>
+        <a class="nav__brand nav__brand--b is-active" href="../index.html">NXstationB</a>
+      </div>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../wiki.html">Wiki</a></li>
+        <li><a href="../blog.html" class="nav__link--active" aria-current="page">Blog</a></li>
+        <li><a href="../index.html#download" class="nav__cta">Download</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="blog-page">
+    <article class="container blog-page__inner blog-post">
+      <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+        <a href="../blog.html">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>v1.0</span>
+      </nav>
+      <header class="blog-post__header">
+        <p class="eyebrow">Release notes</p>
+        <h1>NXstationB v1.0: Batocera EmulationStation on Switch</h1>
+        <p class="blog-post__meta">
+          <time datetime="2026-08-28T14:00:00Z">August 28, 2026</time>
+          ·
+          <span class="blog-post__tag">v1.0</span>
+        </p>
+        <div class="blog-post__actions">
+          <a class="btn btn--primary" href="https://github.com/jiraiya78/NXStationB/releases/download/v1.0/NXStationB.nro" target="_blank" rel="noopener noreferrer">Download NXStationB.nro</a>
+          <a class="btn btn--ghost" href="https://github.com/jiraiya78/NXStationB/releases/tag/v1.0" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+      </header>
+      <div class="blog-prose glass">
+        <p>
+          <strong>NXstationB v1.0</strong> is the first public release of
+          <a href="https://batocera.org/" target="_blank" rel="noopener noreferrer">Batocera EmulationStation</a>
+          as a Nintendo Switch NRO. Recommended if you want the real Batocera UI, themes, and scraper on Switch
+          alongside <a href="../../index.html">NXStation</a>.
+        </p>
+        <p>
+          <strong>Download:</strong>
+          <a href="https://github.com/jiraiya78/NXStationB/releases" target="_blank" rel="noopener noreferrer">github.com/jiraiya78/NXStationB/releases</a>
+          ·
+          <strong>Wiki:</strong> <a href="../wiki.html">nxstation.com/nxstationb/wiki.html</a>
+        </p>
+        <hr />
+        <h3>Highlights</h3>
+        <ul>
+          <li>Full Batocera ES frontend on Switch (systems, gamelists, scraper, screensaver, themes)</li>
+          <li>Stock RetroArch Switch cores; optional standalone NROs (Tico, etc.) via <strong>Emulator and Cores</strong></li>
+          <li>ScreenScraper only (developer API included; set your website login in settings)</li>
+          <li>Bundled themes: Simple_Life (default), es-theme-minimal, es-theme-simple</li>
+          <li>Restores last system + game after a session; fast boot skips extra ROM scanning</li>
+          <li>If NXStation is installed, playtime is written to NXStation analytics</li>
+        </ul>
+        <h3>Install</h3>
+        <ol>
+          <li>Copy <code>NXStationB.nro</code> to <code>sdmc:/switch/nxstationb/NXStationB.nro</code></li>
+          <li>Hold <strong>R</strong> on an installed game → hbmenu → NXstationB</li>
+          <li>ROMs in <code>sdmc:/roms/{system}/</code></li>
+          <li>Cores in <code>sdmc:/retroarch/cores/</code></li>
+        </ol>
+        <h3>Notes</h3>
+        <ul>
+          <li>Album / applet mode does not have enough RAM</li>
+          <li>Stock cores on newer firmware usually return to Home; reopen the NRO to resume the last game</li>
+          <li>On firmware 22.5+, <strong>Rax cores</strong> (recompiled libretro cores) fix crash-on-exit issues; see the <a href="../index.html#faq">FAQ</a></li>
+          <li>Batocera ES is GPL; Switch port sources will be released in due time</li>
+        </ul>
+        <h3>Credits</h3>
+        <p>
+          Batocera.linux, Aloshi, RetroArch/libnx, ScreenScraper.
+          Simple_Life / No Flash by Mr. Overlay.
+          es-theme-minimal by Lilbud (CC-BY-NC-SA).
+          es-theme-simple by Nils Bonenberger (CC-BY-NC-SA).
+        </p>
+      </div>
+      <p class="blog-post__back"><a href="../blog.html">← All posts</a> · <a href="../index.html">NXstationB home</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__bar">
+      <p><a href="../index.html">NXstationB</a> · <a href="../../index.html">NXStation</a></p>
+    </div>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

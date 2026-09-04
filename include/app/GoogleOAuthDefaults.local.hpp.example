@@ -1,0 +1,12 @@
+#pragma once
+
+// Copy to GoogleOAuthDefaults.local.hpp (same folder) for local/release builds.
+// Create a Google Cloud OAuth 2.0 "Desktop app" client for Drive API access.
+// Do not commit GoogleOAuthDefaults.local.hpp to a public repository.
+
+#define NXSTATION_GOOGLE_OAUTH_CLIENT_ID
+namespace sf::googleoauth {
+inline constexpr const char* kClientId =
+    "your-client-id.apps.googleusercontent.com";
+inline constexpr const char* kClientSecret = "your-client-secret";
+} // namespace sf::googleoauth

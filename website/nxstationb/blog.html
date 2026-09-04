@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nxb-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#F1FAEE" : "#081C15");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#081C15" />
+  <title>Blog · NXstationB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="theme-green.css" />
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <div class="nav__products">
+        <a class="nav__brand" href="../index.html">
+          <img src="../assets/icons/logo.svg" alt="" width="28" height="28" />
+          <span>NXStation</span>
+        </a>
+        <a class="nav__brand nav__brand--b is-active" href="index.html">NXstationB</a>
+      </div>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="wiki.html">Wiki</a></li>
+        <li><a href="blog.html" aria-current="page" class="nav__link--active">Blog</a></li>
+        <li><a href="https://github.com/jiraiya78/NXStationB/releases/latest" class="nav__cta" target="_blank" rel="noopener noreferrer">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode"><svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4" /></svg></button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+  <main class="section">
+    <div class="container">
+      <header class="section__header reveal">
+        <p class="eyebrow">Blog</p>
+        <h1>Release notes</h1>
+      </header>
+      <article class="glass reveal" style="padding:1.5rem">
+        <p class="eyebrow">28 August 2026</p>
+        <h2><a href="blog/1.0.0.html">v1.0: first public Batocera port</a></h2>
+        <p>NXstationB 1.0 is the first release of Batocera EmulationStation as a Switch NRO: ScreenScraper, bundled themes, core picker, playtime into NXStation, and fast return to the last game.</p>
+        <p><a href="https://github.com/jiraiya78/NXStationB/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a></p>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer__bar"><p><a href="index.html">NXstationB</a> · <a href="../index.html">NXStation</a></p></div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

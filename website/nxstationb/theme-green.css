@@ -1,0 +1,132 @@
+/* NXstationB: duck-head deep green over the shared NXStation layout */
+:root {
+  --accent: #2d6a4f;
+  --accent-cyan: #52b788;
+  --accent-red-bright: #95d5b2;
+  --accent-purple-deep: #1b4332;
+  --text-on-accent: #f1faee;
+}
+
+:root,
+[data-theme="dark"] {
+  --bg: #081c15;
+  --bg-elevated: #0d2818;
+  --glass: rgba(13, 40, 24, 0.78);
+  --glass-border: rgba(82, 183, 136, 0.16);
+  --text: #e8f5e9;
+  --text-muted: #95c4a8;
+  --text-dim: #6d977f;
+  --theme-color: #081c15;
+
+  --body-grad-purple: rgba(27, 67, 50, 0.35);
+  --body-grad-red: rgba(45, 106, 79, 0.18);
+  --section-alt-mid: rgba(13, 40, 24, 0.92);
+  --hero-glow-red: rgba(45, 106, 79, 0.28);
+  --hero-glow-purple: rgba(82, 183, 136, 0.16);
+  --surface-deep: #123524;
+  --surface-badge: rgba(8, 28, 21, 0.9);
+  --footer-grad-end: rgba(8, 28, 21, 0.96);
+  --code-bg: rgba(82, 183, 136, 0.1);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.04);
+  --nav-divider: rgba(255, 255, 255, 0.06);
+  --carousel-dot-bg: rgba(255, 255, 255, 0.2);
+  --carousel-slide-bg: #0d2818;
+  --crt-opacity: 0.28;
+  --crt-vignette: rgba(0, 0, 0, 0.4);
+
+  --glow-cyan: 0 0 24px rgba(82, 183, 136, 0.35), 0 0 48px rgba(45, 106, 79, 0.25);
+  --glow-accent: 0 0 20px rgba(45, 106, 79, 0.45);
+  --glow-pulse-start: 0 0 18px rgba(82, 183, 136, 0.25), 0 0 36px rgba(45, 106, 79, 0.18);
+  --glow-pulse-end: 0 0 28px rgba(82, 183, 136, 0.5), 0 0 56px rgba(45, 106, 79, 0.32);
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --theme-toggle-bg: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="light"] {
+  --accent: #1b4332;
+  --accent-cyan: #2d6a4f;
+  --accent-red-bright: #40916c;
+  --accent-purple-deep: #081c15;
+
+  --bg: #f1faee;
+  --bg-elevated: #d8f3dc;
+  --glass: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(45, 106, 79, 0.18);
+  --text: #081c15;
+  --text-muted: #2d6a4f;
+  --text-dim: #52796f;
+  --theme-color: #f1faee;
+
+  --body-grad-purple: rgba(45, 106, 79, 0.1);
+  --body-grad-red: rgba(27, 67, 50, 0.08);
+  --section-alt-mid: rgba(216, 243, 220, 0.95);
+  --hero-glow-red: rgba(45, 106, 79, 0.12);
+  --hero-glow-purple: rgba(82, 183, 136, 0.14);
+  --surface-deep: #cde4d4;
+  --surface-badge: rgba(255, 255, 255, 0.92);
+  --footer-grad-end: rgba(216, 243, 220, 0.98);
+  --code-bg: rgba(45, 106, 79, 0.08);
+  --btn-secondary-bg: rgba(45, 106, 79, 0.06);
+  --nav-divider: rgba(45, 106, 79, 0.12);
+  --carousel-dot-bg: rgba(8, 28, 21, 0.18);
+  --carousel-slide-bg: #d8f3dc;
+  --crt-opacity: 0.05;
+  --crt-vignette: rgba(27, 67, 50, 0.08);
+
+  --glow-cyan: 0 0 20px rgba(45, 106, 79, 0.16);
+  --glow-accent: 0 0 16px rgba(27, 67, 50, 0.18);
+  --shadow-card: 0 12px 32px rgba(27, 67, 50, 0.1);
+  --theme-toggle-bg: rgba(45, 106, 79, 0.08);
+}
+
+/* Hardcoded NXStation purple/red hover in styles.css — remap to mallard green */
+.glass:hover {
+  border-color: rgba(82, 183, 136, 0.4);
+}
+
+.glow-border {
+  box-shadow: var(--glow-cyan), inset 0 0 0 1px rgba(82, 183, 136, 0.16);
+  background:
+    linear-gradient(var(--glass), var(--glass)) padding-box,
+    linear-gradient(135deg, rgba(82, 183, 136, 0.55), transparent 40%, rgba(45, 106, 79, 0.55)) border-box;
+}
+
+@keyframes border-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba(82, 183, 136, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(45, 106, 79, 0.4));
+  }
+}
+
+.pillar:hover {
+  border-color: rgba(82, 183, 136, 0.4);
+  box-shadow: var(--shadow-card), 0 0 24px rgba(82, 183, 136, 0.14);
+}
+
+.feature:hover {
+  border-color: rgba(45, 106, 79, 0.5);
+}
+
+.btn--secondary:hover {
+  border-color: rgba(82, 183, 136, 0.55);
+}
+
+.faq-item:has(.faq-item__btn[aria-expanded="true"]) {
+  border-color: rgba(82, 183, 136, 0.45);
+  box-shadow: 0 0 24px rgba(82, 183, 136, 0.12);
+}
+
+.setup-step:hover {
+  border-color: rgba(82, 183, 136, 0.4);
+}
+
+.faq-item__btn[aria-expanded="true"] .faq-item__icon {
+  background: rgba(82, 183, 136, 0.14);
+}
+
+.legal-note {
+  background: rgba(82, 183, 136, 0.08);
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="450">
+      <stop stop-color="#0A0C14"/>
+      <stop offset="1" stop-color="#12182A"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#00F0FF"/>
+      <stop offset="1" stop-color="#FF1A55"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <text x="400" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="18" fill="#FF1A55">SCRAPER</text>
+  <text x="400" y="76" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#6B7388">ScreenScraper · Batch mode</text>
+
+  <!-- Preview panel -->
+  <rect x="80" y="110" width="280" height="260" rx="14" fill="#141828" stroke="rgba(255,255,255,0.1)"/>
+  <rect x="100" y="130" width="240" height="160" rx="8" fill="#1A2038"/>
+  <rect x="130" y="170" width="180" height="12" rx="3" fill="#00F0FF" opacity="0.4"/>
+  <rect x="150" y="196" width="140" height="8" rx="2" fill="#FF1A55" opacity="0.35"/>
+  <text x="220" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#E8ECF8">Box Art Preview</text>
+  <text x="220" y="350" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7388">Chrono Trigger.sfc</text>
+
+  <!-- Progress panel -->
+  <rect x="400" y="110" width="320" height="260" rx="14" fill="#141828" stroke="rgba(255,255,255,0.1)"/>
+  <text x="424" y="150" font-family="system-ui,sans-serif" font-weight="600" font-size="14" fill="#E8ECF8">Batch Progress</text>
+  <text x="424" y="178" font-family="system-ui,sans-serif" font-size="12" fill="#9AA3B8">42 / 128 games scraped</text>
+
+  <rect x="424" y="200" width="272" height="14" rx="7" fill="#0A0C14"/>
+  <rect x="424" y="200" width="90" height="14" rx="7" fill="url(#bar)"/>
+
+  <text x="424" y="250" font-family="system-ui,sans-serif" font-size="12" fill="#00F0FF"> Box art</text>
+  <text x="424" y="276" font-family="system-ui,sans-serif" font-size="12" fill="#00F0FF"> Screenshot</text>
+  <text x="424" y="302" font-family="system-ui,sans-serif" font-size="12" fill="#9AA3B8">& Metadata</text>
+  <text x="424" y="340" font-family="system-ui,sans-serif" font-size="11" fill="#6B7388">Press B to cancel</text>
+
+  <rect x="200" y="400" width="400" height="28" rx="14" fill="rgba(255,26,85,0.15)" stroke="#FF1A55"/>
+  <text x="400" y="419" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#FF1A55">Scraping from ScreenScraper&</text>
+</svg>

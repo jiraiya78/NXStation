@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NXStation blank theme template.
+  Copy this folder to: sdmc:/switch/NXStation/data/theme/YourThemeName/
+  Then select it in Settings → Theme.
+-->
+<theme name="Blank" variant="dark">
+  <colors>
+    <!-- Borealis core -->
+    <color key="brls/clear" value="#120A1C"/>
+    <color key="brls/background" value="#160C22"/>
+    <color key="brls/backdrop" value="#0C0614B8"/>
+    <color key="brls/text" value="#F8F8F2"/>
+    <color key="brls/text_disabled" value="#625876"/>
+    <color key="brls/accent" value="#BD93F9"/>
+    <color key="brls/highlight/background" value="#301C48"/>
+    <color key="brls/highlight/color1" value="#50FA7B"/>
+    <color key="brls/highlight/color2" value="#BD93F9"/>
+    <color key="brls/sidebar/background" value="#10081A"/>
+    <color key="brls/sidebar/separator" value="#442C60"/>
+    <color key="brls/sidebar/active_item" value="#BD93F9"/>
+    <color key="brls/header/subtitle" value="#A08CC8"/>
+    <color key="brls/header/border" value="#442C60"/>
+    <color key="brls/header/rectangle" value="#BD93F9"/>
+    <color key="brls/list/listItem_value_color" value="#A08CC8"/>
+    <color key="brls/button/primary_enabled_background" value="#622AA8"/>
+    <color key="brls/button/primary_disabled_background" value="#281C38"/>
+    <color key="brls/button/default_enabled_background" value="#241634"/>
+    <color key="brls/button/primary_enabled_text" value="#F8F8F2"/>
+    <color key="brls/button/primary_disabled_text" value="#625876"/>
+    <color key="brls/button/default_enabled_text" value="#F8F8F2"/>
+
+    <!-- NXStation UI -->
+    <color key="nxstation/card_bg" value="#241238"/>
+    <color key="nxstation/card_border" value="#442C60"/>
+    <color key="nxstation/dialog_bg" value="#0A0612"/>
+    <color key="nxstation/dialog_border" value="#BD93F9D4"/>
+    <color key="nxstation/dialog_row" value="#1C102A"/>
+    <color key="nxstation/dialog_backdrop" value="#000000A0"/>
+    <color key="nxstation/title_text" value="#ECEEF2"/>
+    <color key="nxstation/detail_text" value="#A5ACC4"/>
+    <color key="nxstation/muted_text" value="#8C91A0"/>
+    <color key="nxstation/body_text" value="#C8CDDC"/>
+    <color key="nxstation/preview_text" value="#D8D0E8"/>
+    <color key="nxstation/hint_text" value="#7868A0"/>
+    <color key="nxstation/count_text" value="#A090C8"/>
+    <color key="nxstation/log_success" value="#50FA7B"/>
+    <color key="nxstation/log_failure" value="#FF5555"/>
+    <color key="nxstation/log_progress" value="#BD93F9"/>
+    <color key="nxstation/log_neutral" value="#CCCCCC"/>
+    <color key="nxstation/overlay_bg" value="#0C0614"/>
+    <color key="nxstation/favorite_text" value="#FFFFFF"/>
+  </colors>
+</theme>

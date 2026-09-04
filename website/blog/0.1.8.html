@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nx-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#FAF5FF" : "#0C0612");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Update v0.1.8 adds in-app updates from GitHub, proper Last Played date/time stamps, RetroArch boot-banner / core-path sync, and a quieter log file. Recommended if you are on v0.1.7 or earlier." />
+  <meta name="theme-color" content="#0C0612" />
+  <title>NXStation v0.1.8 — In-app updates, Last Played times, RetroArch launch fix · NXStation Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <a class="nav__brand" href="../index.html">
+        <img src="../assets/icons/logo.svg" alt="" width="28" height="28" />
+        <span>NXStation</span>
+      </a>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../index.html#setup">Setup</a></li>
+        <li><a href="../index.html#faq">FAQ</a></li>
+        <li><a href="../wiki.html">Wiki</a></li>
+        <li><a href="../blog.html" aria-current="page" class="nav__link--active">Blog</a></li>
+        <li><a class="nav__cta" href="../index.html#download">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Light mode">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-page">
+    <article class="container blog-page__inner blog-post">
+      <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+        <a href="../blog.html">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>v0.1.8</span>
+      </nav>
+      <header class="blog-post__header">
+        <p class="eyebrow">Release notes</p>
+        <h1>NXStation v0.1.8 — In-app updates, Last Played times, RetroArch launch fix</h1>
+        <p class="blog-post__meta">
+          <time datetime="2026-08-06T22:55:12Z">August 06, 2026</time>
+          ·
+          <span class="blog-post__tag">v0.1.8</span>
+          
+        </p>
+        
+          <div class="blog-post__actions">
+            <a class="btn btn--primary" href="https://github.com/jiraiya78/NXStation/releases/download/v0.1.8/NXStation.nro" target="_blank" rel="noopener noreferrer">Download NXStation.nro</a><a class="btn btn--ghost" href="https://github.com/jiraiya78/NXStation/releases/tag/v0.1.8" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          </div>
+          
+      </header>
+      <div class="blog-prose glass">
+        <p>Update <strong>v0.1.8</strong> adds in-app updates from GitHub, proper Last Played date/time stamps, RetroArch boot-banner / core-path sync, and a quieter log file. Recommended if you are on <strong>v0.1.7</strong> or earlier.</p>
+            <p><strong>Website:</strong> https://nxstation.com <strong>Downloads:</strong> https://github.com/jiraiya78/NXStation/releases</p>
+            <hr />
+            <h3>Highlights</h3>
+            <ul>
+            <li><strong>Check for Updates</strong> in Settings — fetch the latest <code>NXStation.nro</code> from GitHub Releases (restart after install)</li>
+            <li><strong>Last Played</strong> shows real date and time (<code>YYYY-MM-DD HH:MM</code>), newest first, using the Switch system clock / timezone</li>
+            <li>Fixed Last Played times collapsing to the same clock time after relaunch (JSON number precision bug)</li>
+            <li>RetroArch no longer sticks on the “Nintendo Wii/GameCube (Dolphin)” boot banner for other systems (including zip/7z)</li>
+            <li><code>NXStation.log</code> auto-trims at launch when larger than 512 KiB</li>
+            </ul>
+            <hr />
+            <h3>Added</h3>
+            <ul>
+            <li>Settings → <strong>Check for Updates</strong>: queries <code>jiraiya78/NXStation</code> releases, compares <code>tag_name</code> to the build version, and can download <code>NXStation.nro</code> over the installed app</li>
+            <li>Last Played rows show <strong>date and time</strong> next to the system acronym</li>
+            </ul>
+            <hr />
+            <h3>Changed / Fixed</h3>
+            <ul>
+            <li>Last Played timestamps use the Switch user/network clock and console timezone rules</li>
+            <li>Last Played order stays <strong>most recent first</strong> (no A–Z re-sort on that section)</li>
+            <li>Before each launch, rewrite <code>sdmc:/retroarch/retroarch-salamander.cfg</code> <code>libretro_path</code> to the core being launched so RetroArch’s boot banner / core info match the game</li>
+            <li><code>NXStation.log</code> is trimmed at startup when over 512 KiB (keeps the last ~256 KiB; under the limit this is a single <code>stat</code>)</li>
+            </ul>
+            <hr />
+            <h3>Removed</h3>
+            <ul>
+            <li>Nintendo 3DS (<code>3ds</code>) from the default <code>roms_config.json</code> (no practical RetroArch 3DS core on Switch). Existing SD configs and <code>user_cores.json</code> auto-prune <code>3ds</code> on load.</li>
+            </ul>
+            <hr />
+            <h3>Notes after upgrading</h3>
+            <ul>
+            <li>Re-launch a few games once if Last Played times still look identical — older saved timestamps may already be collapsed; new plays rewrite them correctly.</li>
+            <li>In-app updater needs internet and writes over <code>sdmc:/switch/NXStation/NXStation.nro</code>.</li>
+            </ul>
+            <hr />
+            <h3>Requirements</h3>
+            <ul>
+            <li>Modded Switch (e.g. Atmosphere) with homebrew enabled</li>
+            <li><strong>Title Override is required</strong> — hold <strong>R</strong> while launching any game, open the Homebrew Menu, then start NXStation</li>
+            <li><a href="https://buildbot.libretro.com/stable/1.20.0/nintendo/switch/libnx/RetroArch.7z" target="_blank" rel="noopener noreferrer">RetroArch for Switch</a> at <code>sdmc:/switch/retroarch_switch.nro</code></li>
+            <li>RetroArch cores under <code>sdmc:/retroarch/cores/</code></li>
+            <li>ROMs under <code>sdmc:/roms/</code> (or your custom ROMs path in Settings)</li>
+            </ul>
+            <hr />
+            <h3>Installation</h3>
+            <ol>
+            <li>Download <strong><code>NXStation.nro</code></strong> from this release (or use Settings → <strong>Check for Updates</strong> once you already have a build that includes the updater).</li>
+            <li>Copy to <code>sdmc:/switch/NXStation/NXStation.nro</code></li>
+            <li>Launch via <strong>Title Override</strong> (hold R → Homebrew Menu → NXStation).</li>
+            </ol>
+            <p>Upgrading from an older build keeps your existing <code>settings/</code> and <code>data/</code> on SD.</p>
+            <hr />
+            <p>Thank you to everyone who tests, reports issues, and keeps the homebrew scene going.</p>
+      </div>
+      <p class="blog-post__back"><a href="../blog.html">← All posts</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__bar">
+        <p>
+          <a href="https://github.com/jiraiya78/NXStation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          ·
+          <a href="../privacy.html">Privacy</a>
+          ·
+          <a href="../wiki.html">Wiki</a>
+          ·
+          <a href="../blog.html">Blog</a>
+          ·
+          <a href="../terms.html">Terms</a>
+          ·
+          <a href="../license.html">License</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  </footer>
+
+  <script src="../cookies.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

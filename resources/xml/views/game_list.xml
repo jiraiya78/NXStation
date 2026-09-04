@@ -1,0 +1,216 @@
+<brls:Box
+
+    width="auto"
+
+    height="auto"
+
+    axis="row"
+
+    grow="1.0"
+
+    backgroundColor="@theme/brls/background"
+
+    paddingTop="24"
+
+    paddingBottom="24"
+
+    paddingLeft="28"
+
+    paddingRight="36">
+
+
+
+    <!-- Left: game list -->
+
+    <brls:Box
+
+        width="50%"
+
+        height="auto"
+
+        axis="column"
+
+        grow="1.0"
+
+        marginRight="28">
+
+
+
+        <brls:Label
+
+            id="games/title"
+
+            width="auto"
+
+            height="auto"
+
+            fontSize="32"
+
+            textColor="@theme/brls/text"
+
+            marginBottom="2"/>
+
+
+
+        <brls:Label
+
+            id="games/count"
+
+            width="auto"
+
+            height="auto"
+
+            fontSize="17"
+
+            textColor="@theme/nxstation/count_text"
+
+            marginBottom="8"/>
+
+
+
+        <brls:RecyclerFrame
+
+            id="games/scroller"
+
+            width="auto"
+
+            height="auto"
+
+            grow="1.0"
+
+            paddingRight="28"
+
+            paddingBottom="4"
+
+            marginRight="4"/>
+
+
+
+        <brls:Label
+
+            id="games/hints"
+
+            width="auto"
+
+            height="auto"
+
+            fontSize="15"
+
+            textColor="@theme/nxstation/hint_text"
+
+            marginTop="10"/>
+
+
+
+    </brls:Box>
+
+
+
+    <!-- Right: preview card -->
+
+    <brls:Box
+
+        id="games/preview"
+
+        width="46%"
+
+        height="auto"
+
+        axis="column"
+
+        grow="1.0"
+
+        clipsToBounds="true"
+
+        backgroundColor="@theme/nxstation/card_bg"
+
+        cornerRadius="14"
+
+        paddingTop="16"
+
+        paddingBottom="16"
+
+        paddingLeft="18"
+
+        paddingRight="18"
+
+        marginRight="12">
+
+
+
+        <brls:Box
+
+            id="games/art_frame"
+
+            width="auto"
+
+            height="380"
+
+            axis="column"
+
+            alignItems="center"
+
+            justifyContent="center"
+
+            clipsToBounds="true"
+
+            cornerRadius="8"
+
+            marginBottom="12">
+
+
+
+            <brls:ZoomImage
+
+                id="games/boxart"
+
+                width="auto"
+
+                height="auto"
+
+                scalingType="fit"
+
+                cornerRadius="8"/>
+
+
+
+        </brls:Box>
+
+
+
+        <brls:ScrollingFrame
+
+            id="games/detail_scroll"
+
+            width="auto"
+
+            height="auto"
+
+            grow="1.0">
+
+
+
+            <brls:Label
+
+                id="games/detail"
+
+                width="auto"
+
+                height="auto"
+
+                fontSize="17"
+
+                textColor="@theme/nxstation/preview_text"/>
+
+
+
+        </brls:ScrollingFrame>
+
+
+
+    </brls:Box>
+
+
+
+</brls:Box>
+

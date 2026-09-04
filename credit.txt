@@ -1,0 +1,80 @@
+NXStation — Third-Party Credits and Attributions
+================================================
+
+NXStation includes or depends on third-party open-source software. The
+attributions below are provided in accordance with their respective
+license terms. NXStation source code is licensed under the Apache License,
+Version 2.0 — see LICENSE in this repository.
+
+A Markdown copy with the same content: credits.md
+
+
+Borealis
+--------
+
+NXStation's user interface is built with Borealis, a controller- and
+TV-oriented UI library for Nintendo Switch and other platforms.
+
+  Name:     Borealis
+  Authors:  Nathan "natinusala" Saliot and contributors
+  Fork:     https://github.com/xfangfang/borealis
+  Path:     library/borealis/ (git submodule)
+  Original: https://github.com/natinusala/borealis
+  License:  Apache License 2.0
+  Text:      See library/borealis/LICENSE
+
+Borealis bundles additional libraries (including nanovg, Yoga Layout, fmt,
+GLFW, SDL, tweeny, libromfs, and others). Each retains its own license;
+see library/borealis/library/lib/extern/ and related paths in that tree.
+
+
+Other bundled components
+--------------------------
+
+minIni
+  Copyright (c) CompuPhase, 2008-2021
+  https://github.com/compuphase/minIni
+  Path: third_party/minIni/
+  License: Apache License 2.0 — see third_party/minIni/LICENSE
+
+stb_image / stb_image_write
+  Sean Barrett and contributors
+  https://github.com/nothings/stb
+  Path: third_party/stb_image.h, third_party/stb_image_write.h
+  License: Public domain / MIT-style (see file headers)
+
+qrcodegen
+  Project Nayuki
+  https://www.nayuki.io/page/qr-code-generator-library
+  Path: third_party/qrcodegen/
+  License: MIT License
+
+Material Icons (Roboto-based icon font)
+  Google LLC
+  Path: resources/material/
+  License: Apache License 2.0 — see resources/material/LICENSE.txt
+
+Sample theme background music (bgm.mp3)
+  Vlad Krotov — https://pixabay.com
+  Path: resources/theme/sample/ (also copied to sdmc:/switch/NXStation/sample/)
+  License: Pixabay Content License (see pixabay.com/service/license)
+
+Optional Home Menu forwarder (Switch only)
+  NXStation forwarder install uses libnx NCM/NS APIs plus small helpers in
+  third_party/yati/source/nx/ (keys, ncm, ns) and source/forwarder/.
+  Path: third_party/yati/, source/forwarder/
+
+
+Runtime dependencies (not shipped in this repository)
+-------------------------------------------------------
+
+  libnx / devkitPro toolchain
+  libcurl, mbedTLS — HTTP/TLS (scraper, updater, cloud backup)
+  Optional FFmpeg libraries when video preview is enabled at build time
+  Optional MuPDF when PDF manuals are enabled at build time
+  RetroArch and libretro cores (each under its own license when installed
+  separately by the user)
+
+For releases and redistribution: include LICENSE and this credit.txt (or
+credits.md) as required by the Apache License and the third-party licenses
+listed above.

@@ -1,0 +1,45 @@
+# Normalize line endings (LF in repo; Git handles checkout on Windows).
+* text=auto
+
+*.sh     text eol=lf
+*.py     text eol=lf
+*.md     text eol=lf
+*.xml    text eol=lf
+*.json   text eol=lf
+*.css    text eol=lf
+*.html   text eol=lf
+*.js     text eol=lf
+*.cmake  text eol=lf
+Makefile text eol=lf
+
+*.cpp    text eol=lf
+*.c      text eol=lf
+*.hpp    text eol=lf
+*.h      text eol=lf
+*.in     text eol=lf
+
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.webp   binary
+*.ico    binary
+*.svg    text eol=lf
+*.mp3    binary
+*.wav    binary
+*.ogg    binary
+*.mp4    binary
+*.webm   binary
+*.ttf    binary
+*.woff   binary
+*.woff2  binary
+
+*.nro    binary
+*.elf    binary
+*.nacp   binary
+*.nso    binary
+*.npdm   binary
+*.a      binary
+
+# Generated / vendored blobs — keep diffs out of default reviews
+source/forwarder/HblEmbed.cpp linguist-generated

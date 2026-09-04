@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="450">
+      <stop stop-color="#0A0C14"/>
+      <stop offset="1" stop-color="#12182A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <rect x="0" y="0" width="800" height="48" fill="#141828" opacity="0.9"/>
+  <text x="24" y="30" font-family="system-ui,sans-serif" font-weight="700" font-size="14" fill="#00F0FF">NXStation</text>
+  <text x="776" y="30" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#6B7388">List View ù NES</text>
+
+  <!-- Sidebar systems -->
+  <rect x="16" y="64" width="160" height="370" rx="10" fill="#141828" stroke="rgba(255,255,255,0.08)"/>
+  <text x="32" y="92" font-family="system-ui,sans-serif" font-size="11" fill="#6B7388">SYSTEMS</text>
+  <rect x="28" y="108" width="136" height="36" rx="6" fill="rgba(255,26,85,0.2)" stroke="#FF1A55"/>
+  <text x="44" y="131" font-family="system-ui,sans-serif" font-size="13" fill="#E8ECF8">NES</text>
+  <text x="44" y="175" font-family="system-ui,sans-serif" font-size="13" fill="#9AA3B8">SNES</text>
+  <text x="44" y="211" font-family="system-ui,sans-serif" font-size="13" fill="#9AA3B8">N64</text>
+  <text x="44" y="247" font-family="system-ui,sans-serif" font-size="13" fill="#9AA3B8">Genesis</text>
+  <text x="44" y="283" font-family="system-ui,sans-serif" font-size="13" fill="#9AA3B8">PSX</text>
+  <text x="44" y="319" font-family="system-ui,sans-serif" font-size="13" fill="#9AA3B8">GBC</text>
+
+  <!-- Game rows -->
+  <g>
+    <rect x="196" y="64" width="580" height="72" rx="10" fill="#141828" stroke="#00F0FF" stroke-width="1.5"/>
+    <rect x="208" y="74" width="52" height="52" rx="6" fill="#2A1530"/>
+    <text x="280" y="98" font-family="system-ui,sans-serif" font-weight="700" font-size="15" fill="#E8ECF8">Retro Quest III</text>
+    <text x="280" y="120" font-family="system-ui,sans-serif" font-size="12" fill="#6B7388">Platform ù 1988 ù  Favorited</text>
+  </g>
+  <g opacity="0.85">
+    <rect x="196" y="148" width="580" height="72" rx="10" fill="#141828" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="208" y="158" width="52" height="52" rx="6" fill="#152038"/>
+    <text x="280" y="182" font-family="system-ui,sans-serif" font-weight="600" font-size="15" fill="#E8ECF8">Crystal Adventure</text>
+    <text x="280" y="204" font-family="system-ui,sans-serif" font-size="12" fill="#6B7388">Action-Adventure ù 1986</text>
+  </g>
+  <g opacity="0.75">
+    <rect x="196" y="232" width="580" height="72" rx="10" fill="#141828" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="208" y="242" width="52" height="52" rx="6" fill="#1A2838"/>
+    <text x="280" y="266" font-family="system-ui,sans-serif" font-weight="600" font-size="15" fill="#E8ECF8">Mega Man 2</text>
+    <text x="280" y="288" font-family="system-ui,sans-serif" font-size="12" fill="#6B7388">Action ù 1988</text>
+  </g>
+  <g opacity="0.65">
+    <rect x="196" y="316" width="580" height="72" rx="10" fill="#141828" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="208" y="326" width="52" height="52" rx="6" fill="#201530"/>
+    <text x="280" y="350" font-family="system-ui,sans-serif" font-weight="600" font-size="15" fill="#E8ECF8">Castlevania III</text>
+    <text x="280" y="372" font-family="system-ui,sans-serif" font-size="12" fill="#6B7388">Platform ù 1989</text>
+  </g>
+
+  <rect x="0" y="418" width="800" height="32" fill="#0A0C14"/>
+  <text x="24" y="438" font-family="system-ui,sans-serif" font-size="11" fill="#6B7388">ù Launch    ù Favorite    ù Scrape    ù Settings</text>
+</svg>

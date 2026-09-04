@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="450">
+      <stop stop-color="#0A0C14"/>
+      <stop offset="1" stop-color="#101420"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <text x="400" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="18" fill="#E8ECF8">Dark / Light Themes</text>
+  <text x="400" y="72" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#6B7388">Personalize your library</text>
+
+  <!-- Dark theme card -->
+  <rect x="60" y="100" width="320" height="280" rx="16" fill="#0E1220" stroke="#00F0FF" stroke-width="1.5"/>
+  <rect x="60" y="100" width="320" height="44" rx="16" fill="#141828"/>
+  <rect x="60" y="128" width="320" height="16" fill="#141828"/>
+  <text x="80" y="128" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#00F0FF">Abyss · Dark</text>
+  <rect x="80" y="168" width="90" height="120" rx="8" fill="#1A2038" stroke="#FF1A55"/>
+  <rect x="186" y="168" width="90" height="120" rx="8" fill="#1A2038" stroke="rgba(255,255,255,0.1)"/>
+  <rect x="292" y="168" width="68" height="120" rx="8" fill="#1A2038" stroke="rgba(255,255,255,0.1)"/>
+  <rect x="80" y="310" width="280" height="10" rx="3" fill="#00F0FF" opacity="0.35"/>
+  <rect x="80" y="332" width="180" height="8" rx="3" fill="#FF1A55" opacity="0.3"/>
+  <text x="220" y="368" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6B7388">Neon accents · Midnight navy</text>
+
+  <!-- Light theme card -->
+  <rect x="420" y="100" width="320" height="280" rx="16" fill="#F2F4FA" stroke="#FF1A55" stroke-width="1.5"/>
+  <rect x="420" y="100" width="320" height="44" rx="16" fill="#E4E8F2"/>
+  <rect x="420" y="128" width="320" height="16" fill="#E4E8F2"/>
+  <text x="440" y="128" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#C01040">Sunshine · Light</text>
+  <rect x="440" y="168" width="90" height="120" rx="8" fill="#DDE2F0" stroke="#FF1A55"/>
+  <rect x="546" y="168" width="90" height="120" rx="8" fill="#DDE2F0" stroke="rgba(0,0,0,0.08)"/>
+  <rect x="652" y="168" width="68" height="120" rx="8" fill="#DDE2F0" stroke="rgba(0,0,0,0.08)"/>
+  <rect x="440" y="310" width="280" height="10" rx="3" fill="#FF1A55" opacity="0.45"/>
+  <rect x="440" y="332" width="180" height="8" rx="3" fill="#0090A8" opacity="0.35"/>
+  <text x="580" y="368" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#5A6278">Warm panels · High contrast</text>
+</svg>

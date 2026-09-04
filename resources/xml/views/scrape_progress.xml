@@ -1,0 +1,105 @@
+<brls:Box
+    width="auto"
+    height="auto"
+    axis="column"
+    grow="1.0"
+    backgroundColor="@theme/brls/background"
+    paddingTop="28"
+    paddingBottom="28"
+    paddingLeft="36"
+    paddingRight="36">
+
+    <brls:Label
+        id="scrape/title"
+        width="auto"
+        height="auto"
+        fontSize="30"
+        marginBottom="8"/>
+
+    <brls:Label
+        id="scrape/counter"
+        width="auto"
+        height="auto"
+        fontSize="22"
+        textColor="@theme/nxstation/detail_text"
+        marginBottom="8"/>
+
+    <brls:Box
+        id="scrape/progress_track"
+        width="auto"
+        height="12"
+        cornerRadius="6"
+        backgroundColor="@theme/nxstation/dialog_row"
+        marginBottom="8">
+
+        <brls:Box
+            id="scrape/progress_fill"
+            width="0"
+            height="12"
+            cornerRadius="6"
+            backgroundColor="@theme/nxstation/log_progress"/>
+
+    </brls:Box>
+
+    <brls:Label
+        id="scrape/timing"
+        width="auto"
+        height="auto"
+        fontSize="18"
+        textColor="@theme/nxstation/detail_text"
+        marginBottom="14"/>
+
+    <brls:Label
+        id="scrape/game"
+        width="auto"
+        height="auto"
+        fontSize="24"
+        marginBottom="8"/>
+
+    <brls:Label
+        id="scrape/asset_status"
+        width="auto"
+        height="auto"
+        fontSize="18"
+        textColor="@theme/nxstation/detail_text"
+        marginBottom="8"/>
+
+    <brls:Label
+        id="scrape/phase"
+        width="auto"
+        height="auto"
+        fontSize="20"
+        textColor="@theme/nxstation/log_progress"
+        marginBottom="8"/>
+
+    <brls:ScrollingFrame
+        id="scrape/log_scroll"
+        width="auto"
+        height="auto"
+        grow="1.0"
+        marginBottom="20">
+
+        <brls:Box
+            id="scrape/log_list"
+            width="auto"
+            height="auto"
+            axis="column"/>
+
+    </brls:ScrollingFrame>
+
+    <brls:Label
+        id="scrape/hint"
+        width="auto"
+        height="auto"
+        fontSize="18"
+        textColor="@theme/nxstation/muted_text"
+        marginBottom="12"/>
+
+    <brls:Button
+        id="scrape/abort"
+        width="280"
+        height="50"
+        style="bordered"
+        text="Abort"/>
+
+</brls:Box>

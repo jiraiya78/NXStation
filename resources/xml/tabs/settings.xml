@@ -1,0 +1,28 @@
+<brls:Box
+    width="auto"
+    height="auto"
+    axis="column"
+    grow="1.0"
+    backgroundColor="@theme/brls/background"
+    paddingTop="12"
+    paddingBottom="12">
+
+    <brls:ScrollingFrame
+        id="settings/scroller"
+        width="auto"
+        height="auto"
+        grow="1.0">
+
+        <brls:Box
+            id="settings/list"
+            width="auto"
+            height="auto"
+            axis="column"
+            paddingTop="16"
+            paddingBottom="24"
+            paddingLeft="28"
+            paddingRight="36"/>
+
+    </brls:ScrollingFrame>
+
+</brls:Box>

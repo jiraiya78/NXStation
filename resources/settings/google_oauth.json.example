@@ -1,0 +1,8 @@
+{
+  "_comment": "Optional. NXStation ships built-in OAuth credentials. This file is only needed to migrate an old JKSV-style refresh_token.",
+  "installed": {
+    "client_id": "",
+    "client_secret": "",
+    "refresh_token": ""
+  }
+}

@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a crash, launch issue, or UI bug
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    value: |
+      Thanks for testing NXStation. Include logs from `sdmc:/switch/NXStation/log/NXStation.log` when you can.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      placeholder: Describe the bug and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Launch via Title Override
+        2. ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: NXStation version
+      placeholder: e.g. v1.0.0
+  - type: input
+    id: firmware
+    attributes:
+      label: Switch firmware / CFW
+      placeholder: e.g. 19.0.1 / Atmosphere 1.8.0
+  - type: checkboxes
+    id: launch-mode
+    attributes:
+      label: Launch method
+      options:
+        - label: Title Override (hold R)
+        - label: Home Menu forwarder
+        - label: Album / applet mode

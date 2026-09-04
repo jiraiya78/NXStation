@@ -1,0 +1,150 @@
+<brls:Box
+    width="auto"
+    height="auto"
+    axis="row"
+    grow="1.0"
+    backgroundColor="@theme/brls/background"
+    paddingTop="24"
+    paddingBottom="24"
+    paddingLeft="28"
+    paddingRight="28">
+
+    <!-- Left: box art on top, thumbnail below -->
+    <brls:Box
+        id="detail/art_column"
+        width="280"
+        height="auto"
+        axis="column"
+        alignSelf="flexStart"
+        alignItems="center"
+        marginRight="24">
+
+        <brls:Box
+            id="detail/boxart_frame"
+            width="280"
+            height="360"
+            axis="column"
+            alignItems="center"
+            justifyContent="center">
+
+            <brls:Image
+                id="detail/boxart"
+                width="280"
+                height="360"
+                scalingType="fit"
+                cornerRadius="8"/>
+
+        </brls:Box>
+
+        <brls:Box
+            id="detail/thumb_frame"
+            width="280"
+            height="120"
+            axis="column"
+            alignItems="center"
+            justifyContent="center"
+            marginTop="14">
+
+            <brls:Image
+                id="detail/thumb"
+                width="280"
+                height="120"
+                scalingType="fit"
+                cornerRadius="6"/>
+
+        </brls:Box>
+
+    </brls:Box>
+
+    <brls:Box
+        width="auto"
+        height="auto"
+        axis="column"
+        grow="1.0">
+
+        <brls:Label
+            id="detail/title"
+            width="auto"
+            height="auto"
+            fontSize="28"
+            marginBottom="6"/>
+
+        <brls:Label
+            id="detail/filename"
+            width="auto"
+            height="auto"
+            fontSize="16"
+            textColor="#888888"
+            marginBottom="8"/>
+
+        <brls:Label
+            id="detail/meta"
+            width="auto"
+            height="auto"
+            fontSize="17"
+            textColor="#AAAAAA"
+            marginBottom="10"/>
+
+        <brls:Box
+            id="detail/video"
+            width="auto"
+            height="160"
+            marginBottom="12"/>
+
+        <brls:ScrollingFrame
+            id="detail/desc_scroll"
+            width="auto"
+            height="auto"
+            grow="1.0"
+            marginBottom="16"
+            focusable="false">
+
+            <brls:Label
+                id="detail/desc"
+                width="auto"
+                height="auto"
+                fontSize="18"/>
+
+        </brls:ScrollingFrame>
+
+        <brls:Box
+            id="detail/meta_actions"
+            width="auto"
+            height="auto"
+            axis="row"
+            visibility="gone"
+            marginBottom="10"/>
+
+        <brls:Box
+            width="auto"
+            height="auto"
+            axis="row">
+
+            <brls:Button
+                id="detail/launch"
+                width="200"
+                height="48"
+                style="primary"
+                text="Launch"
+                marginRight="14"/>
+
+            <brls:Button
+                id="detail/scrape"
+                width="200"
+                height="48"
+                style="bordered"
+                text="Scrape"
+                marginRight="14"/>
+
+            <brls:Button
+                id="detail/ramenu"
+                width="200"
+                height="48"
+                style="default"
+                text="RA Menu"/>
+
+        </brls:Box>
+
+    </brls:Box>
+
+</brls:Box>

@@ -1,0 +1,37 @@
+<brls:Box
+    width="auto"
+    height="auto"
+    axis="column"
+    grow="1.0"
+    paddingTop="8"
+    paddingBottom="8">
+
+    <brls:ScrollingFrame
+        id="systems/scroller"
+        width="auto"
+        height="auto"
+        grow="1.0">
+
+        <brls:Box
+            id="systems/list"
+            width="auto"
+            height="auto"
+            axis="column"
+            paddingTop="16"
+            paddingBottom="24"
+            paddingLeft="28"
+            paddingRight="36"/>
+
+    </brls:ScrollingFrame>
+
+    <brls:Label
+        id="systems/hints"
+        width="auto"
+        height="auto"
+        fontSize="15"
+        textColor="#5C6378"
+        marginLeft="28"
+        marginRight="28"
+        marginBottom="12"/>
+
+</brls:Box>

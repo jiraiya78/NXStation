@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nx-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#FAF5FF" : "#0C0612");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="This is an early release. It works well enough for daily use on my own Switch, but expect rough edges, missing polish, and the occasional bug. Feedback and issue reports are welcome." />
+  <meta name="theme-color" content="#0C0612" />
+  <title>NXStation v0.1.0 — First public release · NXStation Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass" aria-label="Primary">
+      <a class="nav__brand" href="../index.html">
+        <img src="../assets/icons/logo.svg" alt="" width="28" height="28" />
+        <span>NXStation</span>
+      </a>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../index.html#setup">Setup</a></li>
+        <li><a href="../index.html#faq">FAQ</a></li>
+        <li><a href="../wiki.html">Wiki</a></li>
+        <li><a href="../blog.html" aria-current="page" class="nav__link--active">Blog</a></li>
+        <li><a class="nav__cta" href="../index.html#download">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Light mode">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-page">
+    <article class="container blog-page__inner blog-post">
+      <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+        <a href="../blog.html">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>v0.1.0</span>
+      </nav>
+      <header class="blog-post__header">
+        <p class="eyebrow">Release notes</p>
+        <h1>NXStation v0.1.0 — First public release</h1>
+        <p class="blog-post__meta">
+          <time datetime="2026-08-04T02:26:34Z">August 04, 2026</time>
+          ·
+          <span class="blog-post__tag">v0.1.0</span>
+          
+        </p>
+        
+          <div class="blog-post__actions">
+            <a class="btn btn--primary" href="https://github.com/jiraiya78/NXStation/releases/download/v0.1.0/NXStation.nro" target="_blank" rel="noopener noreferrer">Download NXStation.nro</a><a class="btn btn--ghost" href="https://github.com/jiraiya78/NXStation/releases/tag/v0.1.0" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          </div>
+          
+      </header>
+      <div class="blog-prose glass">
+        <p>This is an early release. It works well enough for daily use on my own Switch, but expect rough edges, missing polish, and the occasional bug. Feedback and issue reports are welcome. <strong>Website:</strong> https://nxstation.com</p>
+            <hr />
+            <h3>What it does</h3>
+            <ul>
+            <li>Scans ROMs from an ES-DE-style <code>sdmc:/roms/{system}/</code> layout</li>
+            <li>Shows box art, thumbnails, descriptions, and optional video previews</li>
+            <li>Launches games via RetroArch cores (core-direct handoff)</li>
+            <li>ScreenScraper.fr scraping (single title or batch), cached locally for offline browsing</li>
+            <li>Favorites, last played, search, jump-to-letter, random pick, screensaver</li>
+            <li>Built-in dark/light themes</li>
+            <li>Optional Home Menu forwarder (install from Settings in Title Override mode)</li>
+            </ul>
+            <hr />
+            <h3>Supported systems (default config)</h3>
+            <p>20 folder IDs: <code>nes</code>, <code>snes</code>, <code>n64</code>, <code>gb</code>, <code>gbc</code>, <code>gba</code>, <code>nds</code>, <code>3ds</code>, <code>megadrive</code>, <code>mastersystem</code>, <code>gamegear</code>, <code>dreamcast</code>, <code>psx</code>, <code>psp</code>, <code>pce</code>, <code>atari2600</code>, <code>cps1</code>, <code>cps2</code>, <code>neogeo</code> More systems can be added by editing <code>roms_config.json</code> when you have a matching RetroArch core.</p>
+            <hr />
+            <h3>Requirements</h3>
+            <ul>
+            <li>Modded Switch (e.g. Atmosphere) with homebrew enabled</li>
+            <li><strong>Title Override is required</strong> — hold <strong>R</strong> while launching any game, open the Homebrew Menu, then start NXStation. Applet Mode does not have enough RAM for previews, scraping, and stable launching.</li>
+            <li><a href="https://buildbot.libretro.com/stable/1.20.0/nintendo/switch/libnx/RetroArch.7z" target="_blank" rel="noopener noreferrer">RetroArch for Switch</a> at <code>sdmc:/switch/retroarch_switch.nro</code></li>
+            <li>RetroArch cores under <code>sdmc:/retroarch/cores/</code> (paths in <code>roms_config.json</code>)</li>
+            <li>ROMs under <code>sdmc:/roms/</code></li>
+            <li>Optional: ScreenScraper.fr account for scraping; <code>prod.keys</code> at <code>sdmc:/switch/prod.keys</code> if you want to install the Home Menu forwarder</li>
+            </ul>
+            <hr />
+            <h3>Installation</h3>
+            <ol>
+            <li>Download <strong><code>NXStation.nro</code></strong> from this release.</li>
+            <li>Copy to <code>sdmc:/switch/NXStation/NXStation.nro</code></li>
+            <li>(Optional) Copy <code>roms_config.json</code> from the repo to the same folder if you want to customize systems or cores before first run.</li>
+            <li>Launch via <strong>Title Override</strong> (hold R in main menu → Open any game → HB Menu Appear → NXStation).</li>
+            <li>Place ROMs in <code>sdmc:/roms/{system}/</code>. Existing ES-DE media and <code>gamelist.xml</code> files are picked up automatically.</li>
+            </ol>
+            <hr />
+            <h3>Returning after a game</h3>
+            <p>For the smoothest return to NXStation after closing a game, install the optional forwarder from <strong>Settings → Install Forwarder</strong> (Title Override only). Launch NXStation from the Home Menu icon it creates.</p>
+            <hr />
+            <h3>What is <strong>not</strong> included</h3>
+            <ul>
+            <li>No ROMs, BIOS files, or Nintendo proprietary code</li>
+            <li>No RetroArch or emulator cores in this download — install those separately</li>
+            <li>GameCube / Wii via Tico-style Dolphin cores are <strong>not</strong> supported (RetroArch cores only)</li>
+            </ul>
+            <hr />
+            <h3>Known limitations</h3>
+            <ul>
+            <li>Early release — some UI and edge cases still need work</li>
+            <li>Applet Mode is blocked by design</li>
+            <li>Background music / expanded sound options not in this build yet</li>
+            <li>Forwarder install needs <code>prod.keys</code> on SD card</li>
+            <li>Collection with huge library with delay a bit when opening.</li>
+            </ul>
+            <hr />
+            <h3>Credits</h3>
+            <p>Built with <a href="https://github.com/xfangfang/borealis" target="_blank" rel="noopener noreferrer">Borealis</a>, <a href="https://github.com/switchbrew/libnx" target="_blank" rel="noopener noreferrer">libnx</a>, RetroArch, and <a href="https://www.screenscraper.fr/" target="_blank" rel="noopener noreferrer">ScreenScraper</a>. Inspired by ES-DE-style library management on other handhelds. Not affiliated with Nintendo.</p>
+            <hr />
+            <h3>Changelog</h3>
+            <p><strong>v0.1.0</strong> — Initial public release</p>
+            <ul>
+            <li>Native Switch frontend (C++ / Borealis)</li>
+            <li>ES-DE-style ROM and media layout support</li>
+            <li>ScreenScraper batch and per-game scraping with local cache</li>
+            <li>RetroArch core-direct launching with browse-position restore</li>
+            <li>System carousel and per-system game lists with metadata panel</li>
+            <li>Video preview on hover (Title Override / full RAM)</li>
+            <li>Search, alphabet jump, random game, favorites, last played</li>
+            <li>Screensaver with random rotation and launch-from-screensaver</li>
+            <li>20 default systems in <code>roms_config.json</code></li>
+            <li>Theme set (dark/light color themes)</li>
+            <li>Settings: cores, scraper credentials, video/audio, screensaver timer, forwarder install</li>
+            <li>Home Menu forwarder (on-device NCA install)</li>
+            <li>Title Override gate for applet mode</li>
+            </ul>
+            <hr />
+            <p>Thank you to everyone who tests, reports issues, and keeps the homebrew scene going.</p>
+      </div>
+      <p class="blog-post__back"><a href="../blog.html">← All posts</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__bar">
+        <p>
+          <a href="https://github.com/jiraiya78/NXStation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          ·
+          <a href="../privacy.html">Privacy</a>
+          ·
+          <a href="../wiki.html">Wiki</a>
+          ·
+          <a href="../blog.html">Blog</a>
+          ·
+          <a href="../terms.html">Terms</a>
+          ·
+          <a href="../license.html">License</a>
+        </p>
+        <p class="footer__copy">© <span id="year"></span> NXStation. Not affiliated with Nintendo.</p>
+      </div>
+    </div>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
+  </footer>
+
+  <script src="../cookies.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

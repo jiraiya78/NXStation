@@ -1,0 +1,131 @@
+<brls:Box
+    width="auto"
+    height="auto"
+    axis="row"
+    grow="1.0"
+    backgroundColor="@theme/brls/background"
+    paddingTop="24"
+    paddingBottom="24"
+    paddingLeft="28"
+    paddingRight="36">
+
+    <brls:Box
+        width="50%"
+        height="auto"
+        axis="column"
+        grow="1.0"
+        marginRight="28">
+
+        <brls:Label
+            id="list/title"
+            width="auto"
+            height="auto"
+            fontSize="32"
+            textColor="@theme/brls/text"
+            marginBottom="2"/>
+
+        <brls:Label
+            id="list/count"
+            width="auto"
+            height="auto"
+            fontSize="17"
+            textColor="@theme/nxstation/count_text"
+            marginBottom="8"/>
+
+        <brls:RecyclerFrame
+            id="list/scroller"
+            width="auto"
+            height="auto"
+            grow="1.0"
+            paddingRight="12"
+            paddingBottom="4"
+            marginRight="4"/>
+
+        <brls:Label
+            id="list/hints"
+            width="auto"
+            height="auto"
+            fontSize="15"
+            textColor="@theme/nxstation/hint_text"
+            marginTop="10"/>
+
+    </brls:Box>
+
+    <brls:Box
+        id="list/preview"
+        width="46%"
+        height="auto"
+        axis="column"
+        grow="1.0"
+        clipsToBounds="true"
+        backgroundColor="@theme/nxstation/card_bg"
+        cornerRadius="14"
+        paddingTop="16"
+        paddingBottom="16"
+        paddingLeft="18"
+        paddingRight="18"
+        marginRight="12">
+
+        <brls:Box
+            id="list/art_frame"
+            width="auto"
+            height="380"
+            axis="column"
+            alignItems="stretch"
+            justifyContent="center"
+            clipsToBounds="true"
+            cornerRadius="8"
+            marginBottom="36">
+
+            <brls:ZoomImage
+                id="list/art"
+                width="100%"
+                height="100%"
+                scalingType="fit"/>
+
+            <brls:ZoomImage
+                id="list/art_next"
+                positionType="absolute"
+                positionTop="0"
+                positionLeft="0"
+                width="100%"
+                height="100%"
+                scalingType="fit"
+                visibility="gone"/>
+
+        </brls:Box>
+
+        <brls:ScrollingFrame
+            id="list/detail_scroll"
+            width="auto"
+            height="auto"
+            grow="1.0">
+
+            <brls:Box
+                width="auto"
+                height="auto"
+                axis="column">
+
+                <brls:Label
+                    id="list/system_name"
+                    width="auto"
+                    height="auto"
+                    fontSize="28"
+                    textColor="@theme/brls/text"
+                    marginBottom="12"/>
+
+                <brls:Label
+                    id="list/detail"
+                    width="auto"
+                    height="auto"
+                    fontSize="19"
+                    lineHeight="1.45"
+                    textColor="@theme/nxstation/preview_text"/>
+
+            </brls:Box>
+
+        </brls:ScrollingFrame>
+
+    </brls:Box>
+
+</brls:Box>

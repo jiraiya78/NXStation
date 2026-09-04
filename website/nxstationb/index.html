@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var k = "nxb-theme", s = localStorage.getItem(k);
+      var t = s === "light" || s === "dark" ? s
+        : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", t === "light" ? "#F1FAEE" : "#081C15");
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NXstationB: Batocera EmulationStation ported to Nintendo Switch. Open source roots, RetroArch cores, ScreenScraper, and Batocera themes." />
+  <meta name="theme-color" content="#081C15" />
+  <title>NXstationB: Batocera on Switch</title>
+  <meta property="og:title" content="NXstationB: Batocera on Switch" />
+  <meta property="og:description" content="A Batocera EmulationStation port for Nintendo Switch. Open source, ScreenScraper, RetroArch, and native themes." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="theme-green.css" />
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="crt-overlay" aria-hidden="true"></div>
+  <div id="top" class="page-anchor" tabindex="-1" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav glass" aria-label="Primary">
+      <div class="nav__products">
+        <a class="nav__brand" href="../index.html">
+          <img src="../assets/icons/logo.svg" alt="" width="28" height="28" />
+          <span>NXStation</span>
+        </a>
+        <a class="nav__brand nav__brand--b is-active" href="#top">NXstationB</a>
+      </div>
+      <ul class="nav__links" id="nav-menu">
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#showcase">Screenshots</a></li>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="wiki.html">Wiki</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a class="nav__cta nav__cta--donate" href="#support">Support</a></li>
+        <li><a class="nav__cta" href="#download">Download</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Light mode">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="download" aria-labelledby="hero-title">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">Nintendo Switch Homebrew · v1.0</p>
+          <h1 id="hero-title">Batocera on Switch.<br /><span class="text-gradient">Ported.</span></h1>
+          <p class="hero__subtitle">
+            NXstationB is a native Nintendo Switch port of Batocera EmulationStation.
+            It is a sibling of <a href="../index.html">NXStation</a>, built so you can
+            run the Batocera UI, themes, and scraper on Switch without a Linux OS.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary glow-pulse" href="https://github.com/jiraiya78/NXStationB/releases/latest" target="_blank" rel="noopener noreferrer">Download</a>
+            <a class="btn btn--secondary" href="https://github.com/jiraiya78/NXStationB/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a>
+            <a class="btn btn--ghost" href="wiki.html">Read the wiki</a>
+          </div>
+        </div>
+        <div class="hero__visual reveal reveal--delay">
+          <div class="hero-pinup glass glow-border">
+            <img
+              class="hero-pinup__img"
+              src="assets/hero-shot.jpg"
+              alt="NXstationB UI on Nintendo Switch"
+              width="640"
+              height="400"
+              loading="eager"
+            />
+            <div class="hero-pinup__badge">
+              <span class="dot"></span> Batocera ES · Open source roots
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="philosophy" aria-labelledby="philosophy-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">What it is</p>
+          <h2 id="philosophy-title">A Batocera port, not a clone of NXStation</h2>
+          <p class="section__lead">
+            NXstationB takes Batocera’s EmulationStation (the same UI that powers thousands of
+            Batocera boxes) and runs it as a Switch NRO. It is <strong>open source at the Batocera layer</strong>
+            (GPL). The Switch port sources will be released in due time.
+          </p>
+        </header>
+        <div class="pillars">
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">🐧</div>
+            <h3>Batocera compatibility</h3>
+            <p>Gamelists, systems, scraper, screensaver, and the same themes as Batocera ES.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">🎮</div>
+            <h3>RetroArch cores</h3>
+            <p>Stock <code>retroarch_switch.nro</code> and libnx cores. Custom NROs (Tico and friends) via Emulator and Cores settings.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">🎨</div>
+            <h3>Real Batocera themes</h3>
+            <p>Ships with Simple_Life, Minimal, and Simple. Theme downloader works over Wi-Fi.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">📂</div>
+            <h3>Shared library</h3>
+            <p>Reads <code>sdmc:/roms/</code> the same way NXStation does. Playtime logs into NXStation analytics when that folder exists.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">⚡</div>
+            <h3>Fast return</h3>
+            <p>Returning from a game restores the last system and title, with a shortened boot that skips ROM scan.</p>
+          </article>
+          <article class="pillar glass reveal">
+            <div class="pillar__icon" aria-hidden="true">🔓</div>
+            <h3>Open source roots</h3>
+            <p>Batocera EmulationStation is GPL. Switch port sources will be published when they are ready for others to build.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Capabilities</p>
+          <h2 id="features-title">What v1.0 includes</h2>
+        </header>
+        <div class="features-grid">
+          <article class="feature glass reveal">
+            <h3>ScreenScraper</h3>
+            <p>Set your screenscraper.fr username and password in Scraper settings.</p>
+          </article>
+          <article class="feature glass reveal">
+            <h3>Video previews</h3>
+            <p>Full speed, smooth video preview with clear audio.</p>
+          </article>
+          <article class="feature glass reveal">
+            <h3>Emulator and cores</h3>
+            <p>Pick a <code>.nro</code> per system: stock libretro or standalone (Tico Azahar, Tico Dolphin, and more).</p>
+          </article>
+          <article class="feature glass reveal">
+            <h3>Playtime with NXStation</h3>
+            <p>If <code>/switch/NXStation</code> is on the SD, sessions are written to NXStation’s playtime JSON so analytics stay in one place.</p>
+          </article>
+          <article class="feature glass reveal">
+            <h3>Theme downloader</h3>
+            <p>Uses the real Switch Wi-Fi IP. Batocera theme packs install into <code>/switch/nxstationb/themes</code>.</p>
+          </article>
+          <article class="feature glass reveal">
+            <h3>Title Override</h3>
+            <p>Hold R on a real game, then launch <code>NXStationB.nro</code>. Settings includes an option to install a forwarder.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="showcase" aria-labelledby="showcase-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Screenshots</p>
+          <h2 id="showcase-title">NXstationB in action</h2>
+          <p class="section__lead">Main menu, game list, settings, custom cores, and themes on real Switch hardware.</p>
+        </header>
+        <div class="carousel reveal" data-carousel>
+          <div class="carousel__track" tabindex="0" role="region" aria-label="NXstationB screenshots" aria-roledescription="carousel">
+            <figure class="carousel__slide glass is-active" data-slide>
+              <div class="carousel__media">
+                <img src="assets/carousel/main-menu.jpg" alt="NXstationB main system menu" width="800" height="450" loading="lazy" />
+              </div>
+              <figcaption>Main system menu</figcaption>
+            </figure>
+            <figure class="carousel__slide glass" data-slide>
+              <div class="carousel__media">
+                <img src="assets/carousel/game-list.gif" alt="Game list with box art and metadata" width="800" height="450" loading="lazy" data-animated="true" />
+              </div>
+              <figcaption>Game list with box art</figcaption>
+            </figure>
+            <figure class="carousel__slide glass" data-slide>
+              <div class="carousel__media">
+                <img src="assets/carousel/settings.jpg" alt="Settings and configuration" width="800" height="450" loading="lazy" />
+              </div>
+              <figcaption>Settings</figcaption>
+            </figure>
+            <figure class="carousel__slide glass" data-slide>
+              <div class="carousel__media">
+                <img src="assets/carousel/settings-2.jpg" alt="Additional settings screens" width="800" height="450" loading="lazy" />
+              </div>
+              <figcaption>Scraper and system options</figcaption>
+            </figure>
+            <figure class="carousel__slide glass" data-slide>
+              <div class="carousel__media">
+                <img src="assets/carousel/custom-cores.jpg" alt="Emulator and cores picker" width="800" height="450" loading="lazy" />
+              </div>
+              <figcaption>Emulator and cores</figcaption>
+            </figure>
+            <figure class="carousel__slide glass" data-slide>
+              <div class="carousel__media">
+                <img src="assets/carousel/themes.jpg" alt="Batocera theme selection" width="800" height="450" loading="lazy" />
+              </div>
+              <figcaption>Theme selection</figcaption>
+            </figure>
+          </div>
+          <div class="carousel__controls">
+            <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous slide">‹</button>
+            <div class="carousel__dots" data-carousel-dots role="tablist" aria-label="Slide indicators"></div>
+            <button type="button" class="carousel__btn" data-carousel-next aria-label="Next slide">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="setup" aria-labelledby="setup-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Get started</p>
+          <h2 id="setup-title">Quick setup</h2>
+        </header>
+        <ol class="setup-timeline">
+          <li class="setup-step glass reveal">
+            <span class="setup-step__num" aria-hidden="true">01</span>
+            <div>
+              <h3>Download the NRO</h3>
+              <p>Get <code>NXStationB.nro</code> from <a href="https://github.com/jiraiya78/NXStationB/releases/latest" target="_blank" rel="noopener noreferrer">GitHub Releases</a> and place it at <code>sdmc:/switch/nxstationb/NXStationB.nro</code>.</p>
+            </div>
+          </li>
+          <li class="setup-step glass reveal">
+            <span class="setup-step__num" aria-hidden="true">02</span>
+            <div>
+              <h3>Stock RetroArch</h3>
+              <p>Use <code>sdmc:/switch/retroarch_switch.nro</code> and cores under <code>sdmc:/retroarch/cores/</code>. Rax cores are optional but recommended on firmware 22.5+ (see FAQ).</p>
+            </div>
+          </li>
+          <li class="setup-step glass reveal">
+            <span class="setup-step__num" aria-hidden="true">03</span>
+            <div>
+              <h3>Title Override</h3>
+              <p>Hold <strong>R</strong> on any installed game and start NXstationB from hbmenu. Do not launch from Album.</p>
+            </div>
+          </li>
+          <li class="setup-step glass reveal">
+            <span class="setup-step__num" aria-hidden="true">04</span>
+            <div>
+              <h3>ROMs</h3>
+              <p>Same layout as NXStation / ES-DE: <code>sdmc:/roms/nes</code>, <code>snes</code>, <code>gba</code>, and so on. First boot seeds <code>es_systems.cfg</code> and bundled themes.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="eyebrow">Support</p>
+          <h2 id="faq-title">FAQ</h2>
+        </header>
+        <div class="faq-list reveal" data-faq>
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>Is this the same app as NXStation?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>No. NXStation is a custom Borealis frontend. NXstationB is Batocera EmulationStation running as an NRO. They share ROM folders and, if both are installed, playtime analytics. Use the NXStation button in the top bar to go back.</p>
+            </div>
+          </div>
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>What are Rax cores?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>
+                Rax cores are recompiled RetroArch libretro cores built with a quit handshake that works on
+                Nintendo Switch firmware <strong>22.5</strong> and newer. Stock Switch cores often crash or exit
+                to the Home Menu when you close a game in Title Override mode. Rax cores fix that crash path so
+                you can return to NXstationB (or NXStation) instead of being dropped on the Home screen.
+              </p>
+              <p>
+                They are optional for playing, but strongly recommended on FW 22.5+ if you want a stable
+                return to the frontend. Rax builds will be announced on GitHub when the separate repositories are ready.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>Do I need Rax cores?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>Not strictly. Stock RetroArch Switch cores still launch games. On firmware 22.5+, though, closing a game with stock cores usually sends you to the Home Menu. Re-open NXstationB with Title Override to resume the last game, or install Rax cores when they are published for a smoother return.</p>
+            </div>
+          </div>
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>Will the source be public?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>Batocera EmulationStation itself is already open source (GPL). NXstationB’s Switch port sources will be released in due time.</p>
+            </div>
+          </div>
+          <div class="faq-item glass">
+            <button type="button" class="faq-item__btn" aria-expanded="false">
+              <span>Can I use Tico / custom NROs?</span>
+              <span class="faq-item__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-item__panel" hidden>
+              <p>Yes. Main menu → Emulator and Cores → pick a system → browse to any <code>.nro</code> (for example <code>tico-azahar.nro</code>).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="disclaimer">
+      <div class="container">
+        <aside class="disclaimer glass reveal" role="note">
+          <h2 class="disclaimer__label">Disclaimer</h2>
+          <blockquote>
+            NXstationB is a frontend. It does not include game ROMs, BIOS files, or Nintendo code.
+            Not affiliated with Nintendo Co., Ltd. or Batocera.linux.
+          </blockquote>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="credits">
+    <div class="container">
+      <div class="footer__credits reveal">
+        <h2 class="footer__heading">Credits</h2>
+        <h3 class="footer__subheading">Batocera &amp; EmulationStation</h3>
+        <ul class="credit-links">
+          <li><a href="https://batocera.org/" target="_blank" rel="noopener noreferrer">Batocera.linux</a> (EmulationStation fork)</li>
+          <li>Aloshi / Alec Lofquist (original EmulationStation)</li>
+          <li><a href="https://www.retroarch.com/" target="_blank" rel="noopener noreferrer">RetroArch / libretro</a></li>
+          <li><a href="https://github.com/switchbrew/libnx" target="_blank" rel="noopener noreferrer">libnx</a> &amp; Switch homebrew</li>
+          <li><a href="https://www.screenscraper.fr/" target="_blank" rel="noopener noreferrer">ScreenScraper</a></li>
+        </ul>
+        <h3 class="footer__subheading">Bundled themes</h3>
+        <ul class="credit-links">
+          <li><strong>Simple_Life</strong> (default), “No Flash” by Mr. Overlay</li>
+          <li><strong>es-theme-minimal</strong>, Lilbud (CC-BY-NC-SA)</li>
+          <li><strong>es-theme-simple</strong>, Nils Bonenberger (CC-BY-NC-SA)</li>
+        </ul>
+        <p class="footer__thanks">
+          NXstationB sits beside NXStation on the same site. Thank you to Batocera, theme authors, and everyone testing on real hardware.
+        </p>
+        <p class="footer__notice">
+          If your work is used here, <a href="https://github.com/jiraiya78/NXStation/issues" target="_blank" rel="noopener noreferrer">get in touch</a> for credit or removal.
+        </p>
+        <div class="footer__donate-wrap" id="support">
+          <h3 class="footer__subheading">Support the project</h3>
+          <p class="footer__donate-lead">Same Ko-fi and GitHub Sponsors as NXStation.</p>
+          <div class="footer__donate-actions">
+            <a class="kofi-btn" href="https://ko-fi.com/V7C024E7UO" target="_blank" rel="noopener noreferrer">
+              <img src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" height="36" alt="Ko-fi" />
+            </a>
+            <a class="btn btn--donate btn--donate-sm" href="https://github.com/sponsors/jiraiya78" target="_blank" rel="noopener noreferrer">GitHub Sponsors</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p>© <span id="year">2026</span> NXstationB · <a href="../index.html">NXStation</a> · <a href="https://github.com/jiraiya78/NXStationB/releases" target="_blank" rel="noopener noreferrer">Releases</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
