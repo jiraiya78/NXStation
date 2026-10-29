@@ -77,13 +77,10 @@ HttpClient& HttpClient::instance()
 
 HttpClient::HttpClient()
 {
-    curl_global_init(CURL_GLOBAL_DEFAULT);
+    // curl_global_init() is done once in main(); this client creates a handle per request.
 }
 
-HttpClient::~HttpClient()
-{
-    curl_global_cleanup();
-}
+HttpClient::~HttpClient() = default;
 
 size_t HttpClient::writeString(char* ptr, size_t size, size_t nmemb, void* userdata)
 {

@@ -1,6 +1,7 @@
 {
   "favorites": "Games you marked with X. A shortcut shelf for the titles you keep coming back to.",
   "lastplayed": "Recently launched games, newest first. Pick up where you left off without hunting the library.",
+  "romm": "Your RomM server library — press A on a title to download it and play. Saves and states sync at startup and before launch.",
   "arcade": "Coin-op arcade hardware spanning decades of cabinets. Run MAME / FBNeo sets from a single shelf.",
   "cps1": "Capcom Play System I (1988). The board behind Final Fight, Street Fighter II, and other CPS classics.",
   "cps2": "Capcom Play System II (1993). Street Fighter Alpha, Marvel vs. Capcom, and the later CPS fighters.",

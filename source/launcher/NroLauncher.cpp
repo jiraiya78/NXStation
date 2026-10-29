@@ -3,6 +3,7 @@
 #include "analytics/PlaySessionTracker.hpp"
 #include "app/AppState.hpp"
 #include "app/Config.hpp"
+#include "romm/RomMService.hpp"
 #include "util/ActionLog.hpp"
 #include "util/FileSystem.hpp"
 #include "util/Logger.hpp"
@@ -141,6 +142,17 @@ bool NroLauncher::launch(const SystemConfig& system, const std::string& romPath,
                                                     FileSystem::stemOf(romPath), core);
 
     syncSalamanderCorePath(core);
+
+    // Run RomM pre-launch sync if enabled. GameListView already syncs on a worker
+    // for RomM rows; wasRecentlySynced() avoids negotiating the same ROM twice.
+    auto& romm = sf::romm::RomMService::instance();
+    auto& rommConfig = sf::Config::instance().rommConfig();
+    if (romm.isEnabled() && rommConfig.syncBeforeLaunch && !romm.wasRecentlySynced(romPath)) {
+        SF_LOG_I("RomM", "Running pre-launch sync for %s", romPath.c_str());
+        std::atomic<bool> abort{false};
+        romm.syncBeforeLaunch(romPath, system.id, core, {}, &abort);
+        // Note: We don't block on sync result - failed sync shouldn't prevent launch
+    }
 
     // Core-direct is what RetroArch itself uses on Switch (envSetNextLoad to core.nro).
     return chainLoad(core, buildCoreDirectArgs(core, romPath), errorOut);

@@ -64,6 +64,11 @@ Json gameToJson(const GameItem& g)
     j["filename"] = g.filename;
     j["displayName"] = g.displayName;
     j["systemId"] = g.systemId;
+    // Persisted so a row inserted for a downloaded RomM game can still be matched by its
+    // RomM id after a restart; without these, every startup re-inserts the game as a new
+    // duplicate row.
+    j["rommRomId"] = g.rommRomId;
+    j["fromRomM"] = g.fromRomM;
     j["meta"] = metaToJson(g.meta);
     return j;
 }
@@ -77,6 +82,8 @@ GameItem gameFromJson(const Json& j)
     g.filename = j.value("filename", std::string());
     g.displayName = j.value("displayName", std::string());
     g.systemId = j.value("systemId", std::string());
+    g.rommRomId = j.value("rommRomId", std::string());
+    g.fromRomM = j.value("fromRomM", false);
     if (j.contains("meta"))
         g.meta = metaFromJson(j["meta"]);
     return g;

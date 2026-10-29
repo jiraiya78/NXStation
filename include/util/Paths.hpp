@@ -64,6 +64,9 @@ inline constexpr const char* FAVORITES_SECTION_DIR = "sdmc:/switch/NXStation/dat
 
 inline constexpr const char* LAST_PLAYED_SECTION_DIR = "sdmc:/switch/NXStation/data/lastplayed";
 
+/** RomM downloads root: sdmc:/romm/{systemId}/ (kept separate from scanned systems). */
+inline constexpr const char* ROMM_DOWNLOAD_DIR = "sdmc:/romm";
+
 inline constexpr const char* RETURN_CHAIN_PATH = "sdmc:/switch/NXStation/return_to_nxstation.txt";
 
 inline constexpr const char* NAV_STATE_PATH    = "sdmc:/switch/NXStation/settings/navigation_state.json";

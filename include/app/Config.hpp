@@ -1,6 +1,7 @@
 #pragma once
 
 #include "app/Models.hpp"
+#include "romm/RomMConfig.hpp"
 #include "ui/SystemBrowserStyle.hpp"
 #include "ui/UiTransition.hpp"
 #include "util/GameArt.hpp"
@@ -111,7 +112,7 @@ public:
     bool cloudAutoSaveEnabled() const { return cloudAutoSaveEnabled_; }
     void setCloudAutoSaveEnabled(bool v) { cloudAutoSaveEnabled_ = v; }
 
-    /** Cloud provider id, e.g. "google_drive". */
+    /** Cloud provider id, e.g. "google_drive" or "romm". */
     std::string cloudProvider() const { return cloudProvider_; }
     void setCloudProvider(const std::string& v) { cloudProvider_ = v; }
 
@@ -122,6 +123,11 @@ public:
     void reloadCloudSettings();
 
     bool saveUserCloud();
+    bool saveRomMConfig();
+
+    /** RomM sync configuration. */
+    romm::RomMConfig& rommConfig() { return rommConfig_; }
+    const romm::RomMConfig& rommConfig() const { return rommConfig_; }
 
     float hoverDelaySeconds() const { return static_cast<float>(videoPreviewDelaySeconds_); }
     size_t textureCacheLimit() const { return textureCacheLimit_; }
@@ -161,6 +167,7 @@ private:
     bool loadUserScreenScraper();
     bool loadUserCloud();
     bool loadUserSettings();
+    bool loadRomMConfig();
 
     void mergeBundledSsSystemIds();
     /** Append systems present in romfs but missing from the loaded SD config (upgrade + user edits). */
@@ -208,6 +215,8 @@ private:
     float hoverDelaySeconds_ = 1.0f;
     size_t textureCacheLimit_ = 48;
     size_t requestDelayMs_ = 350;
+
+    romm::RomMConfig rommConfig_;
 };
 
 } // namespace sf

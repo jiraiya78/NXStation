@@ -19,6 +19,8 @@ enum class GameOptionsAction {
     Scrape,
     Rename,
     Delete,
+    /** RomM rows that are not downloaded locally yet. */
+    Download,
 };
 
 using GameOptionsCallback = std::function<void(GameOptionsAction action)>;

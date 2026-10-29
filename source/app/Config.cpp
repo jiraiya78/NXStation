@@ -208,6 +208,7 @@ bool Config::load(const std::string& path)
         loadUserScreenScraper();
         loadUserCloud();
         loadUserSettings();
+        loadRomMConfig();
         applyRomsRootOverride();
         hoverDelaySeconds_ = static_cast<float>(videoPreviewDelaySeconds_);
         return !systems_.empty();
@@ -591,6 +592,68 @@ bool Config::saveUserSettings()
         return false;
     }
     SF_LOG_I("Config", "Saved user settings to %s", paths::USER_SETTINGS_PATH);
+    return true;
+}
+
+bool Config::loadRomMConfig()
+{
+    const std::string path = romm::defaultConfigPath();
+    std::string data = FileSystem::readFile(path);
+    if (data.empty())
+        return true;
+
+    try {
+        auto j = Json::parse(data);
+        auto& rc = rommConfig_;
+
+        rc.enabled = j.value("enabled", false);
+        rc.serverUrl = j.value("server_url", std::string());
+        rc.deviceId = j.value("device_id", std::string());
+        rc.deviceName = j.value("device_name", std::string());
+        rc.syncSaves = j.value("sync_saves", true);
+        rc.syncStates = j.value("sync_states", true);
+        rc.syncBeforeLaunch = j.value("sync_before_launch", true);
+        rc.syncAfterReturn = j.value("sync_after_return", true);
+        rc.conflictPolicy = romm::conflictPolicyFromString(j.value("conflict_policy", std::string("keep_both")));
+        rc.stateCoreMatching = j.value("state_core_matching", true);
+        rc.romMappingFile = j.value("rom_mapping_file", std::string("romm_mappings.json"));
+        // Older settings stored the mapping file under the library-cache name, which made the
+        // two services overwrite each other; force the split for existing installs.
+        if (rc.romMappingFile == "romm_library.json")
+            rc.romMappingFile = "romm_mappings.json";
+
+        SF_LOG_I("Config", "Loaded RomM config from %s", path.c_str());
+        return true;
+    } catch (const std::exception& ex) {
+        SF_LOG_W("Config", "romm_config.json parse error: %s", ex.what());
+        return false;
+    }
+}
+
+bool Config::saveRomMConfig()
+{
+    Json root = Json::object();
+    auto& rc = rommConfig_;
+
+    root["enabled"] = rc.enabled;
+    root["server_url"] = rc.serverUrl;
+    root["device_id"] = rc.deviceId;
+    root["device_name"] = rc.deviceName;
+    root["sync_saves"] = rc.syncSaves;
+    root["sync_states"] = rc.syncStates;
+    root["sync_before_launch"] = rc.syncBeforeLaunch;
+    root["sync_after_return"] = rc.syncAfterReturn;
+    root["conflict_policy"] = romm::conflictPolicyToString(rc.conflictPolicy);
+    root["state_core_matching"] = rc.stateCoreMatching;
+    root["rom_mapping_file"] = rc.romMappingFile;
+
+    const std::string path = romm::defaultConfigPath();
+    FileSystem::createDirectories(FileSystem::parentPath(path));
+    if (!FileSystem::writeFile(path, root.dump(2))) {
+        SF_LOG_E("Config", "Failed to save %s", path.c_str());
+        return false;
+    }
+    SF_LOG_I("Config", "Saved RomM config to %s", path.c_str());
     return true;
 }
 

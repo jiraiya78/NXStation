@@ -31,6 +31,20 @@ bool FileSystem::exists(const std::string& path)
 #endif
 }
 
+uint64_t FileSystem::fileSize(const std::string& path)
+{
+#ifdef __SWITCH__
+    struct stat st {};
+    if (stat(path.c_str(), &st) != 0)
+        return 0;
+    return static_cast<uint64_t>(st.st_size);
+#else
+    std::error_code ec;
+    const auto size = fs::file_size(path, ec);
+    return ec ? 0 : static_cast<uint64_t>(size);
+#endif
+}
+
 bool FileSystem::isDirectory(const std::string& path)
 {
 #ifdef __SWITCH__
@@ -189,6 +203,26 @@ bool FileSystem::renameFile(const std::string& from, const std::string& to)
     fs::rename(from, to, ec);
     return !ec;
 #endif
+}
+
+bool FileSystem::renameFileOverwrite(const std::string& from, const std::string& to)
+{
+    if (from.empty() || to.empty() || from == to)
+        return false;
+    if (!exists(from))
+        return false;
+
+    const std::string parent = parentPath(to);
+    if (!parent.empty())
+        createDirectories(parent);
+
+    // On Switch FAT an existing destination makes plain rename fail, so drop it first.
+    if (exists(to) && !removeFile(to)) {
+        SF_LOG_E("FS", "Failed to remove existing file before rename: %s", to.c_str());
+        return false;
+    }
+
+    return renameFile(from, to);
 }
 
 bool FileSystem::copyFile(const std::string& from, const std::string& to)

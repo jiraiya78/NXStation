@@ -6,6 +6,7 @@
 #include "scraper/HttpClient.hpp"
 #include "ui/SystemsBrowser.hpp"
 #include "ui/GameListView.hpp"
+#include "ui/SystemsTab.hpp"
 #include "ui/LibraryScanView.hpp"
 #include "ui/PushedActivity.hpp"
 #include "ui/Theme.hpp"
@@ -17,15 +18,16 @@
 #include "forwarder/ForwarderInstaller.hpp"
 #include "launcher/ReturnChain.hpp"
 #include "cloud/CloudSaveService.hpp"
+#include "romm/RomMService.hpp"
 #include "analytics/PlaySessionTracker.hpp"
 
 #include <borealis/views/dialog.hpp>
+#include <curl/curl.h>
 #include <cstdlib>
 
 #ifdef __SWITCH__
 #include <switch.h>
 #endif
-
 class MainActivity : public brls::Activity {
 public:
     brls::View* createContentView() override
@@ -45,6 +47,12 @@ static void pushMainAndRestoreNavigation(const sf::SavedNavigation& nav)
 
     if (nav.shouldRestore)
         sf::cloud::CloudSaveService::instance().maybeAutoSyncAfterReturn();
+
+    // Save/state sync at every startup: uploads what the previous game session produced
+    // (NXStation can only act once control returns from the chain-loaded core, i.e. right
+    // after a game exits) and pulls remote saves/states for this session.
+    if (sf::romm::RomMService::instance().isEnabled())
+        sf::romm::RomMService::instance().syncAfterReturn([](bool, const std::string&) {});
 
     if (nav.shouldRestore && !nav.systemId.empty()) {
         size_t focus = nav.gameIndex;
@@ -205,6 +213,13 @@ int main(int argc, char* argv[])
     sf::Logger::trimLogIfNeeded();
     sf::Logger::instance().setLevel(sf::LogLevel::Debug);
 
+    // libcurl must be globally initialised once, on the main thread, before any worker
+    // creates an easy handle. Without this the lazy per-handle init is not thread-safe
+    // and requests intermittently fail with CURLE_FAILED_INIT.
+    const CURLcode curlInit = curl_global_init(CURL_GLOBAL_DEFAULT);
+    if (curlInit != CURLE_OK)
+        SF_LOG_E("Main", "curl_global_init failed: %s", curl_easy_strerror(curlInit));
+
     // Two-phase self-update: if NXStation_update.nro is waiting and APP_NRO is locked,
     // set envSetNextLoad and exit immediately so hbloader runs the new build.
     if (sf::AppUpdater::bootstrapApply(argc, argv) ==
@@ -237,6 +252,23 @@ int main(int argc, char* argv[])
         brls::Application::notify("Failed to load configuration");
     } else {
         sf::Logger::bootMark("main:appstate_ready");
+    }
+
+    // Initialize RomM service
+    sf::romm::RomMService::instance().initialize(sf::Config::instance().rommConfig());
+
+    // Populate the RomM virtual library from the persisted cache (works offline),
+    // then refresh from the server on a worker thread.
+    auto& romm = sf::romm::RomMService::instance();
+    romm.loadLibraryCache();
+    romm.populateVirtualLibrary();
+    if (romm.isEnabled()) {
+        romm.refreshLibraryAsync([](bool ok, const std::string&) {
+            if (!ok)
+                return;
+            sf::romm::RomMService::instance().populateVirtualLibrary();
+            sf::ui::SystemsTab::requestRefreshAfterSettings();
+        });
     }
 
     SF_LOG_I("Main", "NXStation starting");
@@ -293,6 +325,7 @@ int main(int argc, char* argv[])
 
     sf::AppState::instance().shutdown();
     sf::audio::SwitchAudout::shutdown();
+    curl_global_cleanup();
     SF_LOG_I("Main", "NXStation exiting");
     return EXIT_SUCCESS;
 }

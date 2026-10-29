@@ -2,6 +2,7 @@
 
 #include "app/AppState.hpp"
 #include "app/Config.hpp"
+#include "romm/RomMService.hpp"
 #include "ui/ThemeManager.hpp"
 #include "util/FileSystem.hpp"
 #include "util/Json.hpp"
@@ -49,6 +50,9 @@ void rebuildSystemIds(std::vector<std::string>& out)
         out.push_back(kFavoritesSystemId);
     if (!AppState::instance().gamesFor(kLastPlayedSystemId).empty())
         out.push_back(kLastPlayedSystemId);
+    if (sf::romm::RomMService::instance().isEnabled() &&
+        !AppState::instance().gamesFor(kRomMSystemId).empty())
+        out.push_back(kRomMSystemId);
 
     for (const auto& sys : Config::instance().systems()) {
         if (Config::instance().hideEmptySystems()) {
@@ -216,6 +220,8 @@ std::string systemDescription(const std::string& systemId)
     auto it = gSystemDescriptions.find(systemId);
     if (it != gSystemDescriptions.end() && !it->second.empty())
         return it->second;
+    if (systemId == kRomMSystemId)
+        return "Your RomM server library — press A on a title to download it and play.";
     return {};
 }
 

@@ -18,6 +18,7 @@ Built against **devkitA64 / libnx**, **Borealis** (UI), **libcurl**, optional **
 | Playback | Core-direct RetroArch or standalone `.nro` launch (`envSetNextLoad`), hover video preview (FFmpeg), launch zoom/fade |
 | UI | System carousel (Fade / Slide / Crossfade / Zoom / None), list-style system browser, Hide Empty Systems, themes, playtime analytics |
 | Cloud | Google Drive backup/restore for RetroArch saves & states (Settings → Cloud Save) |
+| RomM | Paired RomM server library on the main page (virtual `RomM` system, paginated fetch), download & play, save + state sync at startup / before launch. Settings → RomM Sync: **Sync Now** syncs the ROMs downloaded from the server |
 | Updates | Settings → **Check for Updates** via [GitHub Releases](https://github.com/jiraiya78/NXStation/releases) |
 | Website | Landing page, user wiki, blog (release notes) in `website/` |
 

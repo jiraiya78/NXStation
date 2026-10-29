@@ -6,6 +6,8 @@ namespace sf {
 
 inline constexpr const char* kFavoritesSystemId = "favorites";
 inline constexpr const char* kLastPlayedSystemId = "lastplayed";
+/** Virtual system listing the RomM server library (download & play). */
+inline constexpr const char* kRomMSystemId = "romm";
 
 bool isVirtualSystemId(const std::string& systemId);
 const char* virtualSystemDisplayName(const std::string& systemId);

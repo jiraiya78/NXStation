@@ -53,6 +53,9 @@ GameOptionsMenuView::GameOptionsMenuView(std::string systemId, const sf::GameIte
     if (sys && ManualPages::hasManualEntry(sys->path, romStem, game.meta))
         addOption("◆ Game Manual", GameOptionsAction::GameManual);
 
+    if (game.fromRomM && game.path.empty())
+        addOption("Download from RomM", GameOptionsAction::Download);
+
     addOption("Search", GameOptionsAction::Search);
     addOption("Jump to Letter / Number", GameOptionsAction::JumpAlphabet);
     addOption("Show Metadata", GameOptionsAction::ShowMetadata);

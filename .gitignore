@@ -1,6 +1,7 @@
 # --- Build outputs ---
 build/
 build_switch/
+build_test/
 build_desktop/
 cmake-build-*/
 .tools/

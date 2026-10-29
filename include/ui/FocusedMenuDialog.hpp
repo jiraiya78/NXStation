@@ -27,7 +27,7 @@ public:
               brls::FrameContext* ctx) override;
 
     void dismiss(std::function<void(void)> cb = [] {}) override;
-    void close(std::function<void(void)> cb = [] {}) override;
+    void close(std::function<void(void)> cb = [] {});
 
 private:
     void startCloseAnimation(std::function<void(void)> cb);

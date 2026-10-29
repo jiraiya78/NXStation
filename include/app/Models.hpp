@@ -41,6 +41,13 @@ struct GameItem {
     GameMetadata meta;
     /** Unix epoch seconds when last played; 0 if unknown. Used by Last Played list. */
     uint64_t lastPlayedAt = 0;
+    /** Row from the RomM virtual library (RomM server). Empty path = not downloaded yet. */
+    bool fromRomM = false;
+    std::string rommRomId;
+    /** Cloud-available and not yet downloaded locally — shows the cloud badge, A downloads. */
+    bool cloudAvailable = false;
+    /** Number of files in the RomM set (multi-disc ROMs); 1 for single-file ROMs. */
+    int discCount = 1;
 };
 
 } // namespace sf

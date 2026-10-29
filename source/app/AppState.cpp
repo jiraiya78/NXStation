@@ -166,7 +166,17 @@ void AppState::persistLibraryCache()
     std::unordered_map<std::string, std::vector<GameItem>> snapshot;
     {
         std::lock_guard<std::mutex> lock(gamesMutex_);
-        snapshot = gamesBySystem_;
+        // Cloud-only rows live in the RomM library cache; do not write them to the ROM index.
+        for (const auto& [systemId, games] : gamesBySystem_) {
+            std::vector<GameItem> stored;
+            stored.reserve(games.size());
+            for (const auto& g : games) {
+                if (g.fromRomM && g.path.empty())
+                    continue;
+                stored.push_back(g);
+            }
+            snapshot[systemId] = std::move(stored);
+        }
     }
     LibraryCache::save(snapshot);
 }
@@ -252,8 +262,44 @@ void AppState::scanSystem(const std::string& systemId, bool force,
                          return Utf8::compareTitles(a.displayName, b.displayName);
                      });
 
+    // Keep downloaded RomM rows the scanner cannot see (e.g. files whose extension is not
+    // in the system's configured list). Without this, a manual scan erases rows that
+    // otherwise survive restarts through the persisted cache.
+    size_t keptRomMRows = 0;
+    {
+        std::lock_guard<std::mutex> lock(gamesMutex_);
+        auto it = gamesBySystem_.find(systemId);
+        if (it != gamesBySystem_.end()) {
+            for (const auto& old : it->second) {
+                if (!old.fromRomM || old.path.empty() || !FileSystem::exists(old.path))
+                    continue;
+                bool alreadyScanned = false;
+                for (const auto& g : games) {
+                    if (g.path == old.path) {
+                        alreadyScanned = true;
+                        break;
+                    }
+                }
+                if (!alreadyScanned) {
+                    games.push_back(old);
+                    ++keptRomMRows;
+                }
+            }
+        }
+    }
+    if (keptRomMRows > 0) {
+        std::stable_sort(games.begin(), games.end(),
+                         [](const GameItem& a, const GameItem& b) {
+                             return Utf8::compareTitles(a.displayName, b.displayName);
+                         });
+        SF_LOG_I("App", "Kept %zu RomM row(s) in %s not visible to the scanner",
+                 keptRomMRows, systemId.c_str());
+    }
+
     SF_LOG_I("App", "Scanned %s -> %zu games", systemId.c_str(), games.size());
     setGames(systemId, std::move(games));
+    // Cloud-only RomM rows belong to the system section they were scanned into.
+    mergeCloudGames(systemId);
     persistLibraryCache();
 
     {
@@ -285,6 +331,173 @@ void AppState::setGames(const std::string& systemId, std::vector<GameItem> games
 {
     std::lock_guard<std::mutex> lock(gamesMutex_);
     gamesBySystem_[systemId] = std::move(games);
+}
+
+void AppState::setCloudGames(const std::string& systemId, std::vector<GameItem> cloudGames)
+{
+    std::lock_guard<std::mutex> lock(gamesMutex_);
+    cloudGamesBySystem_[systemId] = std::move(cloudGames);
+}
+
+void AppState::mergeCloudGames(const std::string& systemId)
+{
+    std::lock_guard<std::mutex> lock(gamesMutex_);
+
+    const auto cloudIt = cloudGamesBySystem_.find(systemId);
+    if (cloudIt == cloudGamesBySystem_.end() || cloudIt->second.empty())
+        return;
+
+    auto& games = gamesBySystem_[systemId];
+    for (const auto& cloud : cloudIt->second) {
+        bool matched = false;
+        for (auto& existing : games) {
+            const bool sameRom = !cloud.rommRomId.empty() && existing.rommRomId == cloud.rommRomId;
+            const bool samePath = !cloud.path.empty() && existing.path == cloud.path;
+            if (!sameRom && !samePath)
+                continue;
+
+            // Keep the row that already exists, but bring it up to date: a cloud row that
+            // has since been downloaded loses its badge and points at the local file.
+            if (existing.path.empty() && !cloud.path.empty())
+                existing.path = cloud.path;
+            if (existing.rommRomId.empty())
+                existing.rommRomId = cloud.rommRomId;
+            existing.fromRomM = existing.fromRomM || cloud.fromRomM;
+            existing.cloudAvailable = existing.path.empty();
+            existing.discCount = existing.discCount < cloud.discCount ? cloud.discCount : existing.discCount;
+            matched = true;
+            break;
+        }
+        if (matched)
+            continue;
+        games.push_back(cloud);
+    }
+
+    std::stable_sort(games.begin(), games.end(),
+                     [](const GameItem& a, const GameItem& b) {
+                         return Utf8::compareTitles(a.displayName, b.displayName);
+                     });
+}
+
+bool AppState::refreshDownloadedRow(const std::string& systemId, const GameItem& game)
+{
+    std::lock_guard<std::mutex> lock(gamesMutex_);
+
+    auto& games = gamesBySystem_[systemId];
+
+    // Scanned rows have no RomM id, so also match by path; matching by file name keeps the
+    // same ROM from being listed twice when the RomM path and the scanned path differ
+    // (e.g. a multi-file ROM extracted into its own folder).
+    auto sameGame = [&game](const GameItem& existing) {
+        const bool sameRom = !game.rommRomId.empty() && existing.rommRomId == game.rommRomId;
+        const bool samePath = !game.path.empty() && existing.path == game.path;
+        std::string a = FileSystem::filenameOf(existing.path);
+        std::string b = FileSystem::filenameOf(game.path);
+        if (a.empty())
+            a = existing.filename;
+        if (b.empty())
+            b = game.filename;
+        std::transform(a.begin(), a.end(), a.begin(), [](unsigned char c) { return std::tolower(c); });
+        std::transform(b.begin(), b.end(), b.begin(), [](unsigned char c) { return std::tolower(c); });
+        const bool sameFile = !a.empty() && a == b;
+        return sameRom || samePath || sameFile;
+    };
+
+    for (auto& existing : games) {
+        if (!sameGame(existing))
+            continue;
+
+        // The row was merged as cloud-only before the download (or scanned without a RomM
+        // id); mergeCloudGames cannot fix it anymore because the game is no longer in
+        // cloudBySystem. Point it at the local file and link the RomM id.
+        if (existing.path.empty() && !game.path.empty())
+            existing.path = game.path;
+        if (existing.rommRomId.empty())
+            existing.rommRomId = game.rommRomId;
+        existing.fromRomM = existing.fromRomM || game.fromRomM;
+        existing.cloudAvailable = existing.path.empty();
+
+        // Fill in whatever the merged row was missing; keep any richer local scrape metadata.
+        if (existing.meta.romPath.empty())
+            existing.meta.romPath = game.path;
+        if (existing.meta.description.empty())
+            existing.meta.description = game.meta.description;
+        if (existing.meta.genre.empty())
+            existing.meta.genre = game.meta.genre;
+        if (existing.meta.developer.empty())
+            existing.meta.developer = game.meta.developer;
+        if (existing.meta.publisher.empty())
+            existing.meta.publisher = game.meta.publisher;
+        if (existing.meta.releaseDate.empty())
+            existing.meta.releaseDate = game.meta.releaseDate;
+        return true;
+    }
+
+    // No row existed: the game was downloaded after the last scan, so the persisted index
+    // cache never stored it and nothing was restored on startup. Insert it so the system
+    // section keeps showing the game instead of it surviving only in Last Played.
+    games.push_back(game);
+    std::stable_sort(games.begin(), games.end(),
+                     [](const GameItem& a, const GameItem& b) {
+                         return Utf8::compareTitles(a.displayName, b.displayName);
+                     });
+    return false;
+}
+
+size_t AppState::dedupeSystemGames(const std::string& systemId)
+{
+    std::lock_guard<std::mutex> lock(gamesMutex_);
+
+    auto it = gamesBySystem_.find(systemId);
+    if (it == gamesBySystem_.end())
+        return 0;
+
+    auto& games = it->second;
+    std::vector<GameItem> kept;
+    kept.reserve(games.size());
+    std::unordered_map<std::string, size_t> firstByFile;
+
+    for (const auto& g : games) {
+        std::string key = FileSystem::filenameOf(g.path);
+        if (key.empty())
+            key = g.filename;
+        std::transform(key.begin(), key.end(), key.begin(), [](unsigned char c) { return std::tolower(c); });
+        if (key.empty()) {
+            kept.push_back(g);
+            continue;
+        }
+
+        auto seen = firstByFile.find(key);
+        if (seen == firstByFile.end()) {
+            firstByFile[key] = kept.size();
+            kept.push_back(g);
+            continue;
+        }
+
+        // The same file listed twice (scanned row + RomM row): merge flags/metadata into
+        // the survivor and drop the duplicate.
+        GameItem& survivor = kept[seen->second];
+        if (survivor.rommRomId.empty())
+            survivor.rommRomId = g.rommRomId;
+        if (survivor.path.empty())
+            survivor.path = g.path;
+        survivor.fromRomM = survivor.fromRomM || g.fromRomM;
+        survivor.cloudAvailable = survivor.path.empty();
+        if (survivor.meta.description.empty())
+            survivor.meta.description = g.meta.description;
+        if (survivor.meta.genre.empty())
+            survivor.meta.genre = g.meta.genre;
+        if (survivor.meta.developer.empty())
+            survivor.meta.developer = g.meta.developer;
+        if (survivor.meta.publisher.empty())
+            survivor.meta.publisher = g.meta.publisher;
+        if (survivor.meta.releaseDate.empty())
+            survivor.meta.releaseDate = g.meta.releaseDate;
+    }
+
+    size_t removed = games.size() - kept.size();
+    games = std::move(kept);
+    return removed;
 }
 
 void AppState::updateGameMetadata(const std::string& systemId, const std::string& romPath,

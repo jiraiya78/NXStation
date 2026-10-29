@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include <functional>
 #include <string>
 #include <vector>
@@ -24,6 +25,8 @@ struct DirEntry {
 class FileSystem {
 public:
     static bool exists(const std::string& path);
+    /** Size in bytes of an existing file; 0 when the path is missing. */
+    static uint64_t fileSize(const std::string& path);
     static bool isDirectory(const std::string& path);
     static bool createDirectories(const std::string& path);
     static bool ensureAppDirectories();
@@ -35,6 +38,8 @@ public:
     static bool removeFile(const std::string& path);
     /** Rename/move a file. Returns false if `from` missing or `to` cannot be written. */
     static bool renameFile(const std::string& from, const std::string& to);
+    /** Rename that replaces an existing destination (needed on Switch FAT where plain rename fails if the target exists). */
+    static bool renameFileOverwrite(const std::string& from, const std::string& to);
     /** Stream-copy `from` onto `to` via stdio (fails on locked running NROs). */
     static bool copyFile(const std::string& from, const std::string& to);
     /**

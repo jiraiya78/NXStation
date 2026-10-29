@@ -1,6 +1,7 @@
 #include "ui/SettingsTab.hpp"
 
 #include "ui/PushedActivity.hpp"
+#include "romm/RomMSettingsView.hpp"
 #include "ui/SettingsHelpers.hpp"
 #include "ui/SettingsSectionView.hpp"
 #include "ui/SystemsTab.hpp"
@@ -145,6 +146,7 @@ void SettingsTab::willDisappear(bool resetState)
 {
     *alive_ = false;
     Config::instance().saveUserSettings();
+    Config::instance().saveRomMConfig();
     SystemsTab::requestRefreshAfterSettings();
     brls::Box::willDisappear(resetState);
 }
@@ -167,6 +169,8 @@ void SettingsTab::rebuild()
                      buildAppearanceControlSettingsRows);
     addSectionHubRow(listBox, "Cloud Save", "Google Drive backup & restore",
                      buildCloudSaveSettingsRows, refreshCloudSaveSettingsSection);
+    addSectionHubRow(listBox, "RomM Sync", "RomM server pairing & save sync",
+                     buildRomMSettingsRows);
     addSectionHubRow(listBox, "Scraper", "ScreenScraper website login",
                      buildScraperSettingsRows);
     addSectionHubRow(listBox, "Help and About", "Folders, logs, version",

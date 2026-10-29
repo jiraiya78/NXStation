@@ -14,8 +14,10 @@
 #include "ui/GameSearch.hpp"
 #include "ui/AlphabetJumpView.hpp"
 #include "ui/PushedActivity.hpp"
+#include "ui/RomMDownloadProgressView.hpp"
 #include "ui/ScrapeMenuView.hpp"
 #include "ui/ScrapeProgressView.hpp"
+#include "romm/RomMService.hpp"
 #include "ui/ScreensaverView.hpp"
 #include "ui/SystemsTab.hpp"
 #include "ui/ThemeManager.hpp"
@@ -164,6 +166,14 @@ public:
         title_->setFontSize(20);
         this->addView(title_);
 
+        // Cloud badge: RomM row that is available in the cloud but not downloaded yet.
+        cloudBadge_ = new brls::Image();
+        cloudBadge_->setScalingType(brls::ImageScalingType::FIT);
+        cloudBadge_->setSize(brls::Size(20, 20));
+        cloudBadge_->setMarginLeft(10);
+        cloudBadge_->setVisibility(brls::Visibility::GONE);
+        this->addView(cloudBadge_);
+
         detail_ = new brls::Label();
         detail_->setSingleLine(true);
         detail_->setAnimated(false);
@@ -227,7 +237,7 @@ public:
     }
 
     void bind(GameListView* owner, const std::string& title, const std::string& detail,
-              bool showDetail, NVGcolor color)
+              bool showDetail, NVGcolor color, bool showCloudBadge)
     {
         title_->setText(title);
         idleTextColor_ = color;
@@ -235,6 +245,12 @@ public:
         detail_->setVisibility(showDetail ? brls::Visibility::VISIBLE : brls::Visibility::GONE);
         if (showDetail)
             detail_->setText(detail);
+        cloudBadge_->setVisibility(showCloudBadge ? brls::Visibility::VISIBLE : brls::Visibility::GONE);
+        if (showCloudBadge) {
+            cloudBadge_->setImageFromRes(ThemeManager::instance().isLightTheme()
+                                             ? "img/sys/cloud_light.png"
+                                             : "img/sys/cloud_dark.png");
+        }
         applyRowSeparator();
         // Assign owner last so onFocusGained() firing during layout doesn't race a stale index.
         owner_ = owner;
@@ -258,6 +274,7 @@ private:
     GameListView* owner_ = nullptr;
     brls::Label* title_ = nullptr;
     brls::Label* detail_ = nullptr;
+    brls::Image* cloudBadge_ = nullptr;
     NVGcolor idleTextColor_{0, 0, 0, 0};
 };
 
@@ -366,6 +383,9 @@ GameListView::GameListView(std::string systemId, size_t initialFocus)
         titleLabel->setText(virtualSystemDisplayName(systemId_));
     else
         titleLabel->setText(sys ? sys->name : systemId_);
+
+    if (systemId_ == kRomMSystemId)
+        hintsLabel->setText("A Download & Play   ·   X Star   ·   Y Menu   ·   L/R Page");
 
     boxArt->setScalingType(brls::ImageScalingType::FIT);
     boxArt->setImageAlign(brls::ImageAlignment::CENTER);
@@ -790,8 +810,12 @@ brls::RecyclerCell* GameListView::cellForRow(brls::RecyclerFrame* recycler, size
     const NVGcolor color = fav ? ThemeManager::instance().color("nxstation/favorite_text")
                                : ThemeManager::instance().color("brls/text");
     const bool showSystem = customList_ || isVirtualSystemId(systemId_);
+    const bool cloudBadge = g.cloudAvailable && g.path.empty();
     std::string detail;
-    if (systemId_ == kLastPlayedSystemId) {
+    if (systemId_ == kRomMSystemId) {
+        detail = g.systemId.empty() ? "RomM" : systemAcronym(g.systemId);
+        detail += g.path.empty() ? " · Remote" : " · Downloaded";
+    } else if (systemId_ == kLastPlayedSystemId) {
         detail = systemAcronym(g.systemId);
         if (const std::string when = LastPlayed::formatPlayedAt(g.lastPlayedAt); !when.empty()) {
             if (!detail.empty())
@@ -801,7 +825,17 @@ brls::RecyclerCell* GameListView::cellForRow(brls::RecyclerFrame* recycler, size
     } else if (showSystem) {
         detail = systemAcronym(g.systemId);
     }
-    cell->bind(this, title, detail, showSystem || systemId_ == kLastPlayedSystemId, color);
+
+    // Cloud rows show the badge, plus how many files the set has (multi-disc ROMs).
+    if (cloudBadge) {
+        if (detail.empty())
+            detail = "Cloud";
+        if (g.discCount > 1)
+            detail += " · " + std::to_string(g.discCount) + " files";
+    }
+
+    const bool showDetail = showSystem || systemId_ == kLastPlayedSystemId || cloudBadge;
+    cell->bind(this, title, detail, showDetail, color, cloudBadge);
     return cell;
 }
 
@@ -899,6 +933,10 @@ void GameListView::toggleFavorite(size_t index)
         return;
 
     const std::string path = games_[index].path;
+    if (games_[index].fromRomM && path.empty()) {
+        brls::Application::notify("Download the RomM game first (A) to star it");
+        return;
+    }
     const std::string favSystemId = gameSystemId(games_[index], systemId_);
     const bool nowFav = !Favorites::instance().isFavorite(favSystemId, path);
     Favorites::instance().toggle(favSystemId, path);
@@ -942,6 +980,17 @@ void GameListView::openOptionsMenu()
         [this, game, favSystemId, alive, popOverlay](GameOptionsAction action) {
             if (!*alive)
                 return;
+            if (action == GameOptionsAction::Download) {
+                // Multi-file sets get the disc picker; single-file rows download directly.
+                showDiscPicker(game, false);
+                return;
+            }
+            if (game.fromRomM && game.path.empty() &&
+                (action == GameOptionsAction::Scrape || action == GameOptionsAction::Rename ||
+                 action == GameOptionsAction::Delete)) {
+                brls::Application::notify("Download the RomM game first (A)");
+                return;
+            }
             if (action == GameOptionsAction::GameManual) {
                 const SystemConfig* sys = Config::instance().findSystem(favSystemId);
                 if (!sys)
@@ -1208,12 +1257,24 @@ void GameListView::deleteGame(const sf::GameItem& game)
     const std::string systemId = gameSystemId(game, systemId_);
     AppState::instance().video().stop();
 
+    if (game.fromRomM && game.path.empty()) {
+        brls::Application::notify("RomM game is not downloaded — nothing to delete");
+        return;
+    }
+
     if (!FileSystem::removeFile(game.path)) {
         brls::Application::notify("Could not delete file");
         return;
     }
 
-    AppState::instance().removeGame(systemId, game.path);
+    if (game.fromRomM) {
+        // The row lives in the RomM virtual library; clear its downloaded flag.
+        sf::romm::RomMService::instance().library().markNotDownloaded(game.rommRomId);
+        sf::romm::RomMService::instance().populateVirtualLibrary();
+    } else {
+        AppState::instance().removeGame(systemId, game.path);
+    }
+
     SystemsTab::requestRefreshAfterSettings();
     brls::Application::notify("Deleted");
     refreshFromStore();
@@ -1381,18 +1442,181 @@ void GameListView::launchGame(size_t index)
     if (index >= games_.size())
         return;
 
-    const std::string launchSystemId = gameSystemId(games_[index], systemId_);
-    const SystemConfig* sys = Config::instance().findSystem(launchSystemId);
-    if (!sys)
-        return;
+    const sf::GameItem game = games_[index];
 
-    NavigationState::update(customList_ ? launchSystemId : systemId_, index, games_[index].path);
+    // Cloud rows need two presses: the first downloads, the second plays.
+    if (game.path.empty() && (game.cloudAvailable || systemId_ == kRomMSystemId)) {
+        startRomMDownload(game, false);
+        return;
+    }
+
+    const std::string launchSystemId = gameSystemId(game, systemId_);
+    const SystemConfig* sys = Config::instance().findSystem(launchSystemId);
+    if (!sys) {
+        if (game.fromRomM)
+            brls::Application::notify("No core configured for this RomM platform");
+        return;
+    }
+
+    NavigationState::update(customList_ ? launchSystemId : systemId_, index, game.path);
     NavigationState::setLastSystem(launchSystemId);
-    LastPlayed::instance().record(launchSystemId, games_[index].path);
+    LastPlayed::instance().record(launchSystemId, game.path);
     AppState::instance().rebuildVirtualSections();
     SystemsTab::requestRefreshAfterSettings();
 
-    beginGameLaunch(*sys, games_[index]);
+    // RomM rows save/state-sync on a worker right before handoff (curl must not run on the UI thread).
+    auto& romm = sf::romm::RomMService::instance();
+    if (game.fromRomM && romm.isEnabled() &&
+        sf::Config::instance().rommConfig().syncBeforeLaunch) {
+        auto alive = alive_;
+        const SystemConfig systemCopy = *sys;
+        romm.syncForRomAsync(game.path, launchSystemId, systemCopy.core,
+                             [this, alive, systemCopy, game](bool ok, const std::string&) {
+                                 if (!*alive)
+                                     return;
+                                 if (!ok)
+                                     brls::Application::notify("RomM sync failed — launching without sync");
+                                 beginGameLaunch(systemCopy, game);
+                             });
+        return;
+    }
+
+    beginGameLaunch(*sys, game);
+}
+
+void GameListView::startRomMDownload(const sf::GameItem& game, bool launchAfterDownload,
+                                     const std::vector<long long>& fileIds)
+{
+    auto& romm = sf::romm::RomMService::instance();
+    const sf::romm::LibraryEntry* entry = romm.library().entryByRomId(game.rommRomId);
+    if (!entry) {
+        brls::Application::notify("RomM entry not found — refresh the library first");
+        return;
+    }
+    if (game.systemId.empty() || !Config::instance().findSystem(game.systemId)) {
+        brls::Application::notify("No core configured for this RomM platform");
+        return;
+    }
+
+    const sf::romm::LibraryEntry entryCopy = *entry;
+    const std::string rommRomId = game.rommRomId;
+    auto alive = alive_;
+    auto abort = std::make_shared<std::atomic<bool>>(false);
+
+    pushOverlayBlock();
+
+    auto* view = new RomMDownloadProgressView(game.displayName, abort);
+    view->setOnDismiss([this, alive]() {
+        if (*alive)
+            popOverlayBlock();
+    });
+
+    auto viewAlive = view->alive();
+
+    // Push the activity before starting the worker: the first progress event fires immediately
+    // (before the view appears), and would otherwise be dropped, leaving the label on
+    // "Starting download…" for the whole transfer.
+    PushedActivity::push(new RomMDownloadProgressActivity(view));
+
+    romm.downloadRomAsync(
+        entryCopy,
+        [view, viewAlive](const std::string& message, int percent) {
+            if (!*viewAlive)
+                return;
+            view->setStatus(message);
+            view->setPercent(percent);
+        },
+        abort.get(),
+        [this, alive, view, viewAlive, rommRomId, launchAfterDownload](bool ok, const std::string& message) {
+            if (!*alive || !*viewAlive)
+                return;
+
+            view->finish(ok, message);
+
+            // Re-populate so the row points at the local file (or the cleared state after a cancel).
+            sf::romm::RomMService::instance().populateVirtualLibrary();
+            refreshFromStore();
+
+            if (ok && launchAfterDownload) {
+                for (size_t i = 0; i < games_.size(); ++i) {
+                    if (games_[i].rommRomId == rommRomId) {
+                        brls::Application::popActivity(brls::TransitionAnimation::FADE);
+                        launchGame(i);
+                        return;
+                    }
+                }
+            }
+
+            // Success returns straight to the list; failures stay on the progress screen so
+            // the message can be read before B pops it.
+            if (ok) {
+                brls::Application::notify("Download complete");
+                brls::Application::popActivity(brls::TransitionAnimation::FADE);
+            } else {
+                brls::Application::notify(message.empty() ? "Download failed" : message);
+            }
+        },
+        fileIds);
+}
+
+void GameListView::showDiscPicker(const sf::GameItem& game, bool launchAfterDownload)
+{
+    auto& romm = sf::romm::RomMService::instance();
+    const sf::romm::LibraryEntry* entry = romm.library().entryByRomId(game.rommRomId);
+    if (!entry || entry->rom.files.size() <= 1) {
+        startRomMDownload(game, launchAfterDownload);
+        return;
+    }
+
+    auto alive = alive_;
+    // Rows are built before the dialog exists, so the pointer is filled in afterwards.
+    auto dialogRef = std::make_shared<FocusedMenuDialog*>(nullptr);
+
+    auto* panel = new brls::Box();
+    panel->setAxis(brls::Axis::COLUMN);
+    stylePopupMenuPanel(panel);
+
+    auto* header = new brls::Header();
+    header->setTitle(game.displayName);
+    header->setSubtitle("Choose files to download");
+    panel->addView(header);
+
+    auto menuScroller = makePopupMenuScroller(360.f);
+    brls::ScrollingFrame* scroller = menuScroller.scroller;
+    auto* list = new brls::Box();
+    list->setAxis(brls::Axis::COLUMN);
+
+    auto addOption = [&](const std::string& title, std::vector<long long> fileIds) {
+        auto* row = new brls::DetailCell();
+        row->setText(title);
+        stylePopupMenuRow(row);
+        row->registerClickAction([this, alive, dialogRef, game, launchAfterDownload, fileIds](brls::View*) {
+            const auto run = [this, alive, game, launchAfterDownload, fileIds]() {
+                if (*alive)
+                    startRomMDownload(game, launchAfterDownload, fileIds);
+            };
+            if (dialogRef && *dialogRef)
+                (*dialogRef)->close(run);
+            else
+                run();
+            return true;
+        });
+        list->addView(row);
+    };
+
+    addOption("All files", {});
+    for (const auto& f : entry->rom.files)
+        addOption(f.fileName, {f.id});
+
+    scroller->setContentView(list);
+    panel->addView(menuScroller.clipBox);
+    registerPopupPageActions(panel, scroller);
+
+    pushOverlayBlock();
+    *dialogRef = FocusedMenuDialog::present(panel, [this, alive]() {
+        if (*alive)
+            popOverlayBlock();
+    });
 }
 
 void GameListView::applyPreviewContent(size_t index)

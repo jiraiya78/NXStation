@@ -76,6 +76,11 @@ private:
     void jumpToBucket(char bucket);
     void jumpToRandomGame();
     void jumpToIndex(size_t index, bool animated = false);
+    /** Download a RomM entry on a worker thread; optionally launches once complete. */
+    void startRomMDownload(const sf::GameItem& game, bool launchAfterDownload,
+                           const std::vector<long long>& fileIds = {});
+    /** Y-menu picker for multi-file RomM sets (all discs / a single disc). */
+    void showDiscPicker(const sf::GameItem& game, bool launchAfterDownload);
     void tickIdleScreensaver();
     void registerListActions();
     void renameFocusedGame();

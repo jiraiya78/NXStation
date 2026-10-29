@@ -439,7 +439,12 @@ bool ThemeManager::hasColor(const std::string& key) const
         if (k == key)
             return true;
     }
-    return brls::Application::getTheme().hasColor(key);
+    try {
+        brls::Application::getTheme().getColor(key);
+        return true;
+    } catch (...) {
+        return false;
+    }
 }
 
 namespace {

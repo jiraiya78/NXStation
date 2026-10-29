@@ -6,7 +6,8 @@ namespace sf {
 
 bool isVirtualSystemId(const std::string& systemId)
 {
-    return systemId == kFavoritesSystemId || systemId == kLastPlayedSystemId;
+    return systemId == kFavoritesSystemId || systemId == kLastPlayedSystemId ||
+           systemId == kRomMSystemId;
 }
 
 const char* virtualSystemDisplayName(const std::string& systemId)
@@ -15,6 +16,8 @@ const char* virtualSystemDisplayName(const std::string& systemId)
         return "Favorites";
     if (systemId == kLastPlayedSystemId)
         return "Last Played";
+    if (systemId == kRomMSystemId)
+        return "RomM";
     return systemId.c_str();
 }
 
@@ -24,6 +27,8 @@ const char* virtualSystemBackgroundStem(const std::string& systemId)
         return "favorite";
     if (systemId == kLastPlayedSystemId)
         return "lastplayed";
+    if (systemId == kRomMSystemId)
+        return "romm";
     return systemId.c_str();
 }
 
